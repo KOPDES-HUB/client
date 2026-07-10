@@ -234,4 +234,20 @@
   .quiz-transition {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
+
+  /* Login page */
+  .segment-active {
+    background-color: #488451;
+    color: white;
+    box-shadow: 0 4px 12px rgba(72, 132, 81, 0.2);
+  }
+
+  @keyframes login-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .animate-login-float {
+    animation: login-float 6s ease-in-out infinite;
+  }
 }

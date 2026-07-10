@@ -24,7 +24,7 @@ export default function LandingPage() {
             </Link>
           </div>
           <div className="flex items-center gap-4">
-            <Link href="/dashboard" className="text-on-surface-variant text-label-sm font-label-sm hover:text-primary transition-colors">
+            <Link href="/login" className="text-on-surface-variant text-label-sm font-label-sm hover:text-primary transition-colors">
               Masuk
             </Link>
             <Link href="/cari-koperasi" className="bg-primary text-white px-6 py-2.5 rounded-lg text-label-sm font-label-sm hover:bg-primary-container transition-all">
@@ -55,7 +55,7 @@ export default function LandingPage() {
                   Daftar Jadi Anggota
                 </Link>
                 <Link
-                  href="/dashboard"
+                  href="/login"
                   className="border border-white/30 hover:border-white hover:bg-white/10 text-white px-8 py-4 rounded-lg text-label-sm font-label-sm transition-all"
                 >
                   Masuk ke Dashboard
