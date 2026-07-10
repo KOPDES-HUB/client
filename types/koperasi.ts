@@ -13,4 +13,5 @@ export interface KoperasiData {
   modal_awal: string;
   sumber_persetujuan: string;
   tentang_koperasi: string;
+  distance?: number;
 }
