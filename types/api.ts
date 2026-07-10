@@ -17,10 +17,11 @@ export interface AuthUser {
   email: string;
   roles: string[];
   menus: Menu[];
+  isAdmin: boolean;
+  statusRegistrasi: string;
 }
 export interface LoginPayload {
   nik?: string;
-  email?: string;
   password: string;
 }
 export interface LoginResponse {

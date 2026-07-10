@@ -4,7 +4,8 @@ import type { KoperasiData } from "@/types/koperasi";
 function parseKoordinat(koordinatDibulatkan: string | null): [number, number] {
   if (!koordinatDibulatkan) return [0, 0];
 
-  const [lng, lat] = koordinatDibulatkan
+  // Format DB: "latitude,longitude" (contoh: -6.154, 106.829)
+  const [lat, lng] = koordinatDibulatkan
     .split(",")
     .map((v) => Number(v.trim()));
 

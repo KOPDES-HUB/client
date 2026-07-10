@@ -2,8 +2,10 @@
 
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { useState, useMemo } from "react";
+import { useSearchParams } from "next/navigation";
+import { useState, useMemo, useEffect } from "react";
 import type { KoperasiData } from "@/types/koperasi";
+import { useCheckLocation } from "@/hooks/use-check-location";
 
 /* Leaflet must only render on the client */
 const KoperasiMap = dynamic(() => import("@/components/map/KoperasiMap"), {
@@ -116,35 +118,74 @@ function haversineKm(a: [number, number], b: [number, number]): number {
 
 /* ── Page ─────────────────────────────────────────────────────────── */
 export default function CariKoperasiPage() {
+  const searchParams = useSearchParams();
+  const referralCode = searchParams.get("ref") ?? "";
   const [selected, setSelected] = useState<KoperasiData | null>(null);
   const [search, setSearch] = useState("");
+  const [userCoords, setUserCoords] = useState<{
+    lat: number;
+    long: number;
+  } | null>(null);
 
-  /* metadata koordinat_dibulatkan → reference point for sorting */
-  const referenceCoord: [number, number] = [-3.757, 102.267];
+  const [geoError, setGeoError] = useState<string | null>(null);
 
+  useEffect(() => {
+    if (!navigator.geolocation) {
+      setGeoError("Browser tidak mendukung geolocation.");
+      return;
+    }
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        setUserCoords({
+          lat: pos.coords.latitude,
+          long: pos.coords.longitude,
+        });
+      },
+      () => {
+        setGeoError(
+          "Izin lokasi ditolak. Aktifkan GPS/lokasi untuk mencari koperasi terdekat.",
+        );
+      },
+      { enableHighAccuracy: true, timeout: 15000 },
+    );
+  }, []);
+
+  const {
+    data: koperasiList = [],
+    isLoading,
+    isError,
+    error,
+  } = useCheckLocation({
+    lat: userCoords?.lat ?? null,
+    long: userCoords?.long ?? null,
+  });
   const sorted = useMemo(() => {
-    return [...KOPERASI_LIST]
+    return koperasiList
       .filter((k) =>
         k.nama_koperasi.toLowerCase().includes(search.toLowerCase()),
       )
-      .sort(
-        (a, b) =>
-          haversineKm(referenceCoord, a.koordinat) -
-          haversineKm(referenceCoord, b.koordinat),
-      );
-  }, [search]);
+      .sort((a, b) => (a.distance ?? 0) - (b.distance ?? 0));
+  }, [koperasiList, search]);
 
-  /* nearest to reference coord */
   const nearestId = sorted[0]?.koperasi_ref ?? null;
+
+  const registerHref = selected
+    ? (() => {
+        const params = new URLSearchParams({
+          koperasi: selected.koperasi_ref,
+          nama: selected.nama_koperasi,
+        });
+        if (referralCode) params.set("ref", referralCode);
+        return `/register?${params.toString()}`;
+      })()
+    : "/register";
 
   const handleSelect = (k: KoperasiData) => setSelected(k);
 
   return (
-    <div
-      className="h-screen flex flex-col overflow-hidden"
-      style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
-    >
+    <div className="h-screen flex flex-col overflow-hidden">
       {/* ── Top header bar ─────────────────────────────────── */}
+
       <header className="shrink-0 h-14 flex items-center justify-between px-6 bg-inverse-surface border-b border-white/10 z-50">
         <div className="flex items-center gap-6">
           <Link href="/" className="flex items-center gap-2">
@@ -221,11 +262,36 @@ export default function CariKoperasiPage() {
 
           {/* Koperasi list */}
           <div className="flex-1 overflow-y-auto">
+            {/* Loading */}
+            {isLoading && (
+              <div className="p-6 text-center text-on-surface-variant">
+                Mencari koperasi terdekat...
+              </div>
+            )}
+            {/* Geolocation error */}
+            {geoError && (
+              <div className="m-3 rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-600">
+                {geoError}
+              </div>
+            )}
+            {/* API error */}
+            {isError && (
+              <div className="m-3 rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-600">
+                {(error as Error)?.message ?? "Gagal memuat data koperasi"}
+              </div>
+            )}
+            {/* Empty */}
+            {!isLoading && !isError && sorted.length === 0 && (
+              <div className="p-6 text-center text-on-surface-variant">
+                Tidak ada koperasi dalam radius 5 km dari lokasi Anda.
+              </div>
+            )}
+
             <div className="p-3 space-y-2">
               {sorted.map((k, idx) => {
                 const isSelected = selected?.koperasi_ref === k.koperasi_ref;
                 const isNearest = k.koperasi_ref === nearestId;
-                const dist = haversineKm(referenceCoord, k.koordinat);
+                const dist = k.distance ?? 0;
 
                 return (
                   <button
@@ -359,7 +425,7 @@ export default function CariKoperasiPage() {
 
                 {/* CTA */}
                 <Link
-                  href={`/register?koperasi=${encodeURIComponent(selected.koperasi_ref)}&nama=${encodeURIComponent(selected.nama_koperasi)}`}
+                  href={registerHref}
                   className="flex items-center justify-center gap-2 w-full py-3.5 bg-primary text-white rounded-xl text-label-sm font-label-sm hover:bg-primary-container transition-all shadow-lg shadow-primary/20 hover:-translate-y-0.5 transform"
                 >
                   <span className="material-symbols-outlined text-[18px]">
@@ -391,7 +457,7 @@ export default function CariKoperasiPage() {
         <div className="flex-1 relative">
           {/* Map attribution badge */}
           <div className="absolute top-4 left-4 z-[1000] bg-inverse-surface/90 backdrop-blur-sm text-primary-fixed text-[10px] px-3 py-1.5 rounded-full font-semibold tracking-widest uppercase shadow-lg">
-            {KOPERASI_LIST.length} Koperasi Terdaftar
+            {koperasiList.length} Koperasi Terdaftar
           </div>
 
           {/* Legend */}
@@ -426,7 +492,7 @@ export default function CariKoperasiPage() {
           )}
 
           <KoperasiMap
-            koperasiList={KOPERASI_LIST}
+            koperasiList={koperasiList}
             selectedId={selected?.koperasi_ref ?? null}
             nearestId={nearestId}
             onSelect={handleSelect}

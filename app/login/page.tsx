@@ -9,10 +9,10 @@ import { useAuthStore } from "../stores/auth-store";
 import { useLogin } from "@/hooks/use-login";
 import { isAxiosError } from "axios";
 
-const ADMIN_ROLE_IDS = [
-  "71504c7f-1475-4099-bf11-7b8b8b6c45f6", // Admin
-  "9c3c12f0-1a22-4212-bf9e-83ccde27c814", // Superadmin
-];
+// const ADMIN_ROLE_IDS = [
+//   "71504c7f-1475-4099-bf11-7b8b8b6c45f6", // Admin
+//   "9c3c12f0-1a22-4212-bf9e-83ccde27c814", // Superadmin
+// ];
 
 export default function LoginPage() {
   const router = useRouter();
@@ -44,34 +44,42 @@ export default function LoginPage() {
 
       const user = res.data.user;
       setUser(user);
-      const isAdmin = user.roles.some((roleId) =>
-        ADMIN_ROLE_IDS.includes(roleId),
-      );
+      const isAdmin = user?.isAdmin === true;
 
       router.push(isAdmin ? "/admin" : "/dashboard");
     } catch (err) {
       // #region agent log
-      fetch("http://127.0.0.1:7591/ingest/e37e4eb2-1953-4214-a75b-ed7e54685425", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "6f6c76" },
-        body: JSON.stringify({
-          sessionId: "6f6c76",
-          hypothesisId: "A,B,C,D,E",
-          location: "login/page.tsx:catch",
-          message: "login submit failed",
-          data: {
-            isAxios: isAxiosError(err),
-            code: isAxiosError(err) ? err.code : null,
-            status: isAxiosError(err) ? err.response?.status : null,
-            axiosMessage: isAxiosError(err) ? err.message : null,
-            responseMessage: isAxiosError(err) ? err.response?.data?.message : null,
+      fetch(
+        "http://127.0.0.1:7591/ingest/e37e4eb2-1953-4214-a75b-ed7e54685425",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Debug-Session-Id": "6f6c76",
           },
-          timestamp: Date.now(),
-        }),
-      }).catch(() => {});
+          body: JSON.stringify({
+            sessionId: "6f6c76",
+            hypothesisId: "A,B,C,D,E",
+            location: "login/page.tsx:catch",
+            message: "login submit failed",
+            data: {
+              isAxios: isAxiosError(err),
+              code: isAxiosError(err) ? err.code : null,
+              status: isAxiosError(err) ? err.response?.status : null,
+              axiosMessage: isAxiosError(err) ? err.message : null,
+              responseMessage: isAxiosError(err)
+                ? err.response?.data?.message
+                : null,
+            },
+            timestamp: Date.now(),
+          }),
+        },
+      ).catch(() => {});
       // #endregion
       const message = isAxiosError(err)
-        ? (err.response?.data?.message ?? err.message ?? "Login gagal, coba lagi.")
+        ? (err.response?.data?.message ??
+          err.message ??
+          "Login gagal, coba lagi.")
         : "Terjadi kesalahan, coba lagi.";
       setError(message);
     }
