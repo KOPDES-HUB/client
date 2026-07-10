@@ -1,6 +1,12 @@
+"use client";
+
 import Link from "next/link";
+import { useAuthSession } from "@/hooks/use-auth-session";
 
 export default function StatusKTAPage() {
+  const { isAuthenticated, isLoading } = useAuthSession();
+  const homeHref = isAuthenticated ? "/dashboard" : "/";
+
   return (
     <div className="min-h-screen bg-surface-bg flex flex-col items-center justify-center py-12 px-4">
       {/* Logo */}
@@ -86,10 +92,10 @@ export default function StatusKTAPage() {
           </div>
 
           <Link
-            href="/"
+            href={homeHref}
             className="px-8 py-3 border border-primary text-primary rounded-xl text-label-sm font-label-sm hover:bg-primary/5 transition-all"
           >
-            Kembali ke Beranda
+            {isLoading ? "Memuat..." : "Kembali ke Beranda"}
           </Link>
         </div>
       </div>

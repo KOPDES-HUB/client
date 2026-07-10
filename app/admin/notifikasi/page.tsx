@@ -12,6 +12,11 @@ const TRIGGER_INFO: Record<TriggerKey, { label: string; icon: string; desc: stri
   VOTING_BARU:      { label: "Voting Baru Dibuka",   icon: "how_to_vote",       desc: "Terkirim ke semua anggota aktif saat voting baru dibuat." },
   RAT_BARU:         { label: "RAT Baru Dijadwalkan", icon: "event",             desc: "Terkirim ke semua anggota saat sesi RAT dibuat." },
   RAT_REMINDER_H1:  { label: "Reminder RAT H-1",     icon: "notifications_active", desc: "Terkirim H-1 sebelum pelaksanaan RAT." },
+  HARGA_TURUN:      { label: "Harga Produk Turun",   icon: "trending_down",     desc: "Otomatis ke anggota e-KTA saat harga produk diturunkan." },
+  DISKON_PROMO:     { label: "Diskon/Promo Produk",  icon: "local_offer",       desc: "Notifikasi promo gerai KDMP ke semua anggota aktif." },
+  STOK_BARU:        { label: "Barang Masuk (Stok Baru)", icon: "inventory_2",   desc: "Terkirim saat barang_masuk_produk dicatat di inventaris." },
+  STOK_RENDAH:      { label: "Peringatan Stok Rendah", icon: "warning",         desc: "Alert saat stok produk di bawah ambang batas." },
+  DAILY_STREAK_REMINDER: { label: "Reminder Login Harian", icon: "local_fire_department", desc: "Pengingat klaim streak & poin harian." },
 };
 
 const EXAMPLE_VARS = {
@@ -21,6 +26,13 @@ const EXAMPLE_VARS = {
   link: "https://simpul.id/dashboard",
   judul: "Persetujuan Pengadaan Beras",
   kodeReferral: "BSW2024",
+  produk: "Beras Premium 5kg",
+  hargaBaru: "Rp 72.000",
+  hargaLama: "Rp 78.000",
+  diskon: "15",
+  stok: "40",
+  satuan: "pack",
+  poin: "25",
 };
 
 interface LogRow {
@@ -38,6 +50,9 @@ const INITIAL_LOG: LogRow[] = [
   { id: "3", waktu: "8 Jul 2024, 08:15",  trigger: "Voting Baru Dibuka",   noHp: "0814-3456-7890", status: "GAGAL",    pesan: "📊 Voting baru tersedia: Pengadaan…" },
   { id: "4", waktu: "7 Jul 2024, 17:00",  trigger: "Reminder RAT H-1",     noHp: "0815-4567-8901", status: "TERKIRIM", pesan: "⏰ Pengingat: RAT SIMPUL Merah…" },
   { id: "5", waktu: "5 Jul 2024, 12:00",  trigger: "RAT Baru Dijadwalkan", noHp: "0816-5678-9012", status: "TERKIRIM", pesan: "📢 Rapat Anggota Tahunan…" },
+  { id: "6", waktu: "10 Jul 2024, 14:30", trigger: "Harga Produk Turun",   noHp: "0812-3456-7890", status: "TERKIRIM", pesan: "💰 Harga Turun! Beras Premium 5kg…" },
+  { id: "7", waktu: "10 Jul 2024, 10:00", trigger: "Barang Masuk (Stok Baru)", noHp: "0813-2345-6789", status: "TERKIRIM", pesan: "📦 Stok Baru! Bibit Padi IR64…" },
+  { id: "8", waktu: "10 Jul 2024, 08:00", trigger: "Reminder Login Harian", noHp: "0812-3456-7890", status: "TERKIRIM", pesan: "🔥 Hai Budi! Jangan putus streak…" },
 ];
 
 const STATUS_COLOR: Record<string, string> = {
@@ -53,6 +68,11 @@ export default function AdminNotifikasiPage() {
     VOTING_BARU:     DEFAULT_TEMPLATES.VOTING_BARU,
     RAT_BARU:        DEFAULT_TEMPLATES.RAT_BARU,
     RAT_REMINDER_H1: DEFAULT_TEMPLATES.RAT_REMINDER_H1,
+    HARGA_TURUN:     DEFAULT_TEMPLATES.HARGA_TURUN,
+    DISKON_PROMO:    DEFAULT_TEMPLATES.DISKON_PROMO,
+    STOK_BARU:       DEFAULT_TEMPLATES.STOK_BARU,
+    STOK_RENDAH:     DEFAULT_TEMPLATES.STOK_RENDAH,
+    DAILY_STREAK_REMINDER: DEFAULT_TEMPLATES.DAILY_STREAK_REMINDER,
   });
   const [activeTab, setActiveTab] = useState<TriggerKey>("KTA_DISETUJUI");
   const [saved, setSaved] = useState<TriggerKey | null>(null);
@@ -104,11 +124,11 @@ export default function AdminNotifikasiPage() {
             </div>
             <p className="text-xs text-on-surface-variant">
               Gunakan <code className="bg-surface-bg px-1 rounded">{"{{nama}}"}</code>,{" "}
-              <code className="bg-surface-bg px-1 rounded">{"{{jumlah}}"}</code>,{" "}
-              <code className="bg-surface-bg px-1 rounded">{"{{tanggal}}"}</code>,{" "}
-              <code className="bg-surface-bg px-1 rounded">{"{{link}}"}</code>,{" "}
-              <code className="bg-surface-bg px-1 rounded">{"{{judul}}"}</code>{" "}
-              sebagai placeholder yang akan diisi otomatis.
+              <code className="bg-surface-bg px-1 rounded">{"{{produk}}"}</code>,{" "}
+              <code className="bg-surface-bg px-1 rounded">{"{{hargaBaru}}"}</code>,{" "}
+              <code className="bg-surface-bg px-1 rounded">{"{{stok}}"}</code>,{" "}
+              <code className="bg-surface-bg px-1 rounded">{"{{link}}"}</code>{" "}
+              sebagai placeholder yang akan diisi otomatis ke semua anggota ber e-KTA.
             </p>
           </div>
 

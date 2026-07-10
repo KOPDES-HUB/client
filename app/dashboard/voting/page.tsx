@@ -1,9 +1,15 @@
+"use client";
+
 import TopBar from "@/components/layout/TopBar";
+import AttendanceBadge from "@/components/participation/AttendanceBadge";
 import Link from "next/link";
+import { useCanAccessVoting } from "@/hooks/useAttendance";
+import { RAT_SESSION_2024 } from "@/lib/participation/sessions";
 
 const polls = [
   {
     id: "1",
+    sessionId: "voting-1",
     title: "Persetujuan Pengadaan Stok Beras Grosir BUMDes",
     desc: "Usulan pengadaan stok beras 10 ton untuk didistribusikan melalui jaringan BUMDes desa Merah Putih.",
     deadline: "Berakhir 2 hari lagi",
@@ -13,6 +19,7 @@ const polls = [
   },
   {
     id: "2",
+    sessionId: "voting-2",
     title: "Penetapan Suku Bunga Pinjaman Anggota Tahun 2025",
     desc: "Penentuan suku bunga pinjaman anggota untuk tahun 2025 berdasarkan kondisi pasar keuangan.",
     deadline: "Berakhir 5 hari lagi",
@@ -22,6 +29,7 @@ const polls = [
   },
   {
     id: "3",
+    sessionId: "voting-3",
     title: "Pengesahan Laporan Keuangan Tahun Buku 2023",
     desc: "Pemungutan suara untuk mengesahkan laporan keuangan tahunan koperasi.",
     deadline: "Berakhir 10 hari lagi",
@@ -31,6 +39,7 @@ const polls = [
   },
   {
     id: "4",
+    sessionId: "voting-4",
     title: "Pemilihan Pengurus Koperasi Periode 2025-2027",
     desc: "Pemilihan ketua, sekretaris, dan bendahara koperasi periode mendatang.",
     deadline: "Mulai 1 Agustus 2024",
@@ -46,7 +55,29 @@ const historyVotes = [
   { title: "Penolakan Rencana Ekspansi Usaha", voted: "Tidak Setuju", result: "Ditolak", date: "20 Nov 2023" },
 ];
 
+function PollAccessStatus({ sessionId }: { sessionId: string }) {
+  const { canAccess, hasRatAttendance, hasVotingAttendance } = useCanAccessVoting(sessionId);
+
+  if (canAccess) {
+    return (
+      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant text-[10px] font-semibold">
+        <span className="material-symbols-outlined text-[12px]" style={{ fontVariationSettings: "'FILL' 1" }}>how_to_vote</span>
+        Siap Vote
+      </span>
+    );
+  }
+
+  return (
+    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant text-[10px] font-semibold">
+      <span className="material-symbols-outlined text-[12px]">qr_code_scanner</span>
+      {!hasRatAttendance ? "Perlu absen RAT" : !hasVotingAttendance ? "Perlu absen voting" : "Terkunci"}
+    </span>
+  );
+}
+
 export default function EVotingPage() {
+  const { hasRatAttendance } = useCanAccessVoting("voting-1");
+
   return (
     <>
       <TopBar
@@ -55,70 +86,106 @@ export default function EVotingPage() {
       />
 
       <div className="p-8 max-w-container-max mx-auto w-full space-y-8">
-        {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
             <h1 className="text-headline-lg font-headline-lg text-on-surface">Pengambilan Suara</h1>
             <p className="text-body-md text-on-surface-variant mt-1">
-              Partisipasi Anda penting untuk keputusan koperasi yang demokratis.
+              Partisipasi voting memerlukan absensi digital via scan KTA (E-RAT & sesi voting).
             </p>
           </div>
-          <div className="flex gap-2">
+          <div className="flex gap-2 flex-wrap">
+            <AttendanceBadge sessionId={RAT_SESSION_2024.id} label="Absen RAT" />
             <div className="flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-xl">
-              <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-              <span className="text-label-sm font-label-sm text-primary">{polls.filter(p => p.status === "Aktif").length} Voting Aktif</span>
+              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+              <span className="text-label-sm font-label-sm text-primary">
+                {polls.filter((p) => p.status === "Aktif").length} Voting Aktif
+              </span>
             </div>
           </div>
         </div>
 
-        {/* Active Polls Grid */}
+        {!hasRatAttendance && (
+          <div className="bg-tertiary-fixed/50 border border-amber-200 rounded-2xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="flex items-start gap-3">
+              <span className="material-symbols-outlined text-amber-700 text-2xl">info</span>
+              <div>
+                <p className="text-label-sm font-label-sm text-on-surface font-semibold">Syarat Partisipasi E-Voting</p>
+                <p className="text-body-md text-on-surface-variant text-sm mt-0.5">
+                  Absen di E-RAT dengan scan KTA terlebih dahulu, lalu absen di sesi voting sebelum memberikan suara.
+                </p>
+              </div>
+            </div>
+            <Link
+              href={`/scan?sessionId=${RAT_SESSION_2024.id}&sessionType=rat`}
+              className="shrink-0 px-5 py-2.5 bg-primary text-white rounded-xl text-label-sm font-label-sm hover:bg-primary-container transition-all text-center"
+            >
+              Absen RAT dengan KTA
+            </Link>
+          </div>
+        )}
+
         <section>
           <h2 className="text-headline-md font-headline-md text-on-surface mb-4">Voting Aktif</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {polls.filter(p => p.status === "Aktif").map((poll) => (
-              <div key={poll.id} className="bg-surface-card rounded-2xl border border-mint-200 shadow-md p-6 flex flex-col gap-4 hover:shadow-lg transition-all">
-                <div className="flex items-start justify-between gap-3">
-                  <h3 className="text-label-sm font-label-sm text-on-surface leading-snug flex-1">{poll.title}</h3>
-                  <span className="flex items-center gap-1.5 px-3 py-1 bg-error-container text-on-error-container rounded-full text-label-xs font-label-xs flex-shrink-0">
-                    <span className="material-symbols-outlined text-[12px]">schedule</span>
-                    {poll.deadline}
-                  </span>
-                </div>
-
-                <p className="text-body-md text-on-surface-variant text-[13px] leading-relaxed">{poll.desc}</p>
-
-                {/* Progress bars */}
-                <div className="space-y-2">
-                  <div className="flex justify-between text-label-xs font-label-xs mb-1">
-                    <span className="text-primary">Setuju {poll.setuju}%</span>
-                    <span className="text-on-surface-variant">Tidak Setuju {poll.tidakSetuju}%</span>
+            {polls
+              .filter((p) => p.status === "Aktif")
+              .map((poll) => (
+                <div
+                  key={poll.id}
+                  className="bg-surface-card rounded-2xl border border-mint-200 shadow-md p-6 flex flex-col gap-4 hover:shadow-lg transition-all"
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <h3 className="text-label-sm font-label-sm text-on-surface leading-snug flex-1">{poll.title}</h3>
+                    <span className="flex items-center gap-1.5 px-3 py-1 bg-error-container text-on-error-container rounded-full text-label-xs font-label-xs shrink-0">
+                      <span className="material-symbols-outlined text-[12px]">schedule</span>
+                      {poll.deadline}
+                    </span>
                   </div>
-                  <div className="h-2.5 w-full bg-surface-container rounded-full overflow-hidden flex">
-                    <div className="h-full bg-primary rounded-l-full transition-all" style={{ width: `${poll.setuju}%` }}></div>
-                    <div className="h-full bg-outline-variant rounded-r-full" style={{ width: `${poll.tidakSetuju}%` }}></div>
+
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <PollAccessStatus sessionId={poll.sessionId} />
+                    <AttendanceBadge sessionId={poll.sessionId} label="Absen Voting" />
+                  </div>
+
+                  <p className="text-body-md text-on-surface-variant text-[13px] leading-relaxed">{poll.desc}</p>
+
+                  <div className="space-y-2">
+                    <div className="flex justify-between text-label-xs font-label-xs mb-1">
+                      <span className="text-primary">Setuju {poll.setuju}%</span>
+                      <span className="text-on-surface-variant">Tidak Setuju {poll.tidakSetuju}%</span>
+                    </div>
+                    <div className="h-2.5 w-full bg-surface-container rounded-full overflow-hidden flex">
+                      <div className="h-full bg-primary rounded-l-full transition-all" style={{ width: `${poll.setuju}%` }} />
+                      <div className="h-full bg-outline-variant rounded-r-full" style={{ width: `${poll.tidakSetuju}%` }} />
+                    </div>
+                  </div>
+
+                  <div className="flex gap-3 pt-1">
+                    <Link
+                      href={`/dashboard/voting/${poll.id}`}
+                      className="flex-1 py-2.5 bg-primary text-white rounded-xl text-label-sm font-label-sm text-center hover:bg-primary-container transition-all"
+                    >
+                      Lihat Detail & Vote
+                    </Link>
+                    <Link
+                      href={`/scan?sessionId=${poll.sessionId}&sessionType=voting`}
+                      className="py-2.5 px-3 border border-mint-200 text-primary rounded-xl text-label-sm font-label-sm hover:bg-primary/5 transition-all"
+                      title="Absen dengan KTA"
+                    >
+                      <span className="material-symbols-outlined text-[18px] align-middle">badge</span>
+                    </Link>
+                    <Link
+                      href={`/dashboard/voting/${poll.id}/hasil`}
+                      className="py-2.5 px-4 border border-mint-200 text-on-surface-variant rounded-xl text-label-sm font-label-sm hover:border-primary hover:text-primary transition-all"
+                    >
+                      Hasil
+                    </Link>
                   </div>
                 </div>
-
-                <div className="flex gap-3 pt-1">
-                  <Link
-                    href={`/dashboard/voting/${poll.id}`}
-                    className="flex-1 py-2.5 bg-primary text-white rounded-xl text-label-sm font-label-sm text-center hover:bg-primary-container transition-all"
-                  >
-                    Lihat Detail & Vote
-                  </Link>
-                  <Link
-                    href={`/dashboard/voting/${poll.id}/hasil`}
-                    className="py-2.5 px-4 border border-mint-200 text-on-surface-variant rounded-xl text-label-sm font-label-sm hover:border-primary hover:text-primary transition-all"
-                  >
-                    Hasil
-                  </Link>
-                </div>
-              </div>
-            ))}
+              ))}
           </div>
         </section>
 
-        {/* History Table */}
         <section className="bg-surface-card rounded-2xl border border-mint-200 shadow-md overflow-hidden">
           <div className="flex justify-between items-center p-6 border-b border-outline-variant/30">
             <h2 className="text-headline-md font-headline-md text-on-surface">Riwayat Voting</h2>
@@ -138,14 +205,24 @@ export default function EVotingPage() {
                   <tr key={i} className="hover:bg-surface-bg transition-colors">
                     <td className="px-6 py-4 text-body-md text-on-surface">{v.title}</td>
                     <td className="px-6 py-4 text-center">
-                      <span className={`px-3 py-1 rounded-full text-label-xs font-label-xs ${
-                        v.voted === "Setuju" ? "bg-primary/10 text-primary" : "bg-outline-variant/30 text-on-surface-variant"
-                      }`}>{v.voted}</span>
+                      <span
+                        className={`px-3 py-1 rounded-full text-label-xs font-label-xs ${
+                          v.voted === "Setuju" ? "bg-primary/10 text-primary" : "bg-outline-variant/30 text-on-surface-variant"
+                        }`}
+                      >
+                        {v.voted}
+                      </span>
                     </td>
                     <td className="px-6 py-4 text-center">
-                      <span className={`px-3 py-1 rounded-full text-label-xs font-label-xs ${
-                        v.result === "Disetujui" ? "bg-primary-fixed text-on-primary-fixed-variant" : "bg-error-container text-on-error-container"
-                      }`}>{v.result}</span>
+                      <span
+                        className={`px-3 py-1 rounded-full text-label-xs font-label-xs ${
+                          v.result === "Disetujui"
+                            ? "bg-primary-fixed text-on-primary-fixed-variant"
+                            : "bg-error-container text-on-error-container"
+                        }`}
+                      >
+                        {v.result}
+                      </span>
                     </td>
                     <td className="px-6 py-4 text-right text-body-md text-on-surface-variant">{v.date}</td>
                   </tr>

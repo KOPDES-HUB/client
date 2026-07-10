@@ -50,12 +50,30 @@ export default function LoginPage() {
 
       router.push(isAdmin ? "/admin" : "/dashboard");
     } catch (err) {
+      // #region agent log
+      fetch("http://127.0.0.1:7591/ingest/e37e4eb2-1953-4214-a75b-ed7e54685425", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "6f6c76" },
+        body: JSON.stringify({
+          sessionId: "6f6c76",
+          hypothesisId: "A,B,C,D,E",
+          location: "login/page.tsx:catch",
+          message: "login submit failed",
+          data: {
+            isAxios: isAxiosError(err),
+            code: isAxiosError(err) ? err.code : null,
+            status: isAxiosError(err) ? err.response?.status : null,
+            axiosMessage: isAxiosError(err) ? err.message : null,
+            responseMessage: isAxiosError(err) ? err.response?.data?.message : null,
+          },
+          timestamp: Date.now(),
+        }),
+      }).catch(() => {});
+      // #endregion
       const message = isAxiosError(err)
-        ? (err.response?.data?.message ?? "Login gagal, coba lagi.")
+        ? (err.response?.data?.message ?? err.message ?? "Login gagal, coba lagi.")
         : "Terjadi kesalahan, coba lagi.";
       setError(message);
-    } finally {
-      setError(null);
     }
   };
 

@@ -1,5 +1,6 @@
 import TopBar from "@/components/layout/TopBar";
 import Link from "next/link";
+import DashboardEngagement from "@/components/dashboard/DashboardEngagement";
 
 const quickActions = [
   {
@@ -57,6 +58,20 @@ const quickActions = [
     desc: "Belanja & kumpulkan poin.",
     href: "/dashboard/unit-usaha",
     color: "bg-mint-200",
+  },
+  {
+    icon: "local_fire_department",
+    label: "Login Harian",
+    desc: "Streak & tukar voucher KDMP.",
+    href: "/dashboard/daily-login",
+    color: "bg-amber-100",
+  },
+  {
+    icon: "local_offer",
+    label: "Promo Gerai",
+    desc: "Harga turun & stok baru.",
+    href: "/dashboard/promo",
+    color: "bg-tertiary-fixed",
   },
   {
     icon: "receipt_long",
@@ -179,6 +194,9 @@ export default function DashboardPage() {
             ))}
           </div>
         </div>
+
+        {/* Daily Login + Promo Notifications */}
+        <DashboardEngagement />
 
         {/* Poin Transaksi Widget — Modul 6 */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">

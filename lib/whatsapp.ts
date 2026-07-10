@@ -92,6 +92,21 @@ export const DEFAULT_TEMPLATES: Record<string, string> = {
 
   RAT_REMINDER_H1:
     "⏰ Pengingat: RAT SIMPUL Merah Putih *besok, {{tanggal}}*. Hadir tepat waktu ya, {{nama}}! Detail: {{link}}",
+
+  HARGA_TURUN:
+    "💰 *Harga Turun!* {{produk}} sekarang *{{hargaBaru}}* (dari {{hargaLama}}). Belanja di gerai KDMP: {{link}}",
+
+  DISKON_PROMO:
+    "🏷️ *Promo Spesial!* {{produk}} diskon *{{diskon}}%* — hanya *{{hargaBaru}}*. Khusus anggota e-KTA. {{link}}",
+
+  STOK_BARU:
+    "📦 *Stok Baru!* {{produk}} baru masuk (+{{jumlah}} {{satuan}}). Stok tersedia: {{stok}}. Kunjungi gerai KDMP: {{link}}",
+
+  STOK_RENDAH:
+    "⚠️ *Stok Terbatas!* {{produk}} tersisa *{{stok}} {{satuan}}*. Segera beli sebelum habis di gerai KDMP.",
+
+  DAILY_STREAK_REMINDER:
+    "🔥 Hai {{nama}}! Jangan putus streak login harianmu. Klaim *+{{poin}} poin* hari ini & tukar voucher gerai KDMP: {{link}}",
 };
 
 // ─── Stub provider — ganti dengan implementasi nyata ─────────────────────────
