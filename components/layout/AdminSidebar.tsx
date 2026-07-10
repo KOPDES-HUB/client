@@ -11,6 +11,7 @@ const adminNavItems = [
   { label: "E-Voting", href: "/admin/voting", icon: "how_to_vote" },
   { label: "E-RAT", href: "/admin/rat", icon: "groups" },
   { label: "Unit Usaha", href: "/admin/unit-usaha", icon: "storefront" },
+  { label: "Kelayakan Keuangan", href: "/admin/kelayakan-keuangan", icon: "query_stats" },
   { label: "Inventaris Produk", href: "/admin/inventaris", icon: "inventory_2" },
   { label: "Transaksi", href: "/admin/transaksi", icon: "receipt_long" },
   { label: "Partisipasi", href: "/admin/partisipasi", icon: "analytics" },
