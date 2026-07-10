@@ -4,12 +4,15 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const navItems = [
-  { label: "Dashboard",   href: "/dashboard",              icon: "dashboard" },
-  { label: "KTA Digital", href: "/dashboard/kta",          icon: "badge" },
-  { label: "LMS",         href: "/dashboard/lms",          icon: "school" },
-  { label: "Simpanan",    href: "/dashboard/simpanan",     icon: "account_balance_wallet" },
-  { label: "E-Voting",    href: "/dashboard/voting",       icon: "how_to_vote" },
-  { label: "E-RAT",       href: "/dashboard/rat",          icon: "groups" },
+  { label: "Dashboard",    href: "/dashboard",                icon: "dashboard" },
+  { label: "KTA Digital",  href: "/dashboard/kta",            icon: "badge" },
+  { label: "LMS",          href: "/dashboard/lms",            icon: "school" },
+  { label: "Simpanan",     href: "/dashboard/simpanan",       icon: "account_balance_wallet" },
+  { label: "E-Voting",     href: "/dashboard/voting",         icon: "how_to_vote" },
+  { label: "E-RAT",        href: "/dashboard/rat",            icon: "groups" },
+  { label: "Unit Usaha",   href: "/dashboard/unit-usaha",     icon: "storefront" },
+  { label: "Transaksi",    href: "/dashboard/transaksi",      icon: "receipt_long" },
+  { label: "Referral",     href: "/dashboard/referral",       icon: "group_add" },
 ];
 
 export default function Sidebar() {

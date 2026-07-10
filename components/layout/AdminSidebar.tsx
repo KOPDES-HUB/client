@@ -4,12 +4,18 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const adminNavItems = [
-  { label: "Overview",     href: "/admin",            icon: "dashboard" },
-  { label: "Anggota/KTA",  href: "/admin/anggota",   icon: "assignment_ind" },
-  { label: "LMS",          href: "/admin/lms",        icon: "school" },
-  { label: "Simpanan",     href: "/admin/simpanan",   icon: "account_balance_wallet" },
-  { label: "E-Voting",     href: "/admin/voting",     icon: "how_to_vote" },
-  { label: "E-RAT",        href: "/admin/rat",        icon: "groups" },
+  { label: "Overview",       href: "/admin",                  icon: "dashboard" },
+  { label: "Anggota/KTA",   href: "/admin/anggota",           icon: "assignment_ind" },
+  { label: "LMS",            href: "/admin/lms",              icon: "school" },
+  { label: "Simpanan",       href: "/admin/simpanan",         icon: "account_balance_wallet" },
+  { label: "E-Voting",       href: "/admin/voting",           icon: "how_to_vote" },
+  { label: "E-RAT",          href: "/admin/rat",              icon: "groups" },
+  { label: "Unit Usaha",     href: "/admin/unit-usaha",       icon: "storefront" },
+  { label: "Transaksi",      href: "/admin/transaksi",        icon: "receipt_long" },
+  { label: "Partisipasi",    href: "/admin/partisipasi",      icon: "analytics" },
+  { label: "Kader",          href: "/admin/kader",            icon: "supervisor_account" },
+  { label: "Notifikasi WA",  href: "/admin/notifikasi",       icon: "chat" },
+  { label: "Referral",       href: "/admin/referral",         icon: "group_add" },
 ];
 
 export default function AdminSidebar() {

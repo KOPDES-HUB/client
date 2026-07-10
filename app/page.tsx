@@ -27,7 +27,7 @@ export default function LandingPage() {
             <Link href="/dashboard" className="text-on-surface-variant text-label-sm font-label-sm hover:text-primary transition-colors">
               Masuk
             </Link>
-            <Link href="/register" className="bg-primary text-white px-6 py-2.5 rounded-lg text-label-sm font-label-sm hover:bg-primary-container transition-all">
+            <Link href="/cari-koperasi" className="bg-primary text-white px-6 py-2.5 rounded-lg text-label-sm font-label-sm hover:bg-primary-container transition-all">
               Daftar Sekarang
             </Link>
           </div>
@@ -49,7 +49,7 @@ export default function LandingPage() {
               </p>
               <div className="flex flex-wrap gap-4 pt-4">
                 <Link
-                  href="/register"
+                  href="/cari-koperasi"
                   className="bg-[#488451] hover:bg-[#3a6b41] text-white px-8 py-4 rounded-lg text-label-sm font-label-sm transition-all shadow-lg shadow-black/20 hover:-translate-y-0.5 transform"
                 >
                   Daftar Jadi Anggota
@@ -187,7 +187,7 @@ export default function LandingPage() {
                 ))}
               </ul>
               <div className="flex gap-4 pt-2">
-                <Link href="/register" className="bg-primary text-white px-8 py-3 rounded-lg text-label-sm font-label-sm hover:bg-primary-container transition-all">
+                <Link href="/cari-koperasi" className="bg-primary text-white px-8 py-3 rounded-lg text-label-sm font-label-sm hover:bg-primary-container transition-all">
                   Bergabung Sekarang
                 </Link>
                 <Link href="#" className="border border-primary text-primary px-8 py-3 rounded-lg text-label-sm font-label-sm hover:bg-primary/5 transition-all">

@@ -1,0 +1,320 @@
+// SIMPUL Merah Putih — Prisma Schema
+// Extend-only: modul baru ditambah di bawah, model lama tidak diubah.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ═══════════════════════════════════════════════════════════
+// ANGGOTA & KTA
+// ═══════════════════════════════════════════════════════════
+
+model Anggota {
+  id             String    @id @default(cuid())
+  namaLengkap    String
+  nik            String    @unique
+  email          String    @unique
+  noHp           String
+  alamat         String
+  // Modul 7: field baru untuk analitik partisipasi
+  tanggalLahir   DateTime?
+  dusun          String?
+  // Modul 10: referral
+  kodeReferral   String?   @unique
+  referralOlehId String?
+  referralOleh   Anggota?  @relation("ReferralTree", fields: [referralOlehId], references: [id])
+  referralKe     Anggota[] @relation("ReferralTree")
+
+  fotoProfil     String?
+  statusKTA      StatusKTA @default(PENDING)
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  simpananList   Simpanan[]
+  voteList       Vote[]
+  absensiList    Absensi[]
+  transaksiList  Transaksi[]
+  progressLMS    ProgressLMS[]
+  // audit trail kader
+  dibantuOleh    KaderAksiLog[] @relation("AnggotaBantu")
+}
+
+enum StatusKTA {
+  PENDING
+  DIPROSES
+  DISETUJUI
+  DITOLAK
+}
+
+// ═══════════════════════════════════════════════════════════
+// SIMPANAN & SHU (tidak diubah, hanya referensi)
+// ═══════════════════════════════════════════════════════════
+
+model Simpanan {
+  id          String        @id @default(cuid())
+  anggotaId   String
+  anggota     Anggota       @relation(fields: [anggotaId], references: [id])
+  jenis       JenisSimpanan
+  nominal     Float
+  tanggal     DateTime      @default(now())
+  keterangan  String?
+  createdAt   DateTime      @default(now())
+}
+
+enum JenisSimpanan {
+  POKOK
+  WAJIB
+  SUKARELA
+}
+
+// ═══════════════════════════════════════════════════════════
+// LMS
+// ═══════════════════════════════════════════════════════════
+
+model ModulLMS {
+  id          String        @id @default(cuid())
+  judul       String
+  deskripsi   String?
+  urutan      Int
+  isPublished Boolean       @default(false)
+  createdAt   DateTime      @default(now())
+
+  kuisList    KuisLMS[]
+  progress    ProgressLMS[]
+}
+
+model KuisLMS {
+  id         String   @id @default(cuid())
+  modulId    String
+  modul      ModulLMS @relation(fields: [modulId], references: [id])
+  pertanyaan String
+  pilihan    String[]
+  jawabanIdx Int
+}
+
+model ProgressLMS {
+  id          String   @id @default(cuid())
+  anggotaId   String
+  anggota     Anggota  @relation(fields: [anggotaId], references: [id])
+  modulId     String
+  modul       ModulLMS @relation(fields: [modulId], references: [id])
+  selesai     Boolean  @default(false)
+  nilaiKuis   Float?
+  updatedAt   DateTime @updatedAt
+
+  @@unique([anggotaId, modulId])
+}
+
+// ═══════════════════════════════════════════════════════════
+// E-VOTING
+// ═══════════════════════════════════════════════════════════
+
+model SesiVoting {
+  id          String       @id @default(cuid())
+  judul       String
+  deskripsi   String?
+  mulai       DateTime
+  selesai     DateTime
+  status      StatusVoting @default(DRAFT)
+  createdAt   DateTime     @default(now())
+
+  pilihan     PilihanVoting[]
+  voteList    Vote[]
+}
+
+enum StatusVoting {
+  DRAFT
+  AKTIF
+  SELESAI
+}
+
+model PilihanVoting {
+  id       String     @id @default(cuid())
+  sesiId   String
+  sesi     SesiVoting @relation(fields: [sesiId], references: [id])
+  teks     String
+  jumlah   Int        @default(0)
+
+  voteList Vote[]
+}
+
+model Vote {
+  id                   String        @id @default(cuid())
+  anggotaId            String
+  anggota              Anggota       @relation(fields: [anggotaId], references: [id])
+  sesiId               String
+  sesi                 SesiVoting    @relation(fields: [sesiId], references: [id])
+  pilihanId            String
+  pilihan              PilihanVoting @relation(fields: [pilihanId], references: [id])
+  // Modul 8: audit trail — nullable
+  dilakukanOlehKaderId String?
+  kader                Kader?        @relation("KaderVote", fields: [dilakukanOlehKaderId], references: [id])
+  createdAt            DateTime      @default(now())
+
+  @@unique([anggotaId, sesiId])
+}
+
+// ═══════════════════════════════════════════════════════════
+// E-RAT
+// ═══════════════════════════════════════════════════════════
+
+model SesiRAT {
+  id          String    @id @default(cuid())
+  tahun       Int
+  tanggal     DateTime
+  lokasi      String
+  agenda      String[]
+  qrCode      String?
+  status      StatusRAT @default(DRAFT)
+  createdAt   DateTime  @default(now())
+
+  absensiList Absensi[]
+}
+
+enum StatusRAT {
+  DRAFT
+  BERLANGSUNG
+  SELESAI
+}
+
+model Absensi {
+  id                   String   @id @default(cuid())
+  anggotaId            String
+  anggota              Anggota  @relation(fields: [anggotaId], references: [id])
+  sesiId               String
+  sesi                 SesiRAT  @relation(fields: [sesiId], references: [id])
+  waktuHadir           DateTime @default(now())
+  // Modul 8: audit trail — nullable
+  dilakukanOlehKaderId String?
+  kader                Kader?   @relation("KaderAbsensi", fields: [dilakukanOlehKaderId], references: [id])
+
+  @@unique([anggotaId, sesiId])
+}
+
+// ═══════════════════════════════════════════════════════════
+// MODUL 6 — UNIT USAHA & TRANSAKSI
+// ═══════════════════════════════════════════════════════════
+
+/// Unit usaha koperasi (retail, simpan pinjam, dll)
+model UnitUsaha {
+  id            String        @id @default(cuid())
+  nama          String
+  kategori      KategoriUsaha
+  deskripsi     String?
+  isAktif       Boolean       @default(true)
+  /// Poin per Rp 10.000 nominal transaksi (admin set)
+  paramPoin     Float         @default(1.0)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  transaksiList Transaksi[]
+}
+
+enum KategoriUsaha {
+  RETAIL
+  SIMPAN_PINJAM
+  PERTANIAN
+  JASA
+  LAINNYA
+}
+
+/// Transaksi riil anggota di unit usaha — poin = floor(nominal/10000) * paramPoin
+model Transaksi {
+  id                   String    @id @default(cuid())
+  anggotaId            String
+  anggota              Anggota   @relation(fields: [anggotaId], references: [id])
+  unitUsahaId          String
+  unitUsaha            UnitUsaha @relation(fields: [unitUsahaId], references: [id])
+  nominal              Float
+  /// Poin dihitung server-side saat input: floor(nominal/10000) * unitUsaha.paramPoin
+  poin                 Float
+  keterangan           String?
+  tanggal              DateTime  @default(now())
+  // Modul 8: audit trail — nullable
+  dilakukanOlehKaderId String?
+  kader                Kader?    @relation("KaderTransaksi", fields: [dilakukanOlehKaderId], references: [id])
+  createdAt            DateTime  @default(now())
+}
+
+// ═══════════════════════════════════════════════════════════
+// MODUL 8 — KADER KELILING
+// ═══════════════════════════════════════════════════════════
+
+/// Akun kader — di bawah Admin, akses terbatas ke wilayah tugasnya
+model Kader {
+  id        String   @id @default(cuid())
+  nama      String
+  nik       String   @unique
+  email     String   @unique
+  noHp      String
+  /// Dusun/RT-RW yang menjadi tanggung jawab kader
+  wilayah   String
+  isAktif   Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  transaksiList Transaksi[]   @relation("KaderTransaksi")
+  absensiList   Absensi[]     @relation("KaderAbsensi")
+  voteList      Vote[]        @relation("KaderVote")
+  aksiLog       KaderAksiLog[]
+}
+
+/// Log lengkap setiap aksi kader atas nama anggota — audit trail
+model KaderAksiLog {
+  id          String   @id @default(cuid())
+  kaderId     String
+  kader       Kader    @relation(fields: [kaderId], references: [id])
+  anggotaId   String
+  anggota     Anggota  @relation("AnggotaBantu", fields: [anggotaId], references: [id])
+  /// "TRANSAKSI" | "ABSENSI_RAT" | "VOTE"
+  jenisAksi   String
+  deskripsi   String?
+  createdAt   DateTime @default(now())
+}
+
+// ═══════════════════════════════════════════════════════════
+// MODUL 9 — NOTIFIKASI WHATSAPP
+// ═══════════════════════════════════════════════════════════
+
+/// Template pesan WA per trigger — editable oleh Admin
+model TemplateNotifikasi {
+  id       String       @id @default(cuid())
+  trigger  TriggerNotif @unique
+  template String
+  isAktif  Boolean      @default(true)
+  updatedAt DateTime    @updatedAt
+
+  logList  NotifikasiLog[]
+}
+
+enum TriggerNotif {
+  KTA_DISETUJUI
+  SHU_UPDATE
+  VOTING_BARU
+  RAT_BARU
+  RAT_REMINDER_H1
+}
+
+/// Log setiap pengiriman notifikasi WA
+model NotifikasiLog {
+  id         String             @id @default(cuid())
+  templateId String
+  template   TemplateNotifikasi @relation(fields: [templateId], references: [id])
+  noHp       String
+  pesan      String
+  status     StatusNotif        @default(PENDING)
+  errorMsg   String?
+  kirimAt    DateTime?
+  createdAt  DateTime           @default(now())
+}
+
+enum StatusNotif {
+  PENDING
+  TERKIRIM
+  GAGAL
+}
