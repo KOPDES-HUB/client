@@ -1,36 +1,132 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# KOPDESHUB — Client (Frontend)
 
-## Getting Started
+Frontend web **SIMPUL Merah Putih**, platform digital tata kelola koperasi desa. Aplikasi ini menyediakan antarmuka untuk anggota, admin koperasi, dan kader — mencakup KTA digital, simpanan, e-voting, LMS, E-RAT, transaksi, dan fitur lainnya.
 
-First, run the development server:
+## Tech Stack
+
+| Layer | Teknologi |
+| --- | --- |
+| Framework | [Next.js 16](https://nextjs.org) (App Router) |
+| UI Library | [React 19](https://react.dev) + TypeScript |
+| Styling | [Tailwind CSS 4](https://tailwindcss.com) |
+| Komponen UI | [shadcn/ui](https://ui.shadcn.com) + [Base UI](https://base-ui.com) |
+| Data Fetching | [TanStack Query](https://tanstack.com/query) |
+| HTTP Client | [Axios](https://axios-http.com) (cookie-based auth) |
+| State Management | [Zustand](https://zustand.docs.pmnd.rs) |
+| Peta | [Leaflet](https://leafletjs.com) + [react-leaflet](https://react-leaflet.js.org) |
+| Chart | [Recharts](https://recharts.org) |
+| Animasi | [Framer Motion](https://www.framer.com/motion), [GSAP](https://gsap.com), [Lenis](https://lenis.darkroom.engineering) |
+| Tema | [next-themes](https://github.com/pacocoursey/next-themes) (dark/light mode) |
+
+## Arsitektur
+
+```
+Browser (localhost:3000)
+        │
+        ▼
+┌─────────────────────────────────────┐
+│           Next.js App Router        │
+│  ┌─────────┬──────────┬───────────┐ │
+│  │  Pages  │Components│   Hooks   │ │
+│  │ (app/)  │(components/)│(hooks/)│ │
+│  └────┬────┴────┬─────┴─────┬─────┘ │
+│       │         │           │       │
+│       ▼         ▼           ▼       │
+│   Zustand   TanStack     Axios     │
+│  (auth)     Query        (api)     │
+└──────────────────┬──────────────────┘
+                   │ HTTP + cookies
+                   ▼
+         Backend API (server/)
+```
+
+### Struktur Direktori
+
+```
+client/
+├── app/                  # Routing & halaman (App Router)
+│   ├── admin/            # Panel admin koperasi
+│   ├── dashboard/        # Dashboard anggota
+│   ├── kader/            # Portal kader
+│   ├── cari-koperasi/    # Pencarian koperasi (peta)
+│   ├── login/            # Autentikasi
+│   ├── register/         # Registrasi anggota
+│   └── scan/             # Scan QR (absensi RAT)
+├── components/           # Komponen UI reusable
+│   ├── layout/           # Sidebar, TopBar
+│   ├── kta/              # Kartu & QR KTA
+│   ├── map/              # Peta koperasi
+│   └── ui/               # Primitif shadcn/ui
+├── hooks/                # Custom React hooks
+├── lib/                  # Konfigurasi (axios, utils)
+├── types/                # Definisi TypeScript
+└── utils/                # Helper functions
+```
+
+### Peran Halaman Utama
+
+| Route | Deskripsi |
+| --- | --- |
+| `/` | Landing page |
+| `/login`, `/register` | Autentikasi & pendaftaran anggota |
+| `/cari-koperasi` | Cari koperasi berdasarkan lokasi |
+| `/dashboard/*` | Fitur anggota (KTA, simpanan, voting, LMS, RAT, dll.) |
+| `/admin/*` | Manajemen koperasi (anggota, transaksi, inventaris, dll.) |
+| `/kader/*` | Portal kader |
+| `/scan` | Scan QR untuk absensi |
+
+## Prasyarat
+
+- **Node.js** 20+
+- **npm** (atau pnpm/yarn)
+- Backend API sudah berjalan (lihat [`server/README.md`](../server/README.md))
+
+## Menjalankan Aplikasi
+
+### 1. Instal dependensi
+
+```bash
+cd client
+npm install
+```
+
+### 2. Konfigurasi environment
+
+Buat file `.env.local` di folder `client/`:
+
+```env
+NEXT_PUBLIC_API_URL=http://localhost:3006
+```
+
+> `NEXT_PUBLIC_API_URL` harus mengarah ke URL backend API. Pastikan port dan origin backend (`ALLOWED_ORIGINS`) sudah sesuai.
+
+### 3. Jalankan development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Buka [http://localhost:3000](http://localhost:3000) di browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 4. Build production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## Scripts
 
-To learn more about Next.js, take a look at the following resources:
+| Perintah | Fungsi |
+| --- | --- |
+| `npm run dev` | Menjalankan dev server dengan hot reload |
+| `npm run build` | Build aplikasi untuk production |
+| `npm start` | Menjalankan build production |
+| `npm run lint` | Cek kode dengan ESLint |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Catatan Pengembangan
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Autentikasi menggunakan **HTTP-only cookies** yang dikirim otomatis oleh Axios (`withCredentials: true`).
+- State user disimpan di **Zustand** (`app/stores/auth-store.ts`).
+- Semua request API melalui instance Axios di `lib/axios.ts`.
+- Desain mengikuti design system **mint-leaf** — detail ada di [`DESIGN.md`](./DESIGN.md).
