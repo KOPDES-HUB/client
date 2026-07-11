@@ -217,7 +217,8 @@ export default function LoginPage() {
                   id="nik"
                   value={nik}
                   onChange={(e) => setNik(e.target.value)}
-                  type="number"
+                  type="text"
+                  inputMode="numeric"
                   placeholder="Masukkan 16 digit NIK"
                   disabled={loginMutation.isPending}
                   className="h-12 w-full rounded-md border border-mint-200 bg-white px-4 text-on-surface outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/20"

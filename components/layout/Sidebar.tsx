@@ -2,7 +2,16 @@
 
 import { AppIcon } from "@/components/ui/app-icon";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useAuthStore } from "@/app/stores/auth-store";
+
+function getInitials(name: string): string {
+  const parts = name.trim().split(/\s+/);
+  return parts
+    .slice(0, 2)
+    .map((p) => p[0]?.toUpperCase() ?? "")
+    .join("");
+}
 
 const navItems = [
   { label: "Dashboard", href: "/dashboard", icon: "dashboard" },
@@ -20,9 +29,17 @@ const navItems = [
 
 export default function Sidebar() {
   const pathname = usePathname();
+  const router = useRouter();
+  const user = useAuthStore((s) => s.user);
+  const clearUser = useAuthStore((s) => s.clearUser);
 
   const isActive = (href: string) =>
     pathname === href || (href !== "/dashboard" && pathname.startsWith(href));
+
+  const handleLogout = () => {
+    clearUser();
+    router.push("/login");
+  };
 
   return (
     <aside className="fixed left-0 top-0 z-50 flex h-screen max-h-screen w-[280px] flex-col overflow-hidden bg-inverse-surface py-6 shadow-lg">
@@ -36,11 +53,15 @@ export default function Sidebar() {
 
       <div className="mx-4 mt-6 mb-4 shrink-0 rounded-xl bg-white/10 p-4 flex items-center gap-3">
         <div className="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-inverse-surface font-bold text-sm shrink-0">
-          BS
+          {user ? getInitials(user.username) : "—"}
         </div>
         <div className="min-w-0 overflow-hidden">
-          <p className="text-label-sm font-label-sm text-white truncate">Budi Setiawan</p>
-          <p className="text-[10px] text-secondary-fixed-dim truncate">ID: SMP-2024-001</p>
+          <p className="text-label-sm font-label-sm text-white truncate">
+            {user?.username ?? "Tamu"}
+          </p>
+          <p className="text-[10px] text-secondary-fixed-dim truncate">
+            {user?.id ?? "-"}
+          </p>
         </div>
       </div>
 
@@ -82,6 +103,7 @@ export default function Sidebar() {
         </Link>
         <button
           type="button"
+          onClick={handleLogout}
           className="flex w-full items-center gap-3 rounded-lg p-3 text-red-400 transition-all hover:text-red-300"
         >
           <AppIcon name="logout" className="text-[20px]" />

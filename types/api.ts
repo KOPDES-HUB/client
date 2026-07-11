@@ -22,6 +22,7 @@ export interface AuthUser {
 }
 export interface LoginPayload {
   nik?: string;
+  email?: string;
   password: string;
 }
 export interface LoginResponse {
