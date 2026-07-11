@@ -130,3 +130,4 @@ npm start
 - State user disimpan di **Zustand** (`app/stores/auth-store.ts`).
 - Semua request API melalui instance Axios di `lib/axios.ts`.
 - Desain mengikuti design system **mint-leaf** — detail ada di [`DESIGN.md`](./DESIGN.md).
+- Beberapa Fitur Menu pada **Website CMS maupun Web Utama masih menggunakan data dummy (BETA)**
