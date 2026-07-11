@@ -51,6 +51,7 @@ import {
   LogOut,
   MapPin,
   Medal,
+  Menu,
   MessageCircle,
   Minus,
   NotebookPen,
@@ -169,6 +170,7 @@ const ICON_MAP: Record<string, LucideIcon> = {
   location_on: MapPin,
   lock: Lock,
   logout: LogOut,
+  menu: Menu,
   notifications: Bell,
   notifications_active: BellRing,
   payments: Banknote,
@@ -236,7 +238,11 @@ export function AppIcon({ name, className, filled }: AppIconProps) {
 
   return (
     <Icon
-      className={cn("inline-block size-[1em] shrink-0", filled && "fill-current", className)}
+      className={cn(
+        "inline-block size-[1em] shrink-0",
+        filled && "fill-current",
+        className,
+      )}
       aria-hidden
     />
   );

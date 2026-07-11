@@ -10,11 +10,6 @@ import { useAuthStore } from "../stores/auth-store";
 import { useLogin } from "@/hooks/use-login";
 import { isAxiosError } from "axios";
 
-// const ADMIN_ROLE_IDS = [
-//   "71504c7f-1475-4099-bf11-7b8b8b6c45f6", // Admin
-//   "9c3c12f0-1a22-4212-bf9e-83ccde27c814", // Superadmin
-// ];
-
 export default function LoginPage() {
   const router = useRouter();
   const setUser = useAuthStore((s) => s.setUser);
@@ -118,7 +113,17 @@ export default function LoginPage() {
         <div className="relative z-10 w-full max-w-xl">
           <div className="mb-10 flex items-center gap-3">
             <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white">
-              <AppIcon name="account_balance" className="text-3xl text-inverse-surface" />
+              {/* <AppIcon
+                name="account_balance"
+                className="text-3xl text-inverse-surface"
+              /> */}
+              <Image
+                src="/logo.png"
+                alt="logo"
+                width={48}
+                height={48}
+                className="w-12 h-12 object-contain p-2"
+              />
             </div>
             <span className="font-headline-lg text-headline-lg uppercase tracking-tight">
               SIMPUL
@@ -163,7 +168,10 @@ export default function LoginPage() {
           <div className="mb-10 flex justify-center lg:hidden">
             <div className="flex items-center gap-2">
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary">
-                <AppIcon name="account_balance" className="text-2xl text-white" />
+                <AppIcon
+                  name="account_balance"
+                  className="text-2xl text-white"
+                />
               </div>
               <span className="font-headline-md text-headline-md uppercase text-inverse-surface">
                 SIMPUL
@@ -173,8 +181,14 @@ export default function LoginPage() {
 
           {/* Desktop header */}
           <div className="mb-8 hidden flex-col items-start lg:flex">
-            <div className="mb-4 flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10">
-              <AppIcon name="account_balance" className="text-xl text-primary" />
+            <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
+              <Image
+                src="/logo.png"
+                alt="logo"
+                width={32}
+                height={32}
+                className="w-8 h-8 object-contain p-1"
+              />
             </div>
             <h2 className="font-headline-lg text-headline-lg mb-2 text-inverse-surface">
               Masuk ke SIMPUL
@@ -208,7 +222,10 @@ export default function LoginPage() {
                   disabled={loginMutation.isPending}
                   className="h-12 w-full rounded-md border border-mint-200 bg-white px-4 text-on-surface outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/20"
                 />
-                <AppIcon name="id_card" className="absolute top-1/2 right-4 -translate-y-1/2 text-gray-400" />
+                <AppIcon
+                  name="id_card"
+                  className="absolute top-1/2 right-4 -translate-y-1/2 text-gray-400"
+                />
               </div>
             </div>
 
@@ -245,7 +262,9 @@ export default function LoginPage() {
                     showPassword ? "Sembunyikan password" : "Tampilkan password"
                   }
                 >
-                  <AppIcon name={showPassword ? "visibility_off" : "visibility"} />
+                  <AppIcon
+                    name={showPassword ? "visibility_off" : "visibility"}
+                  />
                 </button>
               </div>
             </div>
