@@ -9,7 +9,10 @@ export default function PromoPage() {
     <>
       <TopBar
         title="Promo & Info Produk"
-        breadcrumb={["Dashboard", "Promo Gerai KDMP"]}
+        breadcrumb={[
+          { label: "Dashboard", href: "/dashboard" },
+          { label: "Promo Gerai KDMP" },
+        ]}
       />
 
       <div className="p-8 max-w-container-max mx-auto w-full space-y-6">

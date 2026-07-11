@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, Suspense } from "react";
 import type { KoperasiData } from "@/types/koperasi";
 import { useCheckLocation } from "@/hooks/use-check-location";
 
@@ -117,7 +117,7 @@ function haversineKm(a: [number, number], b: [number, number]): number {
 }
 
 /* ── Page ─────────────────────────────────────────────────────────── */
-export default function CariKoperasiPage() {
+function CariKoperasiContent() {
   const searchParams = useSearchParams();
   const referralCode = searchParams.get("ref") ?? "";
   const [selected, setSelected] = useState<KoperasiData | null>(null);
@@ -500,5 +500,19 @@ export default function CariKoperasiPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function CariKoperasiPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen flex items-center justify-center text-on-surface-variant">
+          Memuat peta koperasi…
+        </div>
+      }
+    >
+      <CariKoperasiContent />
+    </Suspense>
   );
 }

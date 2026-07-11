@@ -20,7 +20,10 @@ export default function DailyLoginPage() {
     <>
       <TopBar
         title="Login Harian & Reward"
-        breadcrumb={["Dashboard", "Login Harian"]}
+        breadcrumb={[
+          { label: "Dashboard", href: "/dashboard" },
+          { label: "Login Harian" },
+        ]}
       />
 
       <div className="p-8 max-w-container-max mx-auto w-full space-y-8">

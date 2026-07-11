@@ -132,10 +132,10 @@ function StatusContent() {
             Masuk ke Akun
           </Link>
           <Link
-            href={homeHref}
+            href="/"
             className="px-8 py-3 border border-primary text-primary rounded-xl text-label-sm font-label-sm hover:bg-primary/5 transition-all"
           >
-            {isLoading ? "Memuat..." : "Kembali ke Beranda"}
+            Kembali ke Beranda
           </Link>
         </div>
       </div>
