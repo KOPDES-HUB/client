@@ -1,4 +1,6 @@
 import TopBar from "@/components/layout/TopBar";
+import PengurusKpiSection from "@/components/admin/PengurusKpiSection";
+import TrenPenjualanChart from "@/components/charts/TrenPenjualanChart";
 import Link from "next/link";
 
 const statCards = [
@@ -6,13 +8,6 @@ const statCards = [
   { label: "Total Profit",         value: "Rp 12,7Jt", change: "+5.1%",  icon: "account_balance",     color: "text-tertiary", bg: "bg-tertiary-fixed" },
   { label: "Anggota Aktif",        value: "1.248",      change: "+12 baru", icon: "groups",            color: "text-secondary", bg: "bg-secondary-container" },
   { label: "Kuorum RAT Terakhir",  value: "68/120",     change: "56.7%",  icon: "how_to_vote",         color: "text-primary", bg: "bg-mint-200" },
-];
-
-const kpiData = [
-  { name: "Siti Nurhaliza",  absensi: "98%", taskCompletion: "94%" },
-  { name: "Ahmad Fauzi",    absensi: "91%", taskCompletion: "87%" },
-  { name: "Budi Santoso",   absensi: "95%", taskCompletion: "90%" },
-  { name: "Dewi Ratna",     absensi: "88%", taskCompletion: "82%" },
 ];
 
 export default function AdminDashboardPage() {
@@ -55,79 +50,46 @@ export default function AdminDashboardPage() {
 
         {/* Charts Row */}
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
-          {/* Line chart simulation */}
-          <div className="lg:col-span-3 bg-surface-card rounded-2xl border border-mint-200 shadow-md p-6">
-            <div className="flex justify-between items-center mb-6">
-              <div>
-                <h3 className="text-headline-md font-headline-md text-on-surface">Tren Penjualan Bulanan</h3>
-                <p className="text-body-md text-on-surface-variant text-[13px] mt-0.5">Jan – Jul 2024</p>
-              </div>
-              <div className="flex gap-2">
-                {["Omzet", "Profit"].map((t, i) => (
-                  <div key={t} className="flex items-center gap-1.5 text-label-xs font-label-xs text-on-surface-variant">
-                    <div className={`w-3 h-1.5 rounded-full ${i === 0 ? "bg-primary" : "bg-mint-200"}`}></div>
-                    {t}
-                  </div>
-                ))}
-              </div>
-            </div>
-            {/* Chart bars */}
-            <div className="flex items-end justify-between h-40 gap-2">
-              {["Jan","Feb","Mar","Apr","Mei","Jun","Jul"].map((month, i) => {
-                const heights = [55, 65, 72, 68, 80, 75, 90];
-                const profitH = [30, 38, 40, 35, 48, 44, 55];
-                return (
-                  <div key={month} className="flex-1 flex flex-col items-center gap-1">
-                    <div className="flex items-end gap-1 w-full">
-                      <div
-                        className="flex-1 bg-primary rounded-t-md transition-all hover:opacity-80"
-                        style={{ height: `${heights[i]}%` }}
-                      ></div>
-                      <div
-                        className="flex-1 bg-mint-200 rounded-t-md transition-all hover:opacity-80"
-                        style={{ height: `${profitH[i]}%` }}
-                      ></div>
-                    </div>
-                    <span className="text-[10px] text-on-surface-variant">{month}</span>
-                  </div>
-                );
-              })}
-            </div>
+          <div className="lg:col-span-3">
+            <TrenPenjualanChart variant="admin" />
           </div>
 
-          {/* KPI Table */}
+          {/* Ringkasan partisipasi */}
           <div className="lg:col-span-2 bg-surface-card rounded-2xl border border-mint-200 shadow-md p-6">
-            <h3 className="text-headline-md font-headline-md text-on-surface mb-4">Evaluasi KPI Pengurus</h3>
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead>
-                  <tr className="text-label-xs font-label-xs text-on-surface-variant">
-                    <th className="text-left pb-3">Nama</th>
-                    <th className="text-center pb-3">Absensi</th>
-                    <th className="text-center pb-3">Task</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-outline-variant/20">
-                  {kpiData.map((row) => (
-                    <tr key={row.name} className="hover:bg-surface-bg transition-colors">
-                      <td className="py-3 text-label-sm font-label-sm text-on-surface">{row.name}</td>
-                      <td className="py-3 text-center">
-                        <span className={`text-label-xs font-label-xs px-2 py-0.5 rounded-full ${
-                          parseInt(row.absensi) >= 95 ? "bg-primary-fixed text-on-primary-fixed-variant" : "bg-tertiary-fixed text-on-tertiary-fixed-variant"
-                        }`}>{row.absensi}</span>
-                      </td>
-                      <td className="py-3 text-center">
-                        <span className={`text-label-xs font-label-xs px-2 py-0.5 rounded-full ${
-                          parseInt(row.taskCompletion) >= 90 ? "bg-primary-fixed text-on-primary-fixed-variant" : "bg-tertiary-fixed text-on-tertiary-fixed-variant"
-                        }`}>{row.taskCompletion}</span>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+            <h3 className="text-headline-md font-headline-md text-on-surface mb-4">
+              Partisipasi Anggota
+            </h3>
+            <div className="space-y-4">
+              {[
+                { label: "Absensi E-RAT", value: 72, icon: "groups" },
+                { label: "Absensi E-Voting", value: 58, icon: "how_to_vote" },
+                { label: "Login Harian (bulan ini)", value: 64, icon: "local_fire_department" },
+                { label: "Simpanan Wajib Tepat Waktu", value: 89, icon: "event_available" },
+              ].map((item) => (
+                <div key={item.label}>
+                  <div className="flex justify-between text-sm mb-1.5">
+                    <span className="flex items-center gap-1.5 text-on-surface-variant">
+                      <span className="material-symbols-outlined text-primary text-[16px]">
+                        {item.icon}
+                      </span>
+                      {item.label}
+                    </span>
+                    <span className="font-bold text-on-surface">{item.value}%</span>
+                  </div>
+                  <div className="h-2 bg-mint-200/50 rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-primary rounded-full"
+                      style={{ width: `${item.value}%` }}
+                    />
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
+
+        {/* Evaluasi KPI Pengurus — bar charts */}
+        <PengurusKpiSection />
 
         {/* AI Co-Pilot Card */}
         <div className="bg-gradient-to-r from-primary/5 to-mint-200/20 border border-primary/20 rounded-2xl p-6 relative overflow-hidden">

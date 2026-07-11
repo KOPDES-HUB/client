@@ -1,6 +1,7 @@
 "use client";
 
 import TopBar from "@/components/layout/TopBar";
+import TrenPenjualanChart from "@/components/charts/TrenPenjualanChart";
 import { useState } from "react";
 
 const TRANSAKSI_DUMMY = [
@@ -85,6 +86,9 @@ export default function TransaksiSayaPage() {
             </div>
           ))}
         </div>
+
+        {/* Tren penjualan dari API */}
+        <TrenPenjualanChart variant="member" />
 
         {/* Poin contribution note */}
         <div className="flex items-start gap-3 bg-primary/5 border border-primary/20 rounded-xl p-4">

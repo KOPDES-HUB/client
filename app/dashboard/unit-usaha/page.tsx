@@ -1,5 +1,8 @@
+"use client";
+
 import TopBar from "@/components/layout/TopBar";
 import Link from "next/link";
+import ArusKasNpvPanel from "@/components/kelayakan/ArusKasNpvPanel";
 
 const UNIT_USAHA = [
   {
@@ -87,7 +90,7 @@ export default function UnitUsahaPage() {
 
       <div className="p-8 max-w-container-max mx-auto w-full space-y-8">
         {/* Intro */}
-        <div className="bg-inverse-surface rounded-2xl p-6 text-primary-fixed flex items-center justify-between gap-6">
+        <div className="bg-inverse-surface rounded-2xl p-6 text-primary-fixed flex items-center justify-between gap-6 flex-wrap">
           <div>
             <h2 className="text-2xl font-bold mb-2">Unit Usaha Koperasi Anda</h2>
             <p className="text-secondary-fixed-dim text-sm leading-relaxed max-w-xl">
@@ -95,14 +98,19 @@ export default function UnitUsahaPage() {
               menjadi salah satu faktor SHU Anda. Semakin aktif, semakin besar manfaat yang Anda terima.
             </p>
           </div>
-          <Link
-            href="/dashboard/transaksi"
-            className="flex-shrink-0 flex items-center gap-2 px-5 py-3 bg-primary text-white rounded-xl text-label-sm font-label-sm hover:bg-primary-container transition-all"
-          >
-            <span className="material-symbols-outlined text-[18px]">receipt_long</span>
-            Lihat Transaksi Saya
-          </Link>
+          <div className="flex flex-wrap gap-2 shrink-0">
+            <Link
+              href="/dashboard/transaksi"
+              className="flex items-center gap-2 px-5 py-3 bg-primary text-white rounded-xl text-label-sm font-label-sm hover:bg-primary-container transition-all"
+            >
+              <span className="material-symbols-outlined text-[18px]">receipt_long</span>
+              Lihat Transaksi Saya
+            </Link>
+          </div>
         </div>
+
+        {/* Kelayakan keuangan dari data riil */}
+        <ArusKasNpvPanel compact />
 
         {/* Unit usaha grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">

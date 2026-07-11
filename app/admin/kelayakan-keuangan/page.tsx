@@ -1,6 +1,7 @@
 "use client";
 
 import AdminTopBar from "@/components/layout/AdminTopBar";
+import ArusKasNpvPanel from "@/components/kelayakan/ArusKasNpvPanel";
 import {
   applyBenefitDelay,
   applyCostChange,
@@ -230,6 +231,15 @@ export default function AdminKelayakanKeuanganPage() {
       <AdminTopBar title="Analisis Kelayakan Keuangan" />
 
       <div className="p-8 max-w-container-max mx-auto w-full space-y-8">
+        {/* Data riil dari API transaksi penjualan */}
+        <ArusKasNpvPanel />
+
+        <div className="border-t border-mint-200 pt-2">
+          <p className="text-label-sm font-label-sm text-on-surface-variant mb-6">
+            Simulasi proyeksi manual (dummy) — bandingkan dengan data riil di atas
+          </p>
+        </div>
+
         {/* Preset selector */}
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>
