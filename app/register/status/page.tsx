@@ -1,5 +1,6 @@
 "use client";
 
+import { AppIcon } from "@/components/ui/app-icon";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
@@ -23,9 +24,7 @@ function StatusContent() {
     <div className="max-w-2xl w-full">
       <div className="bg-white rounded-2xl shadow-md border border-mint-200 p-10 flex flex-col items-center text-center">
         <div className="w-20 h-20 bg-surface-bg rounded-full flex items-center justify-center mb-6">
-          <span className="material-symbols-outlined text-[40px] text-primary">
-            schedule
-          </span>
+          <AppIcon name="schedule" className="text-[40px] text-primary" />
         </div>
 
         <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-mint-200/40 text-on-surface-variant rounded-full text-label-sm font-label-sm mb-4">
@@ -46,12 +45,7 @@ function StatusContent() {
           <div className="flex items-start gap-0">
             <div className="flex flex-col items-center flex-1">
               <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center shadow-md">
-                <span
-                  className="material-symbols-outlined text-white text-[18px]"
-                  style={{ fontVariationSettings: "'FILL' 1" }}
-                >
-                  check_circle
-                </span>
+                <AppIcon name="check_circle" className="text-white text-[18px]" />
               </div>
               <div className="w-full h-1 bg-primary mt-4 mb-0 -mr-px"></div>
               <p className="text-label-xs font-label-xs text-primary mt-3 font-bold">
@@ -72,9 +66,7 @@ function StatusContent() {
 
             <div className="flex flex-col items-center flex-1">
               <div className="w-10 h-10 rounded-full border-2 border-outline-variant bg-white flex items-center justify-center">
-                <span className="material-symbols-outlined text-outline-variant text-[18px]">
-                  badge
-                </span>
+                <AppIcon name="badge" className="text-outline-variant text-[18px]" />
               </div>
               <div className="w-full h-1 bg-mint-200 mt-4"></div>
               <p className="text-label-xs font-label-xs text-on-surface-variant mt-3">

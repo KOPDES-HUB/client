@@ -1,5 +1,6 @@
 "use client";
 
+import { AppIcon } from "@/components/ui/app-icon";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { FormEvent, Suspense, useRef, useState } from "react";
@@ -142,9 +143,7 @@ function RegisterForm() {
     return (
       <div className="w-full max-w-2xl">
         <div className="bg-white rounded-2xl shadow-md border border-mint-200 p-8 text-center">
-          <span className="material-symbols-outlined text-4xl text-primary mb-4">
-            location_on
-          </span>
+          <AppIcon name="location_on" className="text-4xl text-primary mb-4" />
           <h2 className="text-headline-md font-headline-md text-on-surface mb-2">
             Pilih Koperasi Dulu
           </h2>
@@ -200,9 +199,7 @@ function RegisterForm() {
 
       {/* Koperasi terpilih */}
       <div className="mb-4 rounded-xl border border-primary/30 bg-primary/5 px-5 py-4 flex items-center gap-3">
-        <span className="material-symbols-outlined text-primary">
-          account_balance
-        </span>
+        <AppIcon name="account_balance" className="text-primary" />
         <div>
           <p className="text-label-xs text-on-surface-variant uppercase tracking-wider">
             Koperasi Terpilih
@@ -421,9 +418,7 @@ function RegisterForm() {
                       className="w-full border-2 border-dashed border-mint-200 rounded-xl p-6 flex flex-col items-center gap-3 text-center hover:border-primary hover:bg-primary/5 transition-all cursor-pointer group"
                     >
                       <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                        <span className="material-symbols-outlined text-primary text-2xl">
-                          {doc.file ? "check_circle" : "upload_file"}
-                        </span>
+                        <AppIcon name={doc.file ? "check_circle" : "upload_file"} className="text-primary text-2xl" />
                       </div>
                       <div>
                         <p className="text-label-sm font-label-sm text-on-surface">

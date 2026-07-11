@@ -1,5 +1,6 @@
 "use client";
 
+import { AppIcon } from "@/components/ui/app-icon";
 import TopBar from "@/components/layout/TopBar";
 import AnggotaDetailModal, { type AnggotaMember } from "@/components/admin/AnggotaDetailModal";
 import { useState } from "react";
@@ -155,9 +156,7 @@ export default function AdminAnggotaPage() {
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-3 flex-wrap">
             <div className="relative">
-              <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[18px] text-on-surface-variant">
-                search
-              </span>
+              <AppIcon name="search" className="absolute left-3 top-1/2 -translate-y-1/2 text-[18px] text-on-surface-variant" />
               <input
                 type="text"
                 placeholder="Cari nama / ID anggota..."
@@ -185,7 +184,7 @@ export default function AdminAnggotaPage() {
           </div>
 
           <button className="flex items-center gap-2 px-5 py-2.5 bg-primary text-white rounded-xl text-label-sm font-label-sm hover:bg-primary-container transition-all shadow-lg shadow-primary/20">
-            <span className="material-symbols-outlined text-[18px]">person_add</span>
+            <AppIcon name="person_add" className="text-[18px]" />
             Tambah Anggota
           </button>
         </div>
@@ -279,14 +278,14 @@ export default function AdminAnggotaPage() {
                           onClick={() => setSelectedMember(member)}
                           className="w-8 h-8 rounded-lg hover:bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors"
                         >
-                          <span className="material-symbols-outlined text-[18px]">visibility</span>
+                          <AppIcon name="visibility" className="text-[18px]" />
                         </button>
                         <button
                           type="button"
                           title="Edit"
                           className="w-8 h-8 rounded-lg hover:bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors"
                         >
-                          <span className="material-symbols-outlined text-[18px]">edit</span>
+                          <AppIcon name="edit" className="text-[18px]" />
                         </button>
                         {member.status === "Pending" && (
                           <button
@@ -294,12 +293,7 @@ export default function AdminAnggotaPage() {
                             title="Verifikasi"
                             className="w-8 h-8 rounded-lg hover:bg-primary-fixed flex items-center justify-center text-primary transition-colors"
                           >
-                            <span
-                              className="material-symbols-outlined text-[18px]"
-                              style={{ fontVariationSettings: "'FILL' 1" }}
-                            >
-                              verified
-                            </span>
+                            <AppIcon name="verified" className="text-[18px]" />
                           </button>
                         )}
                         <button
@@ -307,7 +301,7 @@ export default function AdminAnggotaPage() {
                           title="Nonaktifkan"
                           className="w-8 h-8 rounded-lg hover:bg-error-container flex items-center justify-center text-on-surface-variant hover:text-error transition-colors"
                         >
-                          <span className="material-symbols-outlined text-[18px]">block</span>
+                          <AppIcon name="block" className="text-[18px]" />
                         </button>
                       </div>
                     </td>
@@ -327,14 +321,14 @@ export default function AdminAnggotaPage() {
                 type="button"
                 className="w-8 h-8 rounded-lg border border-outline-variant flex items-center justify-center text-on-surface-variant hover:border-primary hover:text-primary transition-all"
               >
-                <span className="material-symbols-outlined text-[16px]">chevron_left</span>
+                <AppIcon name="chevron_left" className="text-[16px]" />
               </button>
               <span className="px-3 py-1 bg-primary text-white rounded-lg text-label-xs font-label-xs">1</span>
               <button
                 type="button"
                 className="w-8 h-8 rounded-lg border border-outline-variant flex items-center justify-center text-on-surface-variant hover:border-primary hover:text-primary transition-all"
               >
-                <span className="material-symbols-outlined text-[16px]">chevron_right</span>
+                <AppIcon name="chevron_right" className="text-[16px]" />
               </button>
             </div>
           </div>

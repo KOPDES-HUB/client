@@ -1,5 +1,6 @@
 "use client";
 
+import { AppIcon } from "@/components/ui/app-icon";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
@@ -205,16 +206,12 @@ function CariKoperasiContent() {
             <span className="text-primary-fixed font-semibold">
               Pilih Koperasi
             </span>
-            <span className="material-symbols-outlined text-[14px] text-secondary-fixed-dim">
-              chevron_right
-            </span>
+            <AppIcon name="chevron_right" className="text-[14px] text-secondary-fixed-dim" />
             <span className="w-5 h-5 rounded-full border border-white/20 text-secondary-fixed-dim flex items-center justify-center font-bold text-[10px]">
               2
             </span>
             <span className="text-secondary-fixed-dim">Isi Data Diri</span>
-            <span className="material-symbols-outlined text-[14px] text-secondary-fixed-dim">
-              chevron_right
-            </span>
+            <AppIcon name="chevron_right" className="text-[14px] text-secondary-fixed-dim" />
             <span className="w-5 h-5 rounded-full border border-white/20 text-secondary-fixed-dim flex items-center justify-center font-bold text-[10px]">
               3
             </span>
@@ -247,9 +244,7 @@ function CariKoperasiContent() {
 
             {/* Search */}
             <div className="relative mt-3">
-              <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[18px] text-on-surface-variant">
-                search
-              </span>
+              <AppIcon name="search" className="absolute left-3 top-1/2 -translate-y-1/2 text-[18px] text-on-surface-variant" />
               <input
                 type="text"
                 placeholder="Cari nama koperasi…"
@@ -335,9 +330,7 @@ function CariKoperasiContent() {
                         </p>
                         <div className="flex items-center gap-3 mt-1.5">
                           <span className="text-[11px] text-on-surface-variant flex items-center gap-1">
-                            <span className="material-symbols-outlined text-[12px] text-primary">
-                              straighten
-                            </span>
+                            <AppIcon name="straighten" className="text-[12px] text-primary" />
                             {dist < 50
                               ? `${dist.toFixed(1)} km`
                               : `${Math.round(dist)} km`}
@@ -349,9 +342,7 @@ function CariKoperasiContent() {
                       </div>
 
                       {isSelected && (
-                        <span className="material-symbols-outlined text-primary text-[18px] flex-shrink-0">
-                          check_circle
-                        </span>
+                        <AppIcon name="check_circle" className="text-primary text-[18px] flex-shrink-0" />
                       )}
                     </div>
                   </button>
@@ -367,9 +358,7 @@ function CariKoperasiContent() {
                 {/* Selected koperasi header */}
                 <div className="flex items-start gap-3">
                   <div className="w-10 h-10 rounded-xl bg-inverse-surface flex items-center justify-center flex-shrink-0">
-                    <span className="material-symbols-outlined text-primary-fixed text-[20px]">
-                      account_balance
-                    </span>
+                    <AppIcon name="account_balance" className="text-primary-fixed text-[20px]" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-label-sm font-label-sm text-on-surface leading-snug">
@@ -414,9 +403,7 @@ function CariKoperasiContent() {
 
                 {/* Sumber persetujuan */}
                 <div className="flex items-center gap-2 text-[11px] text-on-surface-variant">
-                  <span className="material-symbols-outlined text-[14px] text-primary">
-                    verified
-                  </span>
+                  <AppIcon name="verified" className="text-[14px] text-primary" />
                   Disetujui oleh:{" "}
                   <span className="font-semibold text-on-surface">
                     {selected.sumber_persetujuan}
@@ -428,18 +415,14 @@ function CariKoperasiContent() {
                   href={registerHref}
                   className="flex items-center justify-center gap-2 w-full py-3.5 bg-primary text-white rounded-xl text-label-sm font-label-sm hover:bg-primary-container transition-all shadow-lg shadow-primary/20 hover:-translate-y-0.5 transform"
                 >
-                  <span className="material-symbols-outlined text-[18px]">
-                    how_to_reg
-                  </span>
+                  <AppIcon name="how_to_reg" className="text-[18px]" />
                   Daftar ke Koperasi Ini
                 </Link>
               </div>
             ) : (
               <div className="p-5 text-center">
                 <div className="w-12 h-12 rounded-full bg-surface-bg flex items-center justify-center mx-auto mb-3">
-                  <span className="material-symbols-outlined text-on-surface-variant text-2xl">
-                    touch_app
-                  </span>
+                  <AppIcon name="touch_app" className="text-on-surface-variant text-2xl" />
                 </div>
                 <p className="text-label-sm font-label-sm text-on-surface mb-1">
                   Pilih Koperasi
@@ -484,9 +467,7 @@ function CariKoperasiContent() {
           {/* Hint tooltip if nothing selected */}
           {!selected && (
             <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-[1000] bg-inverse-surface/95 text-white text-label-xs font-label-xs px-5 py-3 rounded-full shadow-xl flex items-center gap-2 pointer-events-none">
-              <span className="material-symbols-outlined text-primary-fixed text-[16px]">
-                info
-              </span>
+              <AppIcon name="info" className="text-primary-fixed text-[16px]" />
               Klik atau hover marker untuk melihat info koperasi
             </div>
           )}

@@ -1,5 +1,6 @@
 "use client";
 
+import { AppIcon } from "@/components/ui/app-icon";
 export type AnggotaMember = {
   id: string;
   name: string;
@@ -78,7 +79,7 @@ export default function AnggotaDetailModal({ member, onClose }: AnggotaDetailMod
             onClick={onClose}
             className="w-9 h-9 rounded-xl hover:bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors"
           >
-            <span className="material-symbols-outlined text-[20px]">close</span>
+            <AppIcon name="close" className="text-[20px]" />
           </button>
         </div>
 
@@ -91,7 +92,7 @@ export default function AnggotaDetailModal({ member, onClose }: AnggotaDetailMod
 
             {isPending ? (
               <div className="rounded-2xl border-2 border-dashed border-tertiary-fixed bg-tertiary-fixed/30 p-10 text-center">
-                <span className="material-symbols-outlined text-5xl text-amber-600 mb-3 block">hourglass_top</span>
+                <AppIcon name="hourglass_top" className="text-5xl text-amber-600 mb-3 block" />
                 <p className="text-label-sm font-label-sm text-on-surface font-semibold">KTA Belum Diterbitkan</p>
                 <p className="text-body-md text-on-surface-variant mt-1 max-w-md mx-auto">
                   Kartu Tanda Anggota akan diterbitkan setelah verifikasi admin selesai dan status keanggotaan menjadi Aktif.
@@ -223,7 +224,7 @@ export default function AnggotaDetailModal({ member, onClose }: AnggotaDetailMod
                   key={doc.label}
                   className="aspect-video rounded-xl border border-dashed border-outline-variant/50 bg-surface-card flex flex-col items-center justify-center gap-2 text-on-surface-variant"
                 >
-                  <span className="material-symbols-outlined text-4xl opacity-40">{doc.icon}</span>
+                  <AppIcon name={doc.icon} className="text-4xl opacity-40" />
                   <p className="text-label-xs font-label-xs">{doc.label}</p>
                   <p className="text-label-xs text-on-surface-variant/60">Dokumen tersedia</p>
                 </div>
@@ -239,7 +240,7 @@ export default function AnggotaDetailModal({ member, onClose }: AnggotaDetailMod
               type="button"
               className="flex items-center gap-2 px-5 py-2.5 border border-mint-200 text-primary rounded-xl text-label-sm font-label-sm hover:bg-primary/5 transition-all"
             >
-              <span className="material-symbols-outlined text-[18px]">download</span>
+              <AppIcon name="download" className="text-[18px]" />
               Unduh KTA
             </button>
           )}

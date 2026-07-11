@@ -1,4 +1,5 @@
 import TopBar from "@/components/layout/TopBar";
+import { AppIcon } from "@/components/ui/app-icon";
 
 const LOG_DATA = [
   { id: "1", waktu: "10 Jul 2024, 09:15", namaAnggota: "Karno Sutrisno", idAnggota: "SMP-087", jenisAksi: "TRANSAKSI",   deskripsi: "Rp 50.000 di Warung Koperasi → 5 poin", namaKader: "Sari Kader" },
@@ -33,7 +34,7 @@ export default function KaderLogPage() {
           ].map((s) => (
             <div key={s.label} className="bg-surface-card rounded-2xl border border-mint-200 p-5 shadow-md flex items-center gap-4">
               <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                <span className="material-symbols-outlined text-primary">{s.icon}</span>
+                <AppIcon name={s.icon} className="text-primary" />
               </div>
               <div>
                 <p className="text-2xl font-bold text-on-surface">{s.value}</p>

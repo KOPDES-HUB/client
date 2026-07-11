@@ -1,5 +1,6 @@
 "use client";
 
+import { AppIcon } from "@/components/ui/app-icon";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
@@ -43,7 +44,7 @@ function KonfirmasiContent() {
               <div className="w-3 h-3 rounded-full bg-primary/60" />
             </div>
             <div className="bg-white rounded-lg px-4 py-1.5 text-label-xs text-on-surface-variant flex items-center gap-2 border border-outline-variant/30">
-              <span className="material-symbols-outlined text-[14px] text-primary">lock</span>
+              <AppIcon name="lock" className="text-[14px] text-primary" />
               simpul.id/absensi/kta-verified
             </div>
             <div className="w-16" />
@@ -53,12 +54,7 @@ function KonfirmasiContent() {
             <div className="relative mb-8">
               <div className="absolute inset-0 bg-primary rounded-full opacity-10 scale-150 animate-pulse" />
               <div className="relative w-24 h-24 bg-primary rounded-full flex items-center justify-center shadow-xl shadow-primary/30">
-                <span
-                  className="material-symbols-outlined text-white text-5xl font-bold"
-                  style={{ fontVariationSettings: "'FILL' 1" }}
-                >
-                  check
-                </span>
+                <AppIcon name="check" className="text-white text-5xl font-bold" />
               </div>
             </div>
 

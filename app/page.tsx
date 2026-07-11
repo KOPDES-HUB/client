@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AppIcon } from "@/components/ui/app-icon";
 
 export default function LandingPage() {
   return (
@@ -70,9 +71,7 @@ export default function LandingPage() {
                   <div className="text-white font-bold text-xl tracking-tight">
                     SIMPUL <span className="font-normal opacity-70">MP</span>
                   </div>
-                  <span className="material-symbols-outlined text-white text-4xl" style={{ fontVariationSettings: "'FILL' 1" }}>
-                    contactless
-                  </span>
+                  <AppIcon name="contactless" className="text-white text-4xl" />
                 </div>
                 <div className="w-12 h-10 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-md mb-8"></div>
                 <div className="space-y-4">
@@ -84,7 +83,7 @@ export default function LandingPage() {
                       <div className="text-white text-lg font-medium">Budi Setiawan</div>
                     </div>
                     <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center border border-white/20">
-                      <span className="material-symbols-outlined text-white">shield_person</span>
+                      <AppIcon name="shield_person" className="text-white" />
                     </div>
                   </div>
                 </div>
@@ -94,7 +93,7 @@ export default function LandingPage() {
               {/* Floating badge */}
               <div className="absolute -bottom-8 -left-8 bg-white p-4 rounded-xl shadow-xl flex items-center gap-3">
                 <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
-                  <span className="material-symbols-outlined text-primary">verified_user</span>
+                  <AppIcon name="verified_user" className="text-primary" />
                 </div>
                 <div>
                   <p className="text-[10px] text-gray-500 font-semibold uppercase tracking-tight">Status Aktif</p>
@@ -129,7 +128,7 @@ export default function LandingPage() {
                   className="bg-surface-card p-6 rounded-2xl border border-mint-200 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-2 group cursor-pointer"
                 >
                   <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
-                    <span className="material-symbols-outlined text-3xl text-primary group-hover:text-white">{f.icon}</span>
+                    <AppIcon name={f.icon} className="text-3xl text-primary group-hover:text-white" />
                   </div>
                   <h3 className="text-headline-md font-headline-md text-inverse-surface mb-3">{f.title}</h3>
                   <p className="text-on-surface-variant text-body-md leading-relaxed">{f.desc}</p>
@@ -176,12 +175,7 @@ export default function LandingPage() {
                   "Monitoring saldo SHU secara real-time",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3">
-                    <span
-                      className="material-symbols-outlined text-primary"
-                      style={{ fontVariationSettings: "'FILL' 1" }}
-                    >
-                      check_circle
-                    </span>
+                    <AppIcon name="check_circle" className="text-primary" />
                     <span className="text-on-surface text-body-md font-semibold">{item}</span>
                   </li>
                 ))}
@@ -198,7 +192,7 @@ export default function LandingPage() {
             <div className="flex-1 w-full">
               <div className="rounded-3xl overflow-hidden shadow-2xl border-8 border-white bg-gradient-to-br from-primary to-primary-container aspect-video flex items-center justify-center">
                 <div className="text-center text-white p-8">
-                  <span className="material-symbols-outlined text-8xl opacity-40">groups</span>
+                  <AppIcon name="groups" className="text-8xl opacity-40" />
                   <p className="mt-4 text-body-lg opacity-70">Platform Koperasi Digital Indonesia</p>
                 </div>
               </div>

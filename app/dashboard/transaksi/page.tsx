@@ -1,5 +1,6 @@
 "use client";
 
+import { AppIcon } from "@/components/ui/app-icon";
 import TopBar from "@/components/layout/TopBar";
 import TrenPenjualanChart from "@/components/charts/TrenPenjualanChart";
 import { useState } from "react";
@@ -78,7 +79,7 @@ export default function TransaksiSayaPage() {
               className="bg-surface-card rounded-2xl p-6 border border-mint-200 shadow-md hover:scale-[1.02] transition-transform duration-300"
             >
               <div className={`w-10 h-10 rounded-xl ${c.bg} flex items-center justify-center mb-4`}>
-                <span className={`material-symbols-outlined ${c.color}`}>{c.icon}</span>
+                <AppIcon name={c.icon} className={`${c.color}`} />
               </div>
               <p className="text-body-md text-on-surface-variant text-sm mb-1">{c.label}</p>
               <p className={`text-2xl font-bold ${c.color}`}>{c.value}</p>
@@ -92,7 +93,7 @@ export default function TransaksiSayaPage() {
 
         {/* Poin contribution note */}
         <div className="flex items-start gap-3 bg-primary/5 border border-primary/20 rounded-xl p-4">
-          <span className="material-symbols-outlined text-primary mt-0.5">info</span>
+          <AppIcon name="info" className="text-primary mt-0.5" />
           <p className="text-body-md text-on-surface text-sm leading-relaxed">
             <strong>Cara hitung poin:</strong> Setiap Rp 10.000 transaksi di unit usaha koperasi menghasilkan poin sesuai parameter unit usaha.
             Poin menjadi salah satu faktor perhitungan SHU — semakin aktif berbelanja/bertransaksi di koperasi, semakin besar potensi SHU Anda.
@@ -144,7 +145,7 @@ export default function TransaksiSayaPage() {
                     </td>
                     <td className="px-6 py-4">
                       <span className="flex items-center gap-1 text-primary font-bold text-sm">
-                        <span className="material-symbols-outlined text-[14px]">stars</span>
+                        <AppIcon name="stars" className="text-[14px]" />
                         {t.poin}
                       </span>
                     </td>

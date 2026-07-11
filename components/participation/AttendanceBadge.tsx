@@ -1,5 +1,6 @@
 "use client";
 
+import { AppIcon } from "@/components/ui/app-icon";
 import { useAttendance } from "@/hooks/useAttendance";
 
 type AttendanceBadgeProps = {
@@ -13,7 +14,7 @@ export default function AttendanceBadge({ sessionId, label = "Sudah Absen" }: At
   if (!hasAttendance) {
     return (
       <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant text-label-xs font-label-xs">
-        <span className="material-symbols-outlined text-[14px]">schedule</span>
+        <AppIcon name="schedule" className="text-[14px]" />
         Belum Absen
       </span>
     );
@@ -24,9 +25,7 @@ export default function AttendanceBadge({ sessionId, label = "Sudah Absen" }: At
       className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-fixed text-on-primary-fixed-variant text-label-xs font-label-xs"
       title={attendance ? `KTA: ${attendance.nomorKta} · ${new Date(attendance.scannedAt).toLocaleString("id-ID")}` : undefined}
     >
-      <span className="material-symbols-outlined text-[14px]" style={{ fontVariationSettings: "'FILL' 1" }}>
-        verified
-      </span>
+      <AppIcon name="verified" className="text-[14px]" />
       {label}
     </span>
   );

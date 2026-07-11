@@ -1,5 +1,6 @@
 "use client";
 
+import { AppIcon } from "@/components/ui/app-icon";
 import { useEffect, useState } from "react";
 import { QRCodeSVG } from "qrcode.react";
 import { RAT_SESSION_2024 } from "@/lib/participation/sessions";
@@ -25,9 +26,7 @@ export default function LayarProyektorPage() {
           SIMPUL Merah Putih
         </h2>
         <div className="inline-flex items-center gap-4 bg-primary text-white px-8 py-3 rounded-full shadow-lg">
-          <span className="material-symbols-outlined text-2xl" style={{ fontVariationSettings: "'FILL' 1" }}>
-            group
-          </span>
+          <AppIcon name="group" className="text-2xl" />
           <span className="text-headline-md font-headline-md font-bold">{count} Anggota Hadir</span>
         </div>
       </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import { AppIcon } from "@/components/ui/app-icon";
 import TopBar from "@/components/layout/TopBar";
 import Link from "next/link";
 import { useState } from "react";
@@ -54,11 +55,11 @@ export default function RiwayatTransaksiPage() {
           {/* Actions */}
           <div className="flex items-center gap-3">
             <button className="flex items-center gap-2 px-4 py-2 border border-mint-200 rounded-lg text-label-sm font-label-sm text-on-surface-variant hover:border-primary hover:text-primary transition-all bg-surface-card">
-              <span className="material-symbols-outlined text-[16px]">calendar_today</span>
+              <AppIcon name="calendar_today" className="text-[16px]" />
               Filter Tanggal
             </button>
             <button className="flex items-center gap-2 px-4 py-2 border border-mint-200 rounded-lg text-label-sm font-label-sm text-on-surface-variant hover:border-primary hover:text-primary transition-all bg-surface-card">
-              <span className="material-symbols-outlined text-[16px]">download</span>
+              <AppIcon name="download" className="text-[16px]" />
               Export
             </button>
           </div>
@@ -128,11 +129,11 @@ export default function RiwayatTransaksiPage() {
             </p>
             <div className="flex items-center gap-2">
               <button className="w-8 h-8 rounded-lg border border-outline-variant flex items-center justify-center text-on-surface-variant hover:border-primary hover:text-primary transition-all">
-                <span className="material-symbols-outlined text-[16px]">chevron_left</span>
+                <AppIcon name="chevron_left" className="text-[16px]" />
               </button>
               <span className="px-3 py-1 bg-primary text-white rounded-lg text-label-xs font-label-xs">1</span>
               <button className="w-8 h-8 rounded-lg border border-outline-variant flex items-center justify-center text-on-surface-variant hover:border-primary hover:text-primary transition-all">
-                <span className="material-symbols-outlined text-[16px]">chevron_right</span>
+                <AppIcon name="chevron_right" className="text-[16px]" />
               </button>
             </div>
           </div>

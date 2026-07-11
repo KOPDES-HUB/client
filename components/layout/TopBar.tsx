@@ -1,5 +1,6 @@
 "use client";
 
+import { AppIcon } from "@/components/ui/app-icon";
 import Link from "next/link";
 
 interface TopBarProps {
@@ -24,9 +25,7 @@ export default function TopBar({ title, breadcrumb, showSearch = true }: TopBarP
                   <span className="text-primary font-bold">{crumb.label}</span>
                 )}
                 {i < breadcrumb.length - 1 && (
-                  <span className="material-symbols-outlined text-[14px] text-outline-variant">
-                    chevron_right
-                  </span>
+                  <AppIcon name="chevron_right" className="text-[14px] text-outline-variant" />
                 )}
               </span>
             ))}
@@ -39,9 +38,7 @@ export default function TopBar({ title, breadcrumb, showSearch = true }: TopBarP
       <div className="flex items-center gap-4">
         {showSearch && (
           <div className="relative hidden md:flex items-center">
-            <span className="material-symbols-outlined absolute left-3 text-[18px] text-outline">
-              search
-            </span>
+            <AppIcon name="search" className="absolute left-3 text-[18px] text-outline" />
             <input
               type="text"
               placeholder="Cari..."
@@ -52,9 +49,7 @@ export default function TopBar({ title, breadcrumb, showSearch = true }: TopBarP
 
         {/* Notifications */}
         <button className="relative w-9 h-9 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors">
-          <span className="material-symbols-outlined text-[20px] text-on-surface-variant">
-            notifications
-          </span>
+          <AppIcon name="notifications" className="text-[20px] text-on-surface-variant" />
           <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-primary rounded-full"></span>
         </button>
 
@@ -67,9 +62,7 @@ export default function TopBar({ title, breadcrumb, showSearch = true }: TopBarP
             <p className="text-label-sm font-label-sm text-on-surface leading-none">Budi Setiawan</p>
             <p className="text-[10px] text-on-surface-variant mt-0.5">Anggota Terverifikasi</p>
           </div>
-          <span className="material-symbols-outlined text-[18px] text-on-surface-variant group-hover:text-primary transition-colors">
-            expand_more
-          </span>
+          <AppIcon name="expand_more" className="text-[18px] text-on-surface-variant group-hover:text-primary transition-colors" />
         </div>
       </div>
     </header>

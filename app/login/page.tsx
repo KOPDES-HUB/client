@@ -1,5 +1,6 @@
 "use client";
 
+import { AppIcon } from "@/components/ui/app-icon";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
@@ -117,12 +118,7 @@ export default function LoginPage() {
         <div className="relative z-10 w-full max-w-xl">
           <div className="mb-10 flex items-center gap-3">
             <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white">
-              <span
-                className="material-symbols-outlined text-3xl text-inverse-surface"
-                style={{ fontVariationSettings: "'FILL' 1" }}
-              >
-                account_balance
-              </span>
+              <AppIcon name="account_balance" className="text-3xl text-inverse-surface" />
             </div>
             <span className="font-headline-lg text-headline-lg uppercase tracking-tight">
               SIMPUL
@@ -142,9 +138,7 @@ export default function LoginPage() {
               <div className="h-10 w-10 rounded-full border-2 border-white/20 bg-white/10 backdrop-blur-sm" />
               <div className="h-10 w-10 rounded-full border-2 border-white/20 bg-white/10 backdrop-blur-sm" />
               <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-white/20 bg-primary">
-                <span className="material-symbols-outlined text-sm text-white">
-                  add
-                </span>
+                <AppIcon name="add" className="text-sm text-white" />
               </div>
             </div>
             <div className="font-label-sm text-label-sm flex items-center text-white/60">
@@ -169,12 +163,7 @@ export default function LoginPage() {
           <div className="mb-10 flex justify-center lg:hidden">
             <div className="flex items-center gap-2">
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary">
-                <span
-                  className="material-symbols-outlined text-2xl text-white"
-                  style={{ fontVariationSettings: "'FILL' 1" }}
-                >
-                  account_balance
-                </span>
+                <AppIcon name="account_balance" className="text-2xl text-white" />
               </div>
               <span className="font-headline-md text-headline-md uppercase text-inverse-surface">
                 SIMPUL
@@ -185,12 +174,7 @@ export default function LoginPage() {
           {/* Desktop header */}
           <div className="mb-8 hidden flex-col items-start lg:flex">
             <div className="mb-4 flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10">
-              <span
-                className="material-symbols-outlined text-xl text-primary"
-                style={{ fontVariationSettings: "'FILL' 1" }}
-              >
-                account_balance
-              </span>
+              <AppIcon name="account_balance" className="text-xl text-primary" />
             </div>
             <h2 className="font-headline-lg text-headline-lg mb-2 text-inverse-surface">
               Masuk ke SIMPUL
@@ -224,9 +208,7 @@ export default function LoginPage() {
                   disabled={loginMutation.isPending}
                   className="h-12 w-full rounded-md border border-mint-200 bg-white px-4 text-on-surface outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/20"
                 />
-                <span className="material-symbols-outlined absolute top-1/2 right-4 -translate-y-1/2 text-gray-400">
-                  id_card
-                </span>
+                <AppIcon name="id_card" className="absolute top-1/2 right-4 -translate-y-1/2 text-gray-400" />
               </div>
             </div>
 
@@ -263,9 +245,7 @@ export default function LoginPage() {
                     showPassword ? "Sembunyikan password" : "Tampilkan password"
                   }
                 >
-                  <span className="material-symbols-outlined">
-                    {showPassword ? "visibility_off" : "visibility"}
-                  </span>
+                  <AppIcon name={showPassword ? "visibility_off" : "visibility"} />
                 </button>
               </div>
             </div>

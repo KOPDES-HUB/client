@@ -1,6 +1,7 @@
 import TopBar from "@/components/layout/TopBar";
 import Link from "next/link";
 import DashboardEngagement from "@/components/dashboard/DashboardEngagement";
+import { AppIcon } from "@/components/ui/app-icon";
 
 const quickActions = [
   {
@@ -139,9 +140,7 @@ export default function DashboardPage() {
                   SMP-2024-001
                 </h4>
               </div>
-              <span className="material-symbols-outlined text-primary text-4xl">
-                qr_code_2
-              </span>
+              <AppIcon name="qr_code_2" className="text-primary text-4xl" />
             </div>
             <div className="mt-8">
               <div className="h-1.5 w-full bg-surface-container rounded-full overflow-hidden mb-2">
@@ -180,9 +179,7 @@ export default function DashboardPage() {
                 <div
                   className={`w-11 h-11 rounded-xl ${item.color} flex items-center justify-center text-primary mb-3 group-hover:scale-110 transition-transform`}
                 >
-                  <span className="material-symbols-outlined text-[20px]">
-                    {item.icon}
-                  </span>
+                  <AppIcon name={item.icon} className="text-[20px]" />
                 </div>
                 <h5 className="text-label-sm font-label-sm text-on-surface">
                   {item.label}
@@ -238,7 +235,7 @@ export default function DashboardPage() {
               }`}
             >
               <div className={`w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 ${w.accent ? "bg-white/20" : "bg-primary/10"}`}>
-                <span className={`material-symbols-outlined ${w.accent ? "text-white" : "text-primary"}`}>{w.icon}</span>
+                <AppIcon name={w.icon} className={`${w.accent ? "text-white" : "text-primary"}`} />
               </div>
               <div className="flex-1 min-w-0">
                 <p className={`text-xs uppercase tracking-wider ${w.accent ? "text-white/70" : "text-on-surface-variant"}`}>{w.label}</p>
@@ -251,7 +248,7 @@ export default function DashboardPage() {
                   }`}
                 >
                   {w.cta}
-                  <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
+                  <AppIcon name="arrow_forward" className="text-[14px]" />
                 </Link>
               </div>
             </div>
@@ -322,9 +319,7 @@ export default function DashboardPage() {
               <h4 className="text-headline-md font-headline-md text-zinc-800">
                 Status Aktivasi KTA
               </h4>
-              <span className="material-symbols-outlined text-on-surface-variant cursor-pointer">
-                filter_list
-              </span>
+              <AppIcon name="filter_list" className="text-on-surface-variant cursor-pointer" />
             </div>
             <div className="space-y-3">
               {[
@@ -354,9 +349,7 @@ export default function DashboardPage() {
                 >
                   <div className="flex items-center gap-4">
                     <div className="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center">
-                      <span className="material-symbols-outlined text-on-surface-variant">
-                        person_outline
-                      </span>
+                      <AppIcon name="person_outline" className="text-on-surface-variant" />
                     </div>
                     <div>
                       <p className="text-label-sm font-label-sm text-on-surface">
@@ -381,7 +374,7 @@ export default function DashboardPage() {
 
       {/* FAB */}
       <button className="fixed bottom-8 right-8 w-14 h-14 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all group z-50">
-        <span className="material-symbols-outlined text-2xl">add</span>
+        <AppIcon name="add" className="text-2xl" />
         <span className="absolute right-full mr-3 bg-inverse-surface text-white text-label-sm px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap shadow-md">
           Tambah Anggota Baru
         </span>

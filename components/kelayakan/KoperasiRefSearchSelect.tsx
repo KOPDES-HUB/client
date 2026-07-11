@@ -1,5 +1,6 @@
 "use client";
 
+import { AppIcon } from "@/components/ui/app-icon";
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { KoperasiTransaksiOption } from "@/types/transaksiPenjualan";
 
@@ -86,9 +87,7 @@ export default function KoperasiRefSearchSelect({
   return (
     <div ref={containerRef} className="relative">
       <div className="relative">
-        <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px] pointer-events-none">
-          search
-        </span>
+        <AppIcon name="search" className="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px] pointer-events-none" />
         <input
           type="text"
           value={query}
@@ -105,9 +104,7 @@ export default function KoperasiRefSearchSelect({
           className="absolute right-2 top-1/2 -translate-y-1/2 p-1 rounded-lg text-on-surface-variant hover:bg-surface-bg disabled:opacity-50"
           aria-label="Buka daftar koperasi"
         >
-          <span className="material-symbols-outlined text-[20px]">
-            {open ? "expand_less" : "expand_more"}
-          </span>
+          <AppIcon name={open ? "expand_less" : "expand_more"} className="text-[20px]" />
         </button>
       </div>
 

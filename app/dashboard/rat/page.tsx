@@ -1,5 +1,6 @@
 "use client";
 
+import { AppIcon } from "@/components/ui/app-icon";
 import TopBar from "@/components/layout/TopBar";
 import AttendanceBadge from "@/components/participation/AttendanceBadge";
 import Link from "next/link";
@@ -37,7 +38,7 @@ export default function ERATPage() {
       <div className="p-8 max-w-container-max mx-auto w-full space-y-8">
         <section className="bg-surface-card rounded-2xl border border-mint-200 shadow-md p-6 relative overflow-hidden">
           <div className="absolute top-0 right-0 opacity-5 pointer-events-none">
-            <span className="material-symbols-outlined text-[200px] text-inverse-surface">groups</span>
+            <AppIcon name="groups" className="text-[200px] text-inverse-surface" />
           </div>
           <div className="relative z-10">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
@@ -53,15 +54,15 @@ export default function ERATPage() {
                 </h1>
                 <div className="flex flex-wrap items-center gap-6 text-on-surface-variant text-body-md">
                   <div className="flex items-center gap-2">
-                    <span className="material-symbols-outlined text-primary text-[18px]">calendar_month</span>
+                    <AppIcon name="calendar_month" className="text-primary text-[18px]" />
                     25 Oktober 2024
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="material-symbols-outlined text-primary text-[18px]">location_on</span>
+                    <AppIcon name="location_on" className="text-primary text-[18px]" />
                     {RAT_SESSION_2024.location}
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="material-symbols-outlined text-primary text-[18px]">schedule</span>
+                    <AppIcon name="schedule" className="text-primary text-[18px]" />
                     08:30 – 14:00 WIB
                   </div>
                 </div>
@@ -114,12 +115,7 @@ export default function ERATPage() {
                     }`}
                   >
                     {item.done ? (
-                      <span
-                        className="material-symbols-outlined text-white text-[16px]"
-                        style={{ fontVariationSettings: "'FILL' 1" }}
-                      >
-                        check
-                      </span>
+                      <AppIcon name="check" className="text-white text-[16px]" />
                     ) : (
                       <span className={`text-label-xs font-bold ${item.current ? "text-primary" : "text-on-surface-variant"}`}>
                         {item.no}
@@ -158,9 +154,7 @@ export default function ERATPage() {
               {hasRatAttendance ? (
                 <div className="p-4 bg-primary/5 border border-primary/20 rounded-xl mb-4">
                   <div className="flex items-center gap-2 text-primary mb-1">
-                    <span className="material-symbols-outlined text-[18px]" style={{ fontVariationSettings: "'FILL' 1" }}>
-                      verified
-                    </span>
+                    <AppIcon name="verified" className="text-[18px]" />
                     <span className="text-label-sm font-label-sm font-semibold">Anda sudah absen</span>
                   </div>
                   <p className="text-label-xs text-on-surface-variant">
@@ -173,7 +167,7 @@ export default function ERATPage() {
                 href={`/scan?sessionId=${sessionId}&sessionType=rat`}
                 className="flex items-center justify-center gap-2 w-full py-3.5 bg-primary text-white rounded-xl text-label-sm font-label-sm hover:bg-primary-container transition-all shadow-lg shadow-primary/20 mb-3"
               >
-                <span className="material-symbols-outlined text-[18px]">badge</span>
+                <AppIcon name="badge" className="text-[18px]" />
                 {hasRatAttendance ? "Scan Ulang KTA" : "Absen dengan Scan KTA"}
               </Link>
 
@@ -181,12 +175,12 @@ export default function ERATPage() {
                 href="/dashboard/kta"
                 className="flex items-center justify-center gap-2 w-full py-2.5 border border-mint-200 text-primary rounded-xl text-label-sm font-label-sm hover:bg-primary/5 transition-all mb-3"
               >
-                <span className="material-symbols-outlined text-[18px]">qr_code_2</span>
+                <AppIcon name="qr_code_2" className="text-[18px]" />
                 Buka KTA Digital
               </Link>
 
               <div className="flex items-center gap-2 text-label-xs font-label-xs text-on-surface-variant">
-                <span className="material-symbols-outlined text-[14px]">info</span>
+                <AppIcon name="info" className="text-[14px]" />
                 Petugas memindai QR KTA Anda, bukan sebaliknya
               </div>
             </div>
@@ -196,7 +190,7 @@ export default function ERATPage() {
                 href="/dashboard/voting/1"
                 className="flex items-center justify-center gap-2 w-full py-3.5 bg-secondary-container text-on-secondary-container rounded-xl text-label-sm font-label-sm hover:opacity-90 transition-all"
               >
-                <span className="material-symbols-outlined text-[18px]">how_to_vote</span>
+                <AppIcon name="how_to_vote" className="text-[18px]" />
                 Lanjut ke E-Voting
               </Link>
             )}
@@ -210,13 +204,13 @@ export default function ERATPage() {
                     className="flex items-center gap-3 p-3 bg-surface-bg rounded-xl hover:bg-surface-container transition-colors cursor-pointer"
                   >
                     <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                      <span className="material-symbols-outlined text-primary text-[18px]">{doc.icon}</span>
+                      <AppIcon name={doc.icon} className="text-primary text-[18px]" />
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="text-label-xs font-label-xs text-on-surface truncate">{doc.name}</p>
                       <p className="text-[10px] text-on-surface-variant">{doc.size}</p>
                     </div>
-                    <span className="material-symbols-outlined text-on-surface-variant text-[18px]">download</span>
+                    <AppIcon name="download" className="text-on-surface-variant text-[18px]" />
                   </div>
                 ))}
               </div>
@@ -226,7 +220,7 @@ export default function ERATPage() {
               href="/rat/proyektor"
               className="flex items-center justify-center gap-2 w-full py-3 border border-mint-200 text-on-surface-variant rounded-xl text-label-sm font-label-sm hover:border-primary hover:text-primary transition-all"
             >
-              <span className="material-symbols-outlined text-[18px]">cast</span>
+              <AppIcon name="cast" className="text-[18px]" />
               Buka Layar Proyektor
             </Link>
           </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import { AppIcon } from "@/components/ui/app-icon";
 import TopBar from "@/components/layout/TopBar";
 import { useState } from "react";
 
@@ -39,7 +40,7 @@ export default function AdminVotingPage() {
             onClick={() => setShowModal(true)}
             className="flex items-center gap-2 px-5 py-2.5 bg-primary text-white rounded-xl text-label-sm font-label-sm hover:bg-primary-container transition-all shadow-lg shadow-primary/20"
           >
-            <span className="material-symbols-outlined text-[18px]">add</span>
+            <AppIcon name="add" className="text-[18px]" />
             Buat Voting Baru
           </button>
         </div>
@@ -78,13 +79,13 @@ export default function AdminVotingPage() {
                     <td className="px-6 py-4">
                       <div className="flex gap-2">
                         <button className="w-8 h-8 rounded-lg hover:bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors">
-                          <span className="material-symbols-outlined text-[16px]">visibility</span>
+                          <AppIcon name="visibility" className="text-[16px]" />
                         </button>
                         <button className="w-8 h-8 rounded-lg hover:bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors">
-                          <span className="material-symbols-outlined text-[16px]">edit</span>
+                          <AppIcon name="edit" className="text-[16px]" />
                         </button>
                         <button className="w-8 h-8 rounded-lg hover:bg-error-container flex items-center justify-center text-on-surface-variant hover:text-error transition-colors">
-                          <span className="material-symbols-outlined text-[16px]">delete</span>
+                          <AppIcon name="delete" className="text-[16px]" />
                         </button>
                       </div>
                     </td>
@@ -103,7 +104,7 @@ export default function AdminVotingPage() {
             <div className="flex justify-between items-center mb-6">
               <h3 className="text-headline-md font-headline-md text-on-surface">Buat Voting Baru</h3>
               <button onClick={() => setShowModal(false)} className="text-on-surface-variant hover:text-on-surface">
-                <span className="material-symbols-outlined">close</span>
+                <AppIcon name="close" />
               </button>
             </div>
             <div className="space-y-5">
@@ -137,7 +138,7 @@ export default function AdminVotingPage() {
                     </div>
                   ))}
                   <button className="flex items-center gap-1.5 text-label-xs font-label-xs text-primary hover:underline">
-                    <span className="material-symbols-outlined text-[14px]">add</span>
+                    <AppIcon name="add" className="text-[14px]" />
                     Tambah Opsi
                   </button>
                 </div>

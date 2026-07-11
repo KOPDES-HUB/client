@@ -1,5 +1,6 @@
 "use client";
 
+import { AppIcon } from "@/components/ui/app-icon";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -38,7 +39,7 @@ export default function KaderSidebar() {
       {/* Role badge */}
       <div className="mx-4 mb-2">
         <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary/20 rounded-lg text-primary-fixed text-[11px] font-semibold">
-          <span className="material-symbols-outlined text-[14px]">shield</span>
+          <AppIcon name="shield" className="text-[14px]" />
           Kader Keliling
         </span>
       </div>
@@ -55,7 +56,7 @@ export default function KaderSidebar() {
                 : "text-secondary-fixed-dim hover:text-white hover:bg-white/10"
             }`}
           >
-            <span className="material-symbols-outlined text-[20px]">{item.icon}</span>
+            <AppIcon name={item.icon} className="text-[20px]" />
             <span className="text-label-sm font-label-sm">{item.label}</span>
           </Link>
         ))}
@@ -67,7 +68,7 @@ export default function KaderSidebar() {
           Semua aksi tercatat sebagai audit trail otomatis.
         </div>
         <button className="flex items-center gap-3 text-red-400 hover:text-red-300 p-3 rounded-lg transition-all w-full">
-          <span className="material-symbols-outlined text-[20px]">logout</span>
+          <AppIcon name="logout" className="text-[20px]" />
           <span className="text-label-sm font-label-sm">Keluar</span>
         </button>
       </div>

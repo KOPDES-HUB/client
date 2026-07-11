@@ -1,5 +1,6 @@
 "use client";
 
+import { AppIcon } from "@/components/ui/app-icon";
 import Link from "next/link";
 import { useDailyLoginStore } from "@/lib/daily-login/store";
 import { calcDailyPoints } from "@/lib/daily-login/config";
@@ -29,7 +30,7 @@ export default function DailyLoginWidget({ compact = false }: { compact?: boolea
         <div className="flex items-start justify-between gap-3">
           <div>
             <div className="flex items-center gap-2">
-              <span className="material-symbols-outlined text-amber-600">local_fire_department</span>
+              <AppIcon name="local_fire_department" className="text-amber-600" />
               <p className="text-label-sm font-label-sm text-on-surface font-semibold">Login Harian</p>
             </div>
             <p className="text-2xl font-bold text-on-surface mt-1">
@@ -53,7 +54,7 @@ export default function DailyLoginWidget({ compact = false }: { compact?: boolea
         {feedback && <p className="text-xs text-primary mt-2 font-medium">{feedback}</p>}
         <Link href="/dashboard/daily-login" className="inline-flex items-center gap-1 text-xs text-primary font-semibold mt-3 hover:underline">
           Tukar voucher gerai KDMP
-          <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
+          <AppIcon name="arrow_forward" className="text-[14px]" />
         </Link>
       </div>
     );
@@ -64,9 +65,7 @@ export default function DailyLoginWidget({ compact = false }: { compact?: boolea
       <div className="bg-gradient-to-r from-amber-500 to-orange-500 px-6 py-4 text-white">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="material-symbols-outlined text-3xl" style={{ fontVariationSettings: "'FILL' 1" }}>
-              local_fire_department
-            </span>
+            <AppIcon name="local_fire_department" className="text-3xl" />
             <div>
               <p className="text-label-sm font-label-sm opacity-90">Streak Login Harian</p>
               <p className="text-headline-md font-headline-md">{currentStreak} Hari Berturut-turut</p>
@@ -100,14 +99,13 @@ export default function DailyLoginWidget({ compact = false }: { compact?: boolea
                       : "bg-surface-bg border-outline-variant/30"
                 }`}
               >
-                <span
-                  className={`material-symbols-outlined text-[20px] ${
+                <AppIcon
+                  name={done ? "check_circle" : isToday ? "redeem" : "circle"}
+                  className={`text-[20px] ${
                     done ? "text-primary" : isToday ? "text-amber-600" : "text-outline-variant"
                   }`}
-                  style={done ? { fontVariationSettings: "'FILL' 1" } : undefined}
-                >
-                  {done ? "check_circle" : isToday ? "redeem" : "circle"}
-                </span>
+                  filled={done}
+                />
                 <span className="text-[10px] text-on-surface-variant">Hari {dayNum}</span>
                 <span className="text-[10px] font-bold text-primary">+{calcDailyPoints(dayNum)}</span>
               </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import { AppIcon } from "@/components/ui/app-icon";
 import Link from "next/link";
 import { useCanAccessVoting } from "@/hooks/useAttendance";
 import { getSessionById } from "@/lib/participation/sessions";
@@ -19,7 +20,7 @@ export default function AttendanceGate({ votingSessionId, children }: Attendance
   return (
     <div className="bg-surface-card rounded-2xl border border-mint-200 shadow-md p-8 text-center max-w-lg mx-auto">
       <div className="w-16 h-16 rounded-full bg-tertiary-fixed flex items-center justify-center mx-auto mb-4">
-        <span className="material-symbols-outlined text-3xl text-amber-700">qr_code_scanner</span>
+        <AppIcon name="qr_code_scanner" className="text-3xl text-amber-700" />
       </div>
       <h3 className="text-headline-md font-headline-md text-on-surface mb-2">
         Absensi KTA Diperlukan
@@ -34,14 +35,7 @@ export default function AttendanceGate({ votingSessionId, children }: Attendance
               : "border-outline-variant/30 bg-surface-bg"
           }`}
         >
-          <span
-            className={`material-symbols-outlined ${
-              hasRatAttendance ? "text-primary" : "text-on-surface-variant"
-            }`}
-            style={{ fontVariationSettings: hasRatAttendance ? "'FILL' 1" : "'FILL' 0" }}
-          >
-            {hasRatAttendance ? "check_circle" : "radio_button_unchecked"}
-          </span>
+          <AppIcon name={hasRatAttendance ? "check_circle" : "radio_button_unchecked"} className={`${ hasRatAttendance ? "text-primary" : "text-on-surface-variant" }`} />
           <div>
             <p className="text-label-sm font-label-sm text-on-surface">Absensi E-RAT (scan KTA)</p>
             <p className="text-label-xs text-on-surface-variant">Wajib untuk voting terkait RAT</p>
@@ -54,14 +48,7 @@ export default function AttendanceGate({ votingSessionId, children }: Attendance
               : "border-outline-variant/30 bg-surface-bg"
           }`}
         >
-          <span
-            className={`material-symbols-outlined ${
-              hasVotingAttendance ? "text-primary" : "text-on-surface-variant"
-            }`}
-            style={{ fontVariationSettings: hasVotingAttendance ? "'FILL' 1" : "'FILL' 0" }}
-          >
-            {hasVotingAttendance ? "check_circle" : "radio_button_unchecked"}
-          </span>
+          <AppIcon name={hasVotingAttendance ? "check_circle" : "radio_button_unchecked"} className={`${ hasVotingAttendance ? "text-primary" : "text-on-surface-variant" }`} />
           <div>
             <p className="text-label-sm font-label-sm text-on-surface">
               Absensi Voting: {session?.title ?? votingSessionId}

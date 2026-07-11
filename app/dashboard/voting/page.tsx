@@ -1,5 +1,6 @@
 "use client";
 
+import { AppIcon } from "@/components/ui/app-icon";
 import TopBar from "@/components/layout/TopBar";
 import AttendanceBadge from "@/components/participation/AttendanceBadge";
 import Link from "next/link";
@@ -61,7 +62,7 @@ function PollAccessStatus({ sessionId }: { sessionId: string }) {
   if (canAccess) {
     return (
       <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant text-[10px] font-semibold">
-        <span className="material-symbols-outlined text-[12px]" style={{ fontVariationSettings: "'FILL' 1" }}>how_to_vote</span>
+        <AppIcon name="how_to_vote" className="text-[12px]" />
         Siap Vote
       </span>
     );
@@ -69,7 +70,7 @@ function PollAccessStatus({ sessionId }: { sessionId: string }) {
 
   return (
     <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant text-[10px] font-semibold">
-      <span className="material-symbols-outlined text-[12px]">qr_code_scanner</span>
+      <AppIcon name="qr_code_scanner" className="text-[12px]" />
       {!hasRatAttendance ? "Perlu absen RAT" : !hasVotingAttendance ? "Perlu absen voting" : "Terkunci"}
     </span>
   );
@@ -107,7 +108,7 @@ export default function EVotingPage() {
         {!hasRatAttendance && (
           <div className="bg-tertiary-fixed/50 border border-amber-200 rounded-2xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="flex items-start gap-3">
-              <span className="material-symbols-outlined text-amber-700 text-2xl">info</span>
+              <AppIcon name="info" className="text-amber-700 text-2xl" />
               <div>
                 <p className="text-label-sm font-label-sm text-on-surface font-semibold">Syarat Partisipasi E-Voting</p>
                 <p className="text-body-md text-on-surface-variant text-sm mt-0.5">
@@ -137,7 +138,7 @@ export default function EVotingPage() {
                   <div className="flex items-start justify-between gap-3">
                     <h3 className="text-label-sm font-label-sm text-on-surface leading-snug flex-1">{poll.title}</h3>
                     <span className="flex items-center gap-1.5 px-3 py-1 bg-error-container text-on-error-container rounded-full text-label-xs font-label-xs shrink-0">
-                      <span className="material-symbols-outlined text-[12px]">schedule</span>
+                      <AppIcon name="schedule" className="text-[12px]" />
                       {poll.deadline}
                     </span>
                   </div>
@@ -172,7 +173,7 @@ export default function EVotingPage() {
                       className="py-2.5 px-3 border border-mint-200 text-primary rounded-xl text-label-sm font-label-sm hover:bg-primary/5 transition-all"
                       title="Absen dengan KTA"
                     >
-                      <span className="material-symbols-outlined text-[18px] align-middle">badge</span>
+                      <AppIcon name="badge" className="text-[18px] align-middle" />
                     </Link>
                     <Link
                       href={`/dashboard/voting/${poll.id}/hasil`}

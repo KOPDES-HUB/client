@@ -1,5 +1,6 @@
 "use client";
 
+import { AppIcon } from "@/components/ui/app-icon";
 import { useMemo, useState } from "react";
 import {
   Bar,
@@ -71,9 +72,7 @@ export default function ArusKasNpvPanel({
 
   const emptyState = (
     <div className="py-10 px-4 text-center rounded-xl bg-surface-bg border border-dashed border-mint-200">
-      <span className="material-symbols-outlined text-4xl text-on-surface-variant/50 mb-2 block">
-        storefront
-      </span>
+      <AppIcon name="storefront" className="text-4xl text-on-surface-variant/50 mb-2 block" />
       <p className="text-sm font-medium text-on-surface">Pilih koperasi terlebih dahulu</p>
       <p className="text-xs text-on-surface-variant mt-1">
         Ketik <strong>KOP-</strong> lalu pilih koperasi dari daftar untuk memuat analisis NPV
@@ -137,7 +136,7 @@ export default function ArusKasNpvPanel({
       <div className="bg-surface-card rounded-2xl border border-mint-200 shadow-md overflow-hidden">
         <div className="px-6 py-4 border-b border-outline-variant/30 flex items-center justify-between gap-3 flex-wrap">
           <div className="flex items-center gap-2">
-            <span className="material-symbols-outlined text-primary">query_stats</span>
+            <AppIcon name="query_stats" className="text-primary" />
             <h3 className="text-label-sm font-label-sm text-on-surface font-semibold">
               Kelayakan Unit Usaha KDMP
             </h3>
@@ -219,7 +218,7 @@ export default function ArusKasNpvPanel({
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <span className="material-symbols-outlined text-primary">analytics</span>
+              <AppIcon name="analytics" className="text-primary" />
               <h3 className="text-label-sm font-label-sm text-on-surface font-semibold">
                 Kelayakan Keuangan — Data Riil Transaksi Penjualan
               </h3>
@@ -235,9 +234,7 @@ export default function ArusKasNpvPanel({
                 layak ? "bg-primary text-white" : "bg-error-container text-on-error-container"
               }`}
             >
-              <span className="material-symbols-outlined text-2xl block mb-0.5">
-                {layak ? "check_circle" : "cancel"}
-              </span>
+              <AppIcon name={layak ? "check_circle" : "cancel"} className="text-2xl block mb-0.5" />
               <p className="font-bold">{layak ? "Layak" : "Tidak Layak"}</p>
               <p className="text-[10px] opacity-80 mt-0.5">NPV {layak ? ">" : "≤"} 0</p>
             </div>

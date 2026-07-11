@@ -1,5 +1,6 @@
 "use client";
 
+import { AppIcon } from "@/components/ui/app-icon";
 import TopBar from "@/components/layout/TopBar";
 import Link from "next/link";
 import { useState } from "react";
@@ -84,13 +85,11 @@ export default function LMSDetailPage() {
               <div className="relative aspect-video bg-inverse-surface rounded-2xl shadow-md overflow-hidden group cursor-pointer border border-mint-200">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-inverse-surface flex items-center justify-center">
                   <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-300">
-                    <span className="material-symbols-outlined text-white text-4xl" style={{ fontVariationSettings: "'FILL' 1" }}>
-                      play_circle
-                    </span>
+                    <AppIcon name="play_circle" className="text-white text-4xl" />
                   </div>
                 </div>
                 <div className="absolute bottom-4 left-4 bg-black/50 backdrop-blur-md rounded-lg px-3 py-1.5 flex items-center gap-2">
-                  <span className="material-symbols-outlined text-white text-[14px]">schedule</span>
+                  <AppIcon name="schedule" className="text-white text-[14px]" />
                   <span className="text-white text-label-xs">20:15</span>
                 </div>
               </div>
@@ -119,7 +118,7 @@ export default function LMSDetailPage() {
                     "Analisis laporan untuk pengambilan keputusan",
                   ].map((point) => (
                     <div key={point} className="flex items-start gap-2">
-                      <span className="material-symbols-outlined text-primary text-[16px] mt-0.5" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
+                      <AppIcon name="check_circle" className="text-primary text-[16px] mt-0.5" />
                       <span className="text-body-md text-on-surface">{point}</span>
                     </div>
                   ))}
@@ -159,7 +158,7 @@ export default function LMSDetailPage() {
                         lesson.done ? "bg-primary" : lesson.current ? "border-2 border-primary" : "border-2 border-outline-variant"
                       }`}>
                         {lesson.done && (
-                          <span className="material-symbols-outlined text-white text-[12px]" style={{ fontVariationSettings: "'FILL' 1" }}>check</span>
+                          <AppIcon name="check" className="text-white text-[12px]" />
                         )}
                       </div>
                       <div className="flex-1 min-w-0">
@@ -169,7 +168,7 @@ export default function LMSDetailPage() {
                         <p className="text-[10px] text-on-surface-variant mt-0.5">{lesson.duration}</p>
                       </div>
                       {lesson.current && (
-                        <span className="material-symbols-outlined text-primary text-[16px]">play_circle</span>
+                        <AppIcon name="play_circle" className="text-primary text-[16px]" />
                       )}
                     </div>
                   ))}
@@ -234,9 +233,7 @@ export default function LMSDetailPage() {
                         "border-outline-variant"
                       }`}>
                         {answered && (idx === quizQuestions[currentQ].correct || idx === selectedAnswer) && (
-                          <span className="material-symbols-outlined text-white text-[10px]" style={{ fontVariationSettings: "'FILL' 1" }}>
-                            {idx === quizQuestions[currentQ].correct ? "check" : "close"}
-                          </span>
+                          <AppIcon name={idx === quizQuestions[currentQ].correct ? "check" : "close"} className="text-white text-[10px]" />
                         )}
                       </div>
                       {option}

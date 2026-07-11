@@ -1,5 +1,6 @@
 "use client";
 
+import { AppIcon } from "@/components/ui/app-icon";
 import AdminTopBar from "@/components/layout/AdminTopBar";
 import { useState } from "react";
 
@@ -76,7 +77,7 @@ export default function AdminUnitUsahaPage() {
           ].map((s) => (
             <div key={s.label} className="bg-surface-card rounded-2xl border border-mint-200 p-5 flex items-center gap-4 shadow-md">
               <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                <span className="material-symbols-outlined text-primary">{s.icon}</span>
+                <AppIcon name={s.icon} className="text-primary" />
               </div>
               <div>
                 <p className="text-2xl font-bold text-on-surface">{s.value}</p>
@@ -93,7 +94,7 @@ export default function AdminUnitUsahaPage() {
             onClick={openCreate}
             className="flex items-center gap-2 px-5 py-2.5 bg-primary text-white rounded-xl text-label-sm font-label-sm hover:bg-primary-container transition-all shadow-lg shadow-primary/20"
           >
-            <span className="material-symbols-outlined text-[18px]">add</span>
+            <AppIcon name="add" className="text-[18px]" />
             Tambah Unit Usaha
           </button>
         </div>
@@ -124,7 +125,7 @@ export default function AdminUnitUsahaPage() {
                       </span>
                     </td>
                     <td className="px-6 py-4 text-primary font-bold text-sm flex items-center gap-1 mt-2">
-                      <span className="material-symbols-outlined text-[14px]">stars</span>
+                      <AppIcon name="stars" className="text-[14px]" />
                       {u.paramPoin}
                     </td>
                     <td className="px-6 py-4">
@@ -139,10 +140,10 @@ export default function AdminUnitUsahaPage() {
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-2">
                         <button onClick={() => openEdit(u)} className="p-2 rounded-lg hover:bg-primary/10 text-primary transition-colors">
-                          <span className="material-symbols-outlined text-[18px]">edit</span>
+                          <AppIcon name="edit" className="text-[18px]" />
                         </button>
                         <button onClick={() => handleDelete(u.id)} className="p-2 rounded-lg hover:bg-error-container text-error transition-colors">
-                          <span className="material-symbols-outlined text-[18px]">delete</span>
+                          <AppIcon name="delete" className="text-[18px]" />
                         </button>
                       </div>
                     </td>
@@ -163,7 +164,7 @@ export default function AdminUnitUsahaPage() {
                 {editId ? "Edit Unit Usaha" : "Tambah Unit Usaha Baru"}
               </h3>
               <button onClick={() => setShowModal(false)} className="p-2 rounded-lg hover:bg-surface-bg">
-                <span className="material-symbols-outlined text-on-surface-variant">close</span>
+                <AppIcon name="close" className="text-on-surface-variant" />
               </button>
             </div>
 

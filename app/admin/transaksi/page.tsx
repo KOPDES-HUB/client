@@ -1,5 +1,6 @@
 "use client";
 
+import { AppIcon } from "@/components/ui/app-icon";
 import AdminTopBar from "@/components/layout/AdminTopBar";
 import { useState } from "react";
 
@@ -83,7 +84,7 @@ export default function AdminTransaksiPage() {
             { label: "Base Konversi",    value: `Rp ${paramKonversi.toLocaleString("id")}/poin`,            icon: "tune" },
           ].map((s) => (
             <div key={s.label} className="bg-surface-card rounded-2xl border border-mint-200 p-5 shadow-md">
-              <span className="material-symbols-outlined text-primary mb-2 block">{s.icon}</span>
+              <AppIcon name={s.icon} className="text-primary mb-2 block" />
               <p className="text-2xl font-bold text-on-surface">{s.value}</p>
               <p className="text-sm text-on-surface-variant">{s.label}</p>
             </div>
@@ -93,7 +94,7 @@ export default function AdminTransaksiPage() {
         {/* Setting parameter konversi */}
         <div className="bg-surface-card rounded-2xl border border-mint-200 shadow-md p-6">
           <div className="flex items-center gap-3 mb-4">
-            <span className="material-symbols-outlined text-primary">tune</span>
+            <AppIcon name="tune" className="text-primary" />
             <h3 className="text-label-sm font-label-sm text-on-surface font-semibold">Setting Parameter Konversi Global</h3>
           </div>
           <div className="flex items-end gap-4">
@@ -128,7 +129,7 @@ export default function AdminTransaksiPage() {
             onClick={() => setShowModal(true)}
             className="flex items-center gap-2 px-5 py-2.5 bg-primary text-white rounded-xl text-label-sm font-label-sm hover:bg-primary-container transition-all shadow-lg shadow-primary/20"
           >
-            <span className="material-symbols-outlined text-[18px]">add</span>
+            <AppIcon name="add" className="text-[18px]" />
             Input Transaksi
           </button>
         </div>
@@ -160,7 +161,7 @@ export default function AdminTransaksiPage() {
                     </td>
                     <td className="px-5 py-4">
                       <span className="flex items-center gap-1 text-primary font-bold text-sm">
-                        <span className="material-symbols-outlined text-[14px]">stars</span>
+                        <AppIcon name="stars" className="text-[14px]" />
                         {t.poin}
                       </span>
                     </td>
@@ -170,7 +171,7 @@ export default function AdminTransaksiPage() {
                         onClick={() => setData((d) => d.filter((x) => x.id !== t.id))}
                         className="p-2 rounded-lg hover:bg-error-container text-error transition-colors"
                       >
-                        <span className="material-symbols-outlined text-[18px]">delete</span>
+                        <AppIcon name="delete" className="text-[18px]" />
                       </button>
                     </td>
                   </tr>
@@ -188,7 +189,7 @@ export default function AdminTransaksiPage() {
             <div className="px-6 py-5 border-b border-outline-variant/30 flex items-center justify-between">
               <h3 className="text-label-sm font-label-sm font-semibold text-on-surface">Input Transaksi Anggota</h3>
               <button onClick={() => setShowModal(false)} className="p-2 rounded-lg hover:bg-surface-bg">
-                <span className="material-symbols-outlined text-on-surface-variant">close</span>
+                <AppIcon name="close" className="text-on-surface-variant" />
               </button>
             </div>
 
@@ -262,7 +263,7 @@ export default function AdminTransaksiPage() {
               {/* Preview poin */}
               {form.nominal && (
                 <div className="bg-primary/5 border border-primary/20 rounded-xl p-3 flex items-center gap-3">
-                  <span className="material-symbols-outlined text-primary">stars</span>
+                  <AppIcon name="stars" className="text-primary" />
                   <p className="text-sm text-on-surface">
                     Transaksi ini akan menghasilkan <strong className="text-primary">{previewPoin} poin</strong>
                     {" "}untuk anggota (Rp {Number(form.nominal).toLocaleString("id")} ÷ Rp 10.000 × {selectedUnit.paramPoin})

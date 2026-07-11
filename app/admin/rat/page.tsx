@@ -1,5 +1,6 @@
 "use client";
 
+import { AppIcon } from "@/components/ui/app-icon";
 import TopBar from "@/components/layout/TopBar";
 import Link from "next/link";
 import { useState } from "react";
@@ -68,7 +69,7 @@ export default function AdminRATPage() {
             onClick={() => setShowModal(true)}
             className="flex items-center gap-2 px-5 py-2.5 bg-primary text-white rounded-xl text-label-sm font-label-sm hover:bg-primary-container transition-all shadow-lg shadow-primary/20"
           >
-            <span className="material-symbols-outlined text-[18px]">add</span>
+            <AppIcon name="add" className="text-[18px]" />
             Buat Sesi RAT
           </button>
         </div>
@@ -114,10 +115,10 @@ export default function AdminRATPage() {
                       <td className="px-6 py-4">
                         <div className="flex gap-2">
                           <button className="w-8 h-8 rounded-lg hover:bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors">
-                            <span className="material-symbols-outlined text-[16px]">edit</span>
+                            <AppIcon name="edit" className="text-[16px]" />
                           </button>
                           <Link href="/rat/proyektor" className="w-8 h-8 rounded-lg hover:bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors">
-                            <span className="material-symbols-outlined text-[16px]">cast</span>
+                            <AppIcon name="cast" className="text-[16px]" />
                           </Link>
                         </div>
                       </td>
@@ -158,7 +159,7 @@ export default function AdminRATPage() {
                 <p className="text-body-md text-on-surface-variant">dari {selectedSession.quorumTarget} target</p>
               </div>
               <button className="w-full flex items-center justify-center gap-2 py-3 bg-primary text-white rounded-xl text-label-sm font-label-sm hover:bg-primary-container transition-all shadow-md">
-                <span className="material-symbols-outlined text-[18px]">qr_code_2</span>
+                <AppIcon name="qr_code_2" className="text-[18px]" />
                 Generate / Regenerate QR
               </button>
             </div>
@@ -215,7 +216,7 @@ export default function AdminRATPage() {
             <div className="flex justify-between items-center mb-6">
               <h3 className="text-headline-md font-headline-md text-on-surface">Buat Sesi RAT Baru</h3>
               <button onClick={() => setShowModal(false)} className="text-on-surface-variant hover:text-on-surface">
-                <span className="material-symbols-outlined">close</span>
+                <AppIcon name="close" />
               </button>
             </div>
             <div className="space-y-4">
@@ -240,7 +241,7 @@ export default function AdminRATPage() {
                     </div>
                   ))}
                   <button className="flex items-center gap-1.5 text-label-xs font-label-xs text-primary hover:underline">
-                    <span className="material-symbols-outlined text-[14px]">add</span>
+                    <AppIcon name="add" className="text-[14px]" />
                     Tambah Agenda
                   </button>
                 </div>

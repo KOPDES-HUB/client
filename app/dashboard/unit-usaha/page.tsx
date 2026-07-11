@@ -1,5 +1,6 @@
 "use client";
 
+import { AppIcon } from "@/components/ui/app-icon";
 import TopBar from "@/components/layout/TopBar";
 import Link from "next/link";
 import ArusKasNpvPanel from "@/components/kelayakan/ArusKasNpvPanel";
@@ -103,7 +104,7 @@ export default function UnitUsahaPage() {
               href="/dashboard/transaksi"
               className="flex items-center gap-2 px-5 py-3 bg-primary text-white rounded-xl text-label-sm font-label-sm hover:bg-primary-container transition-all"
             >
-              <span className="material-symbols-outlined text-[18px]">receipt_long</span>
+              <AppIcon name="receipt_long" className="text-[18px]" />
               Lihat Transaksi Saya
             </Link>
           </div>
@@ -125,7 +126,7 @@ export default function UnitUsahaPage() {
               <div className="p-5 pb-3">
                 <div className="flex items-start justify-between mb-4">
                   <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                    <span className="material-symbols-outlined text-primary text-2xl">{u.icon}</span>
+                    <AppIcon name={u.icon} className="text-primary text-2xl" />
                   </div>
                   <div className="flex flex-col items-end gap-1.5">
                     <span className={`px-2.5 py-1 rounded-full text-[11px] font-bold ${KATEGORI_COLOR[u.kategori]}`}>
@@ -146,11 +147,11 @@ export default function UnitUsahaPage() {
               {/* Details */}
               <div className="px-5 py-3 bg-surface-bg border-t border-outline-variant/20 space-y-2">
                 <div className="flex items-center gap-2 text-sm text-on-surface-variant">
-                  <span className="material-symbols-outlined text-[14px] text-primary">schedule</span>
+                  <AppIcon name="schedule" className="text-[14px] text-primary" />
                   {u.jam}
                 </div>
                 <div className="flex items-center gap-2 text-sm text-on-surface-variant">
-                  <span className="material-symbols-outlined text-[14px] text-primary">location_on</span>
+                  <AppIcon name="location_on" className="text-[14px] text-primary" />
                   {u.lokasi}
                 </div>
               </div>
@@ -160,7 +161,7 @@ export default function UnitUsahaPage() {
                 <div>
                   <p className="text-[10px] text-on-surface-variant uppercase tracking-wider">Poin per Rp 10rb</p>
                   <p className="text-primary font-bold flex items-center gap-1">
-                    <span className="material-symbols-outlined text-[14px]">stars</span>
+                    <AppIcon name="stars" className="text-[14px]" />
                     {u.paramPoin} poin
                   </p>
                 </div>

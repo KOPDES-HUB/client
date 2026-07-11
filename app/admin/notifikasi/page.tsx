@@ -1,5 +1,6 @@
 "use client";
 
+import { AppIcon } from "@/components/ui/app-icon";
 import AdminTopBar from "@/components/layout/AdminTopBar";
 import { useState } from "react";
 import { DEFAULT_TEMPLATES, interpolateTemplate } from "@/lib/whatsapp";
@@ -105,7 +106,7 @@ export default function AdminNotifikasiPage() {
           ].map((s) => (
             <div key={s.label} className="bg-surface-card rounded-2xl border border-mint-200 p-5 shadow-md flex items-center gap-4">
               <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                <span className={`material-symbols-outlined ${s.color}`}>{s.icon}</span>
+                <AppIcon name={s.icon} className={`${s.color}`} />
               </div>
               <div>
                 <p className="text-2xl font-bold text-on-surface">{s.value}</p>
@@ -119,7 +120,7 @@ export default function AdminNotifikasiPage() {
         <div className="bg-surface-card rounded-2xl border border-mint-200 shadow-md overflow-hidden">
           <div className="px-6 py-5 border-b border-outline-variant/30">
             <div className="flex items-center gap-2 mb-1">
-              <span className="material-symbols-outlined text-primary">edit_note</span>
+              <AppIcon name="edit_note" className="text-primary" />
               <h3 className="text-label-sm font-label-sm text-on-surface font-semibold">Template Pesan per Trigger</h3>
             </div>
             <p className="text-xs text-on-surface-variant">
@@ -143,9 +144,7 @@ export default function AdminNotifikasiPage() {
                     activeTab === key ? "bg-primary/5 border-r-2 border-primary" : "hover:bg-surface-bg"
                   }`}
                 >
-                  <span className={`material-symbols-outlined text-[18px] mt-0.5 ${activeTab === key ? "text-primary" : "text-on-surface-variant"}`}>
-                    {info.icon}
-                  </span>
+                  <AppIcon name={info.icon} className={`text-[18px] mt-0.5 ${activeTab === key ? "text-primary" : "text-on-surface-variant"}`} />
                   <div>
                     <p className={`text-sm font-medium ${activeTab === key ? "text-primary" : "text-on-surface"}`}>{info.label}</p>
                     <p className="text-xs text-on-surface-variant leading-snug mt-0.5">{info.desc}</p>
@@ -191,9 +190,7 @@ export default function AdminNotifikasiPage() {
                       : "bg-primary text-white hover:bg-primary-container shadow-md shadow-primary/20"
                   }`}
                 >
-                  <span className="material-symbols-outlined text-[18px]">
-                    {saved === activeTab ? "check" : "save"}
-                  </span>
+                  <AppIcon name={saved === activeTab ? "check" : "save"} className="text-[18px]" />
                   {saved === activeTab ? "Tersimpan!" : "Simpan Template"}
                 </button>
               </div>
@@ -204,7 +201,7 @@ export default function AdminNotifikasiPage() {
         {/* Log riwayat */}
         <div className="bg-surface-card rounded-2xl border border-mint-200 shadow-md overflow-hidden">
           <div className="px-6 py-4 border-b border-outline-variant/30 flex items-center gap-2">
-            <span className="material-symbols-outlined text-primary">history</span>
+            <AppIcon name="history" className="text-primary" />
             <h3 className="text-label-sm font-label-sm text-on-surface font-semibold">Log Riwayat Notifikasi</h3>
           </div>
           <div className="overflow-x-auto">

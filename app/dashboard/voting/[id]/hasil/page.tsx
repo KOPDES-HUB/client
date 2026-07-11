@@ -1,5 +1,6 @@
 import TopBar from "@/components/layout/TopBar";
 import Link from "next/link";
+import { AppIcon } from "@/components/ui/app-icon";
 
 export default function HasilVotingPage() {
   const setuju = 68;
@@ -166,7 +167,7 @@ export default function HasilVotingPage() {
               href="/dashboard/voting/1"
               className="flex items-center justify-center gap-2 w-full py-3.5 bg-primary text-white rounded-xl text-label-sm font-label-sm hover:bg-primary-container transition-all shadow-lg shadow-primary/20"
             >
-              <span className="material-symbols-outlined text-[18px]">how_to_vote</span>
+              <AppIcon name="how_to_vote" className="text-[18px]" />
               Berikan Suara Anda
             </Link>
           </div>

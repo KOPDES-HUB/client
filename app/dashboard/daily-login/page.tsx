@@ -1,5 +1,6 @@
 "use client";
 
+import { AppIcon } from "@/components/ui/app-icon";
 import TopBar from "@/components/layout/TopBar";
 import DailyLoginWidget from "@/components/daily-login/DailyLoginWidget";
 import { useDailyLoginStore } from "@/lib/daily-login/store";
@@ -61,7 +62,7 @@ export default function DailyLoginPage() {
                   className="bg-surface-card rounded-2xl border border-mint-200 p-6 shadow-md flex gap-4"
                 >
                   <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0">
-                    <span className="material-symbols-outlined text-primary text-2xl">{v.icon}</span>
+                    <AppIcon name={v.icon} className="text-primary text-2xl" />
                   </div>
                   <div className="flex-1">
                     <p className="text-label-sm font-label-sm text-on-surface font-semibold">{v.nama}</p>
@@ -142,7 +143,7 @@ export default function DailyLoginPage() {
               key={tip.title}
               className="bg-surface-bg rounded-xl border border-mint-200 p-5"
             >
-              <span className="material-symbols-outlined text-primary text-2xl">{tip.icon}</span>
+              <AppIcon name={tip.icon} className="text-primary text-2xl" />
               <p className="text-label-sm font-label-sm text-on-surface mt-2 font-semibold">{tip.title}</p>
               <p className="text-xs text-on-surface-variant mt-1">{tip.desc}</p>
             </div>

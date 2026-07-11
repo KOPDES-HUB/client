@@ -1,5 +1,6 @@
 "use client";
 
+import { AppIcon } from "@/components/ui/app-icon";
 import TopBar from "@/components/layout/TopBar";
 import { useState } from "react";
 
@@ -46,7 +47,7 @@ export default function ReferralPage() {
           <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full -translate-y-1/3 translate-x-1/4"></div>
           <div className="relative z-10">
             <div className="flex items-center gap-2 mb-4">
-              <span className="material-symbols-outlined text-primary-fixed text-2xl">group_add</span>
+              <AppIcon name="group_add" className="text-primary-fixed text-2xl" />
               <span className="text-primary-fixed font-bold text-lg">Ajak Tetangga, Tumbuh Bersama</span>
             </div>
             <p className="text-secondary-fixed-dim text-sm leading-relaxed max-w-lg mb-6">
@@ -65,7 +66,7 @@ export default function ReferralPage() {
                   onClick={() => handleCopy(KODE_REFERRAL)}
                   className="flex items-center gap-1.5 px-3 py-2 bg-white/20 hover:bg-white/30 rounded-lg text-primary-fixed text-sm font-medium transition-all"
                 >
-                  <span className="material-symbols-outlined text-[16px]">{copied ? "check" : "content_copy"}</span>
+                  <AppIcon name={copied ? "check" : "content_copy"} className="text-[16px]" />
                   {copied ? "Disalin!" : "Salin"}
                 </button>
               </div>
@@ -76,7 +77,7 @@ export default function ReferralPage() {
                   onClick={() => handleCopy(REFERRAL_LINK)}
                   className="flex items-center gap-2 px-4 py-2.5 bg-primary text-white rounded-xl text-sm font-semibold hover:bg-primary-container transition-all"
                 >
-                  <span className="material-symbols-outlined text-[18px]">link</span>
+                  <AppIcon name="link" className="text-[18px]" />
                   Salin Link
                 </button>
                 <a
@@ -85,7 +86,7 @@ export default function ReferralPage() {
                   rel="noreferrer"
                   className="flex items-center gap-2 px-4 py-2.5 bg-[#25D366] text-white rounded-xl text-sm font-semibold hover:bg-[#1da851] transition-all"
                 >
-                  <span className="material-symbols-outlined text-[18px]">share</span>
+                  <AppIcon name="share" className="text-[18px]" />
                   Share WA
                 </a>
               </div>
@@ -102,7 +103,7 @@ export default function ReferralPage() {
           ].map((s) => (
             <div key={s.label} className="bg-surface-card rounded-2xl border border-mint-200 p-6 shadow-md">
               <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-                <span className={`material-symbols-outlined ${s.color}`}>{s.icon}</span>
+                <AppIcon name={s.icon} className={`${s.color}`} />
               </div>
               <p className={`text-2xl font-bold ${s.color}`}>{s.value}</p>
               <p className="text-sm text-on-surface-variant mt-1">{s.label}</p>
@@ -160,7 +161,7 @@ export default function ReferralPage() {
             ].map((s) => (
               <div key={s.step} className="text-center">
                 <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-3">
-                  <span className="material-symbols-outlined text-primary">{s.icon}</span>
+                  <AppIcon name={s.icon} className="text-primary" />
                 </div>
                 <p className="text-sm font-bold text-on-surface mb-1">{s.title}</p>
                 <p className="text-xs text-on-surface-variant leading-relaxed">{s.desc}</p>

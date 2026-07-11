@@ -1,5 +1,6 @@
 "use client";
 
+import { AppIcon } from "@/components/ui/app-icon";
 import TopBar from "@/components/layout/TopBar";
 import { useState } from "react";
 
@@ -109,7 +110,7 @@ export default function KaderBantuPage() {
       <div className="p-8 max-w-container-max mx-auto w-full space-y-8">
         {/* Warning note */}
         <div className="flex items-start gap-3 bg-amber-50 border border-amber-200 rounded-xl p-4">
-          <span className="material-symbols-outlined text-amber-500 mt-0.5">policy</span>
+          <AppIcon name="policy" className="text-amber-500 mt-0.5" />
           <div className="text-sm text-amber-900">
             <strong>Panduan Kader:</strong> Semua aksi yang Anda lakukan atas nama anggota akan dicatat otomatis
             dalam audit trail dengan nama kader, waktu, dan detail aksi. Pastikan anggota memberikan persetujuan
@@ -123,7 +124,7 @@ export default function KaderBantuPage() {
             <div className="bg-surface-card rounded-2xl border border-mint-200 shadow-md p-5">
               <h3 className="text-label-sm font-label-sm text-on-surface font-semibold mb-4">Cari Anggota</h3>
               <div className="relative mb-4">
-                <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[18px] text-on-surface-variant">search</span>
+                <AppIcon name="search" className="absolute left-3 top-1/2 -translate-y-1/2 text-[18px] text-on-surface-variant" />
                 <input
                   value={query}
                   onChange={(e) => { setQuery(e.target.value); setSelectedAnggota(null); setAksi(null); }}
@@ -158,7 +159,7 @@ export default function KaderBantuPage() {
           <div className="col-span-3">
             {!selectedAnggota ? (
               <div className="bg-surface-card rounded-2xl border border-outline-variant/30 shadow-md h-full flex flex-col items-center justify-center p-8 text-center">
-                <span className="material-symbols-outlined text-4xl text-on-surface-variant mb-3">person_search</span>
+                <AppIcon name="person_search" className="text-4xl text-on-surface-variant mb-3" />
                 <p className="text-label-sm font-label-sm text-on-surface mb-1">Pilih Anggota</p>
                 <p className="text-sm text-on-surface-variant">Cari dan pilih anggota dari panel kiri untuk mulai membantu.</p>
               </div>
@@ -194,7 +195,7 @@ export default function KaderBantuPage() {
                           : "border-outline-variant/40 hover:border-primary/40 bg-surface-card"
                       }`}
                     >
-                      <span className={`material-symbols-outlined text-2xl ${aksi === type ? "text-primary" : "text-on-surface-variant"}`}>{icon}</span>
+                      <AppIcon name={icon} className={`text-2xl ${aksi === type ? "text-primary" : "text-on-surface-variant"}`} />
                       <span className={`text-xs font-semibold ${aksi === type ? "text-primary" : "text-on-surface-variant"}`}>{label}</span>
                     </button>
                   ))}
@@ -285,7 +286,7 @@ export default function KaderBantuPage() {
         {log.length > 0 && (
           <div className="bg-surface-card rounded-2xl border border-mint-200 shadow-md overflow-hidden">
             <div className="px-6 py-4 border-b border-outline-variant/30 flex items-center gap-2">
-              <span className="material-symbols-outlined text-primary">history</span>
+              <AppIcon name="history" className="text-primary" />
               <h3 className="text-label-sm font-label-sm text-on-surface font-semibold">Log Aksi Sesi Ini</h3>
             </div>
             <div className="divide-y divide-outline-variant/20">

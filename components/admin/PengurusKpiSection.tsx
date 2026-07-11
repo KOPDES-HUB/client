@@ -1,5 +1,6 @@
 "use client";
 
+import { AppIcon } from "@/components/ui/app-icon";
 import { useMemo, useState } from "react";
 import {
   Bar,
@@ -60,9 +61,7 @@ function MetricBarChart({
   return (
     <div className="bg-surface-bg rounded-xl border border-mint-200/60 p-4">
       <div className="flex items-start gap-2 mb-3">
-        <span className="material-symbols-outlined text-primary text-[18px] mt-0.5">
-          {metric.icon}
-        </span>
+        <AppIcon name={metric.icon} className="text-primary text-[18px] mt-0.5" />
         <div className="min-w-0">
           <p className="text-label-sm font-label-sm text-on-surface font-semibold leading-tight">
             {metric.label}
@@ -144,9 +143,7 @@ function PengurusDetailCard({ pengurus }: { pengurus: KpiPengurus }) {
       <div className="space-y-2">
         {rows.map((r) => (
           <div key={r.key} className="flex items-center gap-3">
-            <span className="material-symbols-outlined text-primary text-[16px] w-5">
-              {r.icon}
-            </span>
+            <AppIcon name={r.icon} className="text-primary text-[16px] w-5" />
             <div className="flex-1 min-w-0">
               <div className="flex justify-between text-xs mb-1">
                 <span className="text-on-surface-variant truncate pr-2">{r.shortLabel}</span>
@@ -196,7 +193,7 @@ export default function PengurusKpiSection() {
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="material-symbols-outlined text-primary">leaderboard</span>
+            <AppIcon name="leaderboard" className="text-primary" />
             <h3 className="text-headline-md font-headline-md text-on-surface">
               Evaluasi KPI Pengurus
             </h3>

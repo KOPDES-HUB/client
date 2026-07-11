@@ -2,6 +2,7 @@ import TopBar from "@/components/layout/TopBar";
 import PengurusKpiSection from "@/components/admin/PengurusKpiSection";
 import TrenPenjualanChart from "@/components/charts/TrenPenjualanChart";
 import Link from "next/link";
+import { AppIcon } from "@/components/ui/app-icon";
 
 const statCards = [
   { label: "Omzet Harian",        value: "Rp 48,2Jt", change: "+8.3%",  icon: "trending_up",         color: "text-primary", bg: "bg-primary-fixed" },
@@ -36,7 +37,7 @@ export default function AdminDashboardPage() {
             <div key={card.label} className="bg-surface-card rounded-2xl border border-mint-200 shadow-md p-6 hover:shadow-lg transition-all hover:-translate-y-0.5">
               <div className="flex justify-between items-start mb-4">
                 <div className={`w-11 h-11 rounded-xl ${card.bg} flex items-center justify-center`}>
-                  <span className={`material-symbols-outlined ${card.color}`}>{card.icon}</span>
+                  <AppIcon name={card.icon} className={`${card.color}`} />
                 </div>
                 <span className="text-label-xs font-label-xs px-2 py-0.5 bg-primary-fixed/30 text-on-primary-fixed-variant rounded-full">
                   {card.change}
@@ -69,9 +70,7 @@ export default function AdminDashboardPage() {
                 <div key={item.label}>
                   <div className="flex justify-between text-sm mb-1.5">
                     <span className="flex items-center gap-1.5 text-on-surface-variant">
-                      <span className="material-symbols-outlined text-primary text-[16px]">
-                        {item.icon}
-                      </span>
+                      <AppIcon name={item.icon} className="text-primary text-[16px]" />
                       {item.label}
                     </span>
                     <span className="font-bold text-on-surface">{item.value}%</span>
@@ -94,11 +93,11 @@ export default function AdminDashboardPage() {
         {/* AI Co-Pilot Card */}
         <div className="bg-gradient-to-r from-primary/5 to-mint-200/20 border border-primary/20 rounded-2xl p-6 relative overflow-hidden">
           <div className="absolute top-0 right-0 opacity-5">
-            <span className="material-symbols-outlined text-[200px] text-primary">auto_awesome</span>
+            <AppIcon name="auto_awesome" className="text-[200px] text-primary" />
           </div>
           <div className="flex items-start gap-4 relative z-10">
             <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center flex-shrink-0">
-              <span className="material-symbols-outlined text-white" style={{ fontVariationSettings: "'FILL' 1" }}>auto_awesome</span>
+              <AppIcon name="auto_awesome" className="text-white" />
             </div>
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-2">
@@ -132,7 +131,7 @@ export default function AdminDashboardPage() {
           ].map((item) => (
             <Link key={item.label} href={item.href} className="bg-surface-card p-5 rounded-2xl border border-mint-200 shadow-md hover:shadow-lg hover:-translate-y-1 transition-all group">
               <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary group-hover:text-white transition-colors">
-                <span className="material-symbols-outlined text-primary group-hover:text-white text-[20px]">{item.icon}</span>
+                <AppIcon name={item.icon} className="text-primary group-hover:text-white text-[20px]" />
               </div>
               <p className="text-label-sm font-label-sm text-on-surface">{item.label}</p>
               <p className="text-label-xs font-label-xs text-on-surface-variant mt-0.5">{item.count}</p>

@@ -1,5 +1,6 @@
 "use client";
 
+import { AppIcon } from "@/components/ui/app-icon";
 import AdminTopBar from "@/components/layout/AdminTopBar";
 import { useState } from "react";
 
@@ -72,7 +73,7 @@ export default function AdminKaderPage() {
             { label: "Anggota Terbantu",     value: kader.reduce((s,k)=>s+k.anggotaDidampingi,0),   icon: "people" },
           ].map((s) => (
             <div key={s.label} className="bg-surface-card rounded-2xl border border-mint-200 p-5 shadow-md">
-              <span className="material-symbols-outlined text-primary mb-2 block">{s.icon}</span>
+              <AppIcon name={s.icon} className="text-primary mb-2 block" />
               <p className="text-2xl font-bold text-on-surface">{s.value}</p>
               <p className="text-sm text-on-surface-variant">{s.label}</p>
             </div>
@@ -84,7 +85,7 @@ export default function AdminKaderPage() {
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-label-sm font-label-sm text-on-surface font-semibold">Daftar Kader</h2>
             <button onClick={openCreate} className="flex items-center gap-2 px-5 py-2.5 bg-primary text-white rounded-xl text-label-sm font-label-sm hover:bg-primary-container transition-all shadow-lg shadow-primary/20">
-              <span className="material-symbols-outlined text-[18px]">person_add</span>
+              <AppIcon name="person_add" className="text-[18px]" />
               Tambah Kader
             </button>
           </div>
@@ -118,7 +119,7 @@ export default function AdminKaderPage() {
                       </td>
                       <td className="px-5 py-4">
                         <button onClick={() => openEdit(k)} className="p-2 rounded-lg hover:bg-primary/10 text-primary transition-colors">
-                          <span className="material-symbols-outlined text-[18px]">edit</span>
+                          <AppIcon name="edit" className="text-[18px]" />
                         </button>
                       </td>
                     </tr>
@@ -170,7 +171,7 @@ export default function AdminKaderPage() {
             <div className="px-6 py-5 border-b border-outline-variant/30 flex items-center justify-between">
               <h3 className="font-semibold text-on-surface">{editId ? "Edit Kader" : "Tambah Kader Baru"}</h3>
               <button onClick={() => setShowModal(false)} className="p-2 rounded-lg hover:bg-surface-bg">
-                <span className="material-symbols-outlined text-on-surface-variant">close</span>
+                <AppIcon name="close" className="text-on-surface-variant" />
               </button>
             </div>
             <div className="p-6 space-y-4">

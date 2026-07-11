@@ -1,5 +1,6 @@
 import TopBar from "@/components/layout/TopBar";
 import Link from "next/link";
+import { AppIcon } from "@/components/ui/app-icon";
 
 export default function SimpananRingkasanPage() {
   return (
@@ -47,7 +48,7 @@ export default function SimpananRingkasanPage() {
             >
               <div className="flex justify-between items-start mb-4">
                 <div className="p-3 rounded-xl bg-primary/10">
-                  <span className="material-symbols-outlined text-primary">{s.icon}</span>
+                  <AppIcon name={s.icon} className="text-primary" />
                 </div>
                 {/* Sparkline */}
                 <div className="flex items-end gap-1 h-10">
@@ -63,7 +64,7 @@ export default function SimpananRingkasanPage() {
               <p className="text-on-surface-variant text-label-sm font-label-sm mb-1">{s.label}</p>
               <h3 className="text-on-background text-headline-md font-headline-md">{s.amount}</h3>
               <p className="text-[11px] text-primary flex items-center gap-1 mt-2">
-                <span className="material-symbols-outlined text-xs">{s.trend}</span>
+                <AppIcon name={s.trend} className="text-xs" />
                 {s.trendLabel}
               </p>
             </div>
@@ -73,11 +74,11 @@ export default function SimpananRingkasanPage() {
         {/* SHU Banner */}
         <section className="bg-inverse-surface rounded-2xl p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 relative overflow-hidden">
           <div className="absolute -right-10 -top-10 opacity-5 pointer-events-none">
-            <span className="material-symbols-outlined text-[200px] text-white">payments</span>
+            <AppIcon name="payments" className="text-[200px] text-white" />
           </div>
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <span className="material-symbols-outlined text-primary-fixed text-[18px]">info</span>
+              <AppIcon name="info" className="text-primary-fixed text-[18px]" />
               <span className="text-label-xs font-label-xs text-secondary-fixed-dim uppercase tracking-wider">
                 Estimasi SHU Tahun Ini
               </span>
@@ -114,7 +115,7 @@ export default function SimpananRingkasanPage() {
               <div key={i} className="flex items-center justify-between px-6 py-4 hover:bg-surface-bg transition-colors">
                 <div className="flex items-center gap-4">
                   <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <span className="material-symbols-outlined text-primary text-[18px]">arrow_downward</span>
+                    <AppIcon name="arrow_downward" className="text-primary text-[18px]" />
                   </div>
                   <div>
                     <p className="text-label-sm font-label-sm text-on-surface">{tx.desc}</p>
@@ -136,7 +137,7 @@ export default function SimpananRingkasanPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <button className="flex items-center gap-4 p-5 bg-surface-card rounded-2xl border border-mint-200 shadow-md hover:shadow-lg hover:-translate-y-1 transition-all group">
             <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
-              <span className="material-symbols-outlined text-primary group-hover:text-white">add_circle</span>
+              <AppIcon name="add_circle" className="text-primary group-hover:text-white" />
             </div>
             <div className="text-left">
               <p className="text-label-sm font-label-sm text-on-surface">Setor Simpanan Sukarela</p>
@@ -145,7 +146,7 @@ export default function SimpananRingkasanPage() {
           </button>
           <button className="flex items-center gap-4 p-5 bg-surface-card rounded-2xl border border-mint-200 shadow-md hover:shadow-lg hover:-translate-y-1 transition-all group">
             <div className="w-12 h-12 rounded-xl bg-tertiary/10 flex items-center justify-center group-hover:bg-tertiary group-hover:text-white transition-colors">
-              <span className="material-symbols-outlined text-tertiary group-hover:text-white">download</span>
+              <AppIcon name="download" className="text-tertiary group-hover:text-white" />
             </div>
             <div className="text-left">
               <p className="text-label-sm font-label-sm text-on-surface">Unduh Laporan Simpanan</p>

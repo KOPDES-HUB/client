@@ -1,5 +1,6 @@
 "use client";
 
+import { AppIcon } from "@/components/ui/app-icon";
 import AdminTopBar from "@/components/layout/AdminTopBar";
 import { useState } from "react";
 
@@ -242,7 +243,7 @@ export default function AdminPartisipasiPage() {
           {/* Top aktif */}
           <div className="bg-surface-card rounded-2xl border border-mint-200 shadow-md overflow-hidden">
             <div className="px-6 py-4 border-b border-outline-variant/30 flex items-center gap-2">
-              <span className="material-symbols-outlined text-primary">emoji_events</span>
+              <AppIcon name="emoji_events" className="text-primary" />
               <h3 className="text-label-sm font-label-sm text-on-surface font-semibold">5 Anggota Paling Aktif</h3>
             </div>
             <table className="w-full border-collapse">
@@ -281,7 +282,7 @@ export default function AdminPartisipasiPage() {
           {/* Bottom pasif */}
           <div className="bg-surface-card rounded-2xl border border-outline-variant/30 shadow-md overflow-hidden">
             <div className="px-6 py-4 border-b border-outline-variant/30 flex items-center gap-2">
-              <span className="material-symbols-outlined text-red-400">warning</span>
+              <AppIcon name="warning" className="text-red-400" />
               <h3 className="text-label-sm font-label-sm text-on-surface font-semibold">5 Anggota Paling Pasif (Perlu Follow-up)</h3>
             </div>
             <table className="w-full border-collapse">

@@ -1,5 +1,6 @@
 "use client";
 
+import { AppIcon } from "@/components/ui/app-icon";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -56,7 +57,7 @@ export default function Sidebar() {
                   : "text-secondary-fixed-dim hover:text-white hover:bg-white/10"
               }`}
             >
-              <span className="material-symbols-outlined text-[20px]">{item.icon}</span>
+              <AppIcon name={item.icon} className="text-[20px]" />
               <span className="text-label-sm font-label-sm">{item.label}</span>
             </Link>
           ))}
@@ -69,21 +70,21 @@ export default function Sidebar() {
           href="/dashboard/profil"
           className="flex items-center gap-3 text-secondary-fixed-dim hover:text-white p-3 rounded-lg transition-all"
         >
-          <span className="material-symbols-outlined text-[20px]">person</span>
+          <AppIcon name="person" className="text-[20px]" />
           <span className="text-label-sm font-label-sm">Profil</span>
         </Link>
         <Link
           href="/dashboard/pengaturan"
           className="flex items-center gap-3 text-secondary-fixed-dim hover:text-white p-3 rounded-lg transition-all"
         >
-          <span className="material-symbols-outlined text-[20px]">settings</span>
+          <AppIcon name="settings" className="text-[20px]" />
           <span className="text-label-sm font-label-sm">Pengaturan</span>
         </Link>
         <button
           type="button"
           className="flex w-full items-center gap-3 rounded-lg p-3 text-red-400 transition-all hover:text-red-300"
         >
-          <span className="material-symbols-outlined text-[20px]">logout</span>
+          <AppIcon name="logout" className="text-[20px]" />
           <span className="text-label-sm font-label-sm">Keluar</span>
         </button>
       </div>

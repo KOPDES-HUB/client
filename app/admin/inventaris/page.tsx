@@ -1,5 +1,6 @@
 "use client";
 
+import { AppIcon } from "@/components/ui/app-icon";
 import AdminTopBar from "@/components/layout/AdminTopBar";
 import { useState } from "react";
 import { DUMMY_INVENTARIS, DUMMY_MUTASI, KOPERASI_REF } from "@/lib/inventaris/dummy";
@@ -152,7 +153,7 @@ export default function AdminInventarisPage() {
           ].map((s) => (
             <div key={s.label} className="bg-surface-card rounded-2xl border border-mint-200 p-5 flex items-center gap-4 shadow-md">
               <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                <span className="material-symbols-outlined text-primary">{s.icon}</span>
+                <AppIcon name={s.icon} className="text-primary" />
               </div>
               <div>
                 <p className="text-2xl font-bold text-on-surface">{s.value}</p>
@@ -184,7 +185,7 @@ export default function AdminInventarisPage() {
                 onClick={openCreate}
                 className="flex items-center gap-2 px-5 py-2.5 bg-primary text-white rounded-xl text-label-sm font-label-sm hover:bg-primary-container shadow-lg shadow-primary/20"
               >
-                <span className="material-symbols-outlined text-[18px]">add</span>
+                <AppIcon name="add" className="text-[18px]" />
                 Tambah Produk
               </button>
             )}
@@ -193,7 +194,7 @@ export default function AdminInventarisPage() {
               onClick={() => setShowMutasiModal(true)}
               className="flex items-center gap-2 px-5 py-2.5 border border-primary text-primary rounded-xl text-label-sm font-label-sm hover:bg-primary/5"
             >
-              <span className="material-symbols-outlined text-[18px]">swap_vert</span>
+              <AppIcon name="swap_vert" className="text-[18px]" />
               Catat Mutasi Stok
             </button>
           </div>
@@ -250,10 +251,10 @@ export default function AdminInventarisPage() {
                       <td className="px-5 py-4">
                         <div className="flex gap-1">
                           <button type="button" onClick={() => openEdit(p)} className="p-2 rounded-lg hover:bg-primary/10 text-primary">
-                            <span className="material-symbols-outlined text-[18px]">edit</span>
+                            <AppIcon name="edit" className="text-[18px]" />
                           </button>
                           <button type="button" onClick={() => handleDelete(p.inventaris_ref)} className="p-2 rounded-lg hover:bg-red-50 text-red-500">
-                            <span className="material-symbols-outlined text-[18px]">delete</span>
+                            <AppIcon name="delete" className="text-[18px]" />
                           </button>
                         </div>
                       </td>

@@ -1,5 +1,6 @@
 "use client";
 
+import { AppIcon } from "@/components/ui/app-icon";
 import AdminTopBar from "@/components/layout/AdminTopBar";
 import { useState } from "react";
 
@@ -42,7 +43,7 @@ export default function AdminReferralPage() {
             { label: "Total Reward Dibayar",value: `Rp ${(totalRewardDibayar/1e6).toFixed(2)}jt`, icon: "redeem", color: "text-on-surface" },
           ].map((s) => (
             <div key={s.label} className="bg-surface-card rounded-2xl border border-mint-200 p-5 shadow-md">
-              <span className={`material-symbols-outlined mb-2 block ${s.color}`}>{s.icon}</span>
+              <AppIcon name={s.icon} className={`mb-2 block ${s.color}`} />
               <p className="text-2xl font-bold text-on-surface">{s.value}</p>
               <p className="text-sm text-on-surface-variant">{s.label}</p>
             </div>
@@ -52,7 +53,7 @@ export default function AdminReferralPage() {
         {/* Setting reward */}
         <div className="bg-surface-card rounded-2xl border border-mint-200 shadow-md p-6">
           <div className="flex items-center gap-3 mb-4">
-            <span className="material-symbols-outlined text-primary">tune</span>
+            <AppIcon name="tune" className="text-primary" />
             <h3 className="text-label-sm font-label-sm text-on-surface font-semibold">Setting Reward Referral</h3>
           </div>
           <div className="flex items-end gap-4">
@@ -80,7 +81,7 @@ export default function AdminReferralPage() {
                 rewardDraftSaved ? "bg-primary-fixed text-on-primary-fixed-variant" : "bg-primary text-white hover:bg-primary-container shadow-md shadow-primary/20"
               }`}
             >
-              <span className="material-symbols-outlined text-[18px]">{rewardDraftSaved ? "check" : "save"}</span>
+              <AppIcon name={rewardDraftSaved ? "check" : "save"} className="text-[18px]" />
               {rewardDraftSaved ? "Tersimpan!" : "Simpan Setting"}
             </button>
           </div>
@@ -89,7 +90,7 @@ export default function AdminReferralPage() {
         {/* Leaderboard */}
         <div className="bg-surface-card rounded-2xl border border-mint-200 shadow-md overflow-hidden">
           <div className="px-6 py-4 border-b border-outline-variant/30 flex items-center gap-2">
-            <span className="material-symbols-outlined text-primary">leaderboard</span>
+            <AppIcon name="leaderboard" className="text-primary" />
             <h3 className="text-label-sm font-label-sm text-on-surface font-semibold">Laporan Referral — Top Referrer</h3>
           </div>
           <div className="overflow-x-auto">
@@ -138,7 +139,7 @@ export default function AdminReferralPage() {
         {PENDING_LIST.length > 0 && (
           <div className="bg-surface-card rounded-2xl border border-amber-200 shadow-md overflow-hidden">
             <div className="px-6 py-4 border-b border-amber-200 flex items-center gap-2 bg-amber-50">
-              <span className="material-symbols-outlined text-amber-600">pending_actions</span>
+              <AppIcon name="pending_actions" className="text-amber-600" />
               <h3 className="text-label-sm font-label-sm text-amber-900 font-semibold">
                 Pendaftar Referral — Menunggu Verifikasi ({PENDING_LIST.length})
               </h3>

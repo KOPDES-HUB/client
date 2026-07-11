@@ -1,5 +1,6 @@
 "use client";
 
+import { AppIcon } from "@/components/ui/app-icon";
 import TopBar from "@/components/layout/TopBar";
 import AttendanceGate from "@/components/participation/AttendanceGate";
 import Link from "next/link";
@@ -53,13 +54,11 @@ export default function VotingDetailPage() {
               <div className="flex flex-wrap justify-between items-start gap-4 mb-6">
                 <div className="flex-1">
                   <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-fixed text-on-primary-fixed-variant text-label-xs font-label-xs mb-3">
-                    <span className="material-symbols-outlined text-[14px]" style={{ fontVariationSettings: "'FILL' 1" }}>
-                      verified
-                    </span>
+                    <AppIcon name="verified" className="text-[14px]" />
                     KTA Terverifikasi — Absensi OK
                   </span>
                   <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-error-container text-on-error-container text-label-xs font-label-xs mb-3 ml-2">
-                    <span className="material-symbols-outlined text-[14px]">schedule</span>
+                    <AppIcon name="schedule" className="text-[14px]" />
                     Berakhir dalam 2 hari
                   </span>
                   <h2 className="text-headline-md font-headline-md text-on-surface leading-tight">{meta.title}</h2>
@@ -68,7 +67,7 @@ export default function VotingDetailPage() {
                   href={`/dashboard/voting/${pollId}/hasil`}
                   className="flex items-center gap-1.5 px-4 py-2 border border-mint-200 rounded-xl text-label-sm font-label-sm text-on-surface-variant hover:border-primary hover:text-primary transition-all"
                 >
-                  <span className="material-symbols-outlined text-[16px]">bar_chart</span>
+                  <AppIcon name="bar_chart" className="text-[16px]" />
                   Lihat Hasil
                 </Link>
               </div>
@@ -86,7 +85,7 @@ export default function VotingDetailPage() {
 
               <div className="flex items-center justify-between p-4 bg-surface-bg rounded-xl mb-6">
                 <div className="flex items-center gap-3">
-                  <span className="material-symbols-outlined text-primary">people</span>
+                  <AppIcon name="people" className="text-primary" />
                   <div>
                     <p className="text-label-sm font-label-sm text-on-surface">Partisipasi Saat Ini</p>
                     <p className="text-label-xs font-label-xs text-on-surface-variant">82 dari 120 anggota telah memilih</p>
@@ -111,12 +110,7 @@ export default function VotingDetailPage() {
                           : "border-mint-200 text-on-surface hover:border-primary hover:bg-primary/5"
                       }`}
                     >
-                      <span
-                        className="material-symbols-outlined block text-2xl mb-1"
-                        style={{ fontVariationSettings: selected === "setuju" ? "'FILL' 1" : "'FILL' 0" }}
-                      >
-                        thumb_up
-                      </span>
+                      <AppIcon name="thumb_up" className="block text-2xl mb-1" />
                       Setuju
                     </button>
                     <button
@@ -128,12 +122,7 @@ export default function VotingDetailPage() {
                           : "border-mint-200 text-on-surface hover:border-on-surface hover:bg-on-surface/5"
                       }`}
                     >
-                      <span
-                        className="material-symbols-outlined block text-2xl mb-1"
-                        style={{ fontVariationSettings: selected === "tidak" ? "'FILL' 1" : "'FILL' 0" }}
-                      >
-                        thumb_down
-                      </span>
+                      <AppIcon name="thumb_down" className="block text-2xl mb-1" />
                       Tidak Setuju
                     </button>
                   </div>
@@ -153,9 +142,7 @@ export default function VotingDetailPage() {
               ) : (
                 <div className="flex items-center gap-4 p-5 bg-primary/5 border border-primary/20 rounded-xl">
                   <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center shrink-0">
-                    <span className="material-symbols-outlined text-white" style={{ fontVariationSettings: "'FILL' 1" }}>
-                      check_circle
-                    </span>
+                    <AppIcon name="check_circle" className="text-white" />
                   </div>
                   <div>
                     <p className="text-label-sm font-label-sm text-primary font-bold">Suara Anda telah tercatat</p>
@@ -180,7 +167,7 @@ export default function VotingDetailPage() {
           <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                <span className="material-symbols-outlined text-primary">how_to_vote</span>
+                <AppIcon name="how_to_vote" className="text-primary" />
               </div>
               <h3 className="text-headline-md font-headline-md text-on-surface">Konfirmasi Pilihan</h3>
             </div>

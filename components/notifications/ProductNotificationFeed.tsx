@@ -1,5 +1,6 @@
 "use client";
 
+import { AppIcon } from "@/components/ui/app-icon";
 import Link from "next/link";
 import { useProductNotificationStore } from "@/lib/notifications/store";
 import { NOTIFICATION_TYPE_META } from "@/lib/notifications/product-dummy";
@@ -37,7 +38,7 @@ export default function ProductNotificationFeed({
       {showHeader && (
         <div className="px-6 py-4 border-b border-outline-variant/30 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="material-symbols-outlined text-primary">notifications</span>
+            <AppIcon name="notifications" className="text-primary" />
             <h3 className="text-label-sm font-label-sm text-on-surface font-semibold">
               Promo & Stok Gerai KDMP
             </h3>
@@ -82,7 +83,7 @@ export default function ProductNotificationFeed({
               <div
                 className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${meta.color}`}
               >
-                <span className="material-symbols-outlined text-[20px]">{meta.icon}</span>
+                <AppIcon name={meta.icon} className="text-[20px]" />
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 flex-wrap">
@@ -91,7 +92,7 @@ export default function ProductNotificationFeed({
                   </span>
                   {n.waSent && (
                     <span className="flex items-center gap-0.5 text-[10px] text-green-600">
-                      <span className="material-symbols-outlined text-[12px]">chat</span>
+                      <AppIcon name="chat" className="text-[12px]" />
                       WA terkirim
                     </span>
                   )}

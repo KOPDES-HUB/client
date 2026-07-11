@@ -1,5 +1,6 @@
 "use client";
 
+import { AppIcon } from "@/components/ui/app-icon";
 import AdminTopBar from "@/components/layout/AdminTopBar";
 import ArusKasNpvPanel from "@/components/kelayakan/ArusKasNpvPanel";
 import {
@@ -268,9 +269,7 @@ export default function AdminKelayakanKeuanganPage() {
           <div className="xl:col-span-2 space-y-6">
             <div className="bg-surface-card rounded-2xl border border-mint-200 p-6 shadow-md space-y-5">
               <h3 className="text-label-sm font-label-sm text-on-surface font-semibold flex items-center gap-2">
-                <span className="material-symbols-outlined text-primary text-[20px]">
-                  edit_note
-                </span>
+                <AppIcon name="edit_note" className="text-primary text-[20px]" />
                 Form Input Rencana Investasi
               </h3>
 
@@ -424,9 +423,7 @@ export default function AdminKelayakanKeuanganPage() {
             {/* Sensitivity Analysis */}
             <div className="bg-surface-card rounded-2xl border border-mint-200 p-6 shadow-md space-y-5">
               <h3 className="text-label-sm font-label-sm text-on-surface font-semibold flex items-center gap-2">
-                <span className="material-symbols-outlined text-primary text-[20px]">
-                  tune
-                </span>
+                <AppIcon name="tune" className="text-primary text-[20px]" />
                 Analisis Sensitivitas
               </h3>
 
@@ -707,9 +704,7 @@ export default function AdminKelayakanKeuanganPage() {
                   : "bg-outline-variant/30 text-on-surface-variant"
               }`}
             >
-              <span className="material-symbols-outlined text-[28px] mb-1 block">
-                {displayMetrics.layak ? "check_circle" : "cancel"}
-              </span>
+              <AppIcon name={displayMetrics.layak ? "check_circle" : "cancel"} className="text-[28px] mb-1 block" />
               <p className="text-lg font-bold">
                 {displayMetrics.layak ? "Layak" : "Tidak Layak"}
               </p>
@@ -762,13 +757,7 @@ export default function AdminKelayakanKeuanganPage() {
                       m.highlight ? "bg-primary/10" : "bg-surface-bg"
                     }`}
                   >
-                    <span
-                      className={`material-symbols-outlined text-[20px] ${
-                        m.highlight ? "text-primary" : "text-on-surface-variant"
-                      }`}
-                    >
-                      {m.icon}
-                    </span>
+                    <AppIcon name={m.icon} className={`text-[20px] ${ m.highlight ? "text-primary" : "text-on-surface-variant" }`} />
                   </div>
                   <div>
                     <p className="text-[11px] uppercase tracking-wider text-on-surface-variant">

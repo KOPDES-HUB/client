@@ -1,5 +1,6 @@
 "use client";
 
+import { AppIcon } from "@/components/ui/app-icon";
 import TopBar from "@/components/layout/TopBar";
 import { useState } from "react";
 
@@ -33,7 +34,7 @@ export default function AdminLMSPage() {
               <div className="p-4 border-b border-outline-variant/30 flex justify-between items-center">
                 <h3 className="text-headline-md font-headline-md text-on-surface">Daftar Modul</h3>
                 <button className="flex items-center gap-1.5 px-3 py-1.5 bg-primary text-white rounded-lg text-label-xs font-label-xs hover:bg-primary-container transition-all">
-                  <span className="material-symbols-outlined text-[14px]">add</span>
+                  <AppIcon name="add" className="text-[14px]" />
                   Tambah
                 </button>
               </div>
@@ -57,10 +58,10 @@ export default function AdminLMSPage() {
                         mod.status === "Aktif" ? "bg-primary-fixed text-on-primary-fixed-variant" : "bg-outline-variant/30 text-on-surface-variant"
                       }`}>{mod.status}</span>
                       <button className="w-6 h-6 rounded flex items-center justify-center hover:text-primary text-on-surface-variant transition-colors">
-                        <span className="material-symbols-outlined text-[16px]">edit</span>
+                        <AppIcon name="edit" className="text-[16px]" />
                       </button>
                       <button className="w-6 h-6 rounded flex items-center justify-center hover:text-error text-on-surface-variant transition-colors">
-                        <span className="material-symbols-outlined text-[16px]">delete</span>
+                        <AppIcon name="delete" className="text-[16px]" />
                       </button>
                     </div>
                   </div>
@@ -103,7 +104,7 @@ export default function AdminLMSPage() {
               <div>
                 <label className="block text-label-sm font-label-sm text-on-surface mb-2">Konten (Video / Teks)</label>
                 <div className="border-2 border-dashed border-mint-200 rounded-xl p-6 flex flex-col items-center gap-2 hover:border-primary hover:bg-primary/5 transition-all cursor-pointer">
-                  <span className="material-symbols-outlined text-on-surface-variant text-4xl">upload_file</span>
+                  <AppIcon name="upload_file" className="text-on-surface-variant text-4xl" />
                   <p className="text-label-sm font-label-sm text-on-surface">Drag & drop atau klik untuk upload</p>
                   <p className="text-label-xs font-label-xs text-on-surface-variant">MP4, PDF, maks 50MB</p>
                 </div>
@@ -114,7 +115,7 @@ export default function AdminLMSPage() {
                 <div className="flex justify-between items-center mb-3">
                   <label className="text-label-sm font-label-sm text-on-surface">Builder Kuis</label>
                   <button onClick={addQuestion} className="flex items-center gap-1.5 px-3 py-1.5 border border-primary text-primary rounded-lg text-label-xs font-label-xs hover:bg-primary/5 transition-all">
-                    <span className="material-symbols-outlined text-[14px]">add</span>
+                    <AppIcon name="add" className="text-[14px]" />
                     Tambah Soal
                   </button>
                 </div>
@@ -128,7 +129,7 @@ export default function AdminLMSPage() {
                           onClick={() => setQuestions(questions.filter((_, i) => i !== qi))}
                           className="text-error hover:opacity-70 transition-opacity"
                         >
-                          <span className="material-symbols-outlined text-[16px]">delete</span>
+                          <AppIcon name="delete" className="text-[16px]" />
                         </button>
                       </div>
                       <input

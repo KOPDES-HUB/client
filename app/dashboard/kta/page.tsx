@@ -1,5 +1,6 @@
 "use client";
 
+import { AppIcon } from "@/components/ui/app-icon";
 import TopBar from "@/components/layout/TopBar";
 import KTACard from "@/components/kta/KTACard";
 import KTAQrCode from "@/components/kta/KTAQrCode";
@@ -33,27 +34,27 @@ export default function KTADigitalPage() {
               onClick={() => setShowQrFullscreen(true)}
               className="flex-1 min-w-[140px] flex items-center justify-center gap-2 px-6 py-3 bg-primary text-white rounded-xl text-label-sm font-label-sm hover:bg-primary-container transition-all shadow-lg shadow-primary/20 hover:-translate-y-0.5 transform"
             >
-              <span className="material-symbols-outlined text-[18px]">qr_code_2</span>
+              <AppIcon name="qr_code_2" className="text-[18px]" />
               Perbesar QR
             </button>
             <Link
               href={`/scan?sessionId=${sessionId}&sessionType=rat`}
               className="flex-1 min-w-[140px] flex items-center justify-center gap-2 px-6 py-3 border border-mint-200 text-primary rounded-xl text-label-sm font-label-sm hover:bg-primary/5 transition-all"
             >
-              <span className="material-symbols-outlined text-[18px]">qr_code_scanner</span>
+              <AppIcon name="qr_code_scanner" className="text-[18px]" />
               Absen E-RAT
             </Link>
             <button
               type="button"
               className="flex items-center justify-center gap-2 px-6 py-3 border border-mint-200 text-on-surface-variant rounded-xl text-label-sm font-label-sm hover:bg-surface-container transition-all"
             >
-              <span className="material-symbols-outlined text-[18px]">download</span>
+              <AppIcon name="download" className="text-[18px]" />
               Unduh
             </button>
           </div>
 
           <div className="mt-6 w-full bg-primary/5 border border-primary/20 rounded-xl p-4 flex items-start gap-3">
-            <span className="material-symbols-outlined text-primary text-[20px] shrink-0">info</span>
+            <AppIcon name="info" className="text-primary text-[20px] shrink-0" />
             <div className="text-body-md text-on-surface-variant space-y-2">
               <p>
                 QR Code pada KTA digunakan sebagai identitas digital untuk <strong>absensi E-RAT</strong> dan{" "}
@@ -96,7 +97,7 @@ export default function KTADigitalPage() {
             onClick={() => setShowQrFullscreen(false)}
             className="absolute top-6 right-6 text-white/80 hover:text-white"
           >
-            <span className="material-symbols-outlined text-3xl">close</span>
+            <AppIcon name="close" className="text-3xl" />
           </button>
           <p className="text-white text-label-sm mb-6 text-center">
             Tunjukkan QR ini untuk absensi E-RAT / E-Voting

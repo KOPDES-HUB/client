@@ -1,5 +1,6 @@
 "use client";
 
+import { AppIcon } from "@/components/ui/app-icon";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useState } from "react";
@@ -113,7 +114,7 @@ function ScanAbsensiContent() {
         <div className="absolute inset-0 bg-gradient-to-br from-inverse-surface to-[#1a2a1c] flex items-center justify-center p-6">
           <div className="relative z-20 w-full max-w-lg space-y-6">
             <div className="px-6 py-3 bg-black/60 backdrop-blur-md rounded-full border border-white/10 flex items-center gap-2 justify-center">
-              <span className="material-symbols-outlined text-white text-[18px]">badge</span>
+              <AppIcon name="badge" className="text-white text-[18px]" />
               <span className="text-label-sm font-label-sm text-white text-center">
                 {session?.title ?? "Sesi Absensi"}
               </span>
@@ -133,9 +134,7 @@ function ScanAbsensiContent() {
 
               {hasAttendance && (
                 <div className="flex items-center gap-2 justify-center p-3 bg-primary/20 border border-primary/30 rounded-xl">
-                  <span className="material-symbols-outlined text-primary-fixed text-[20px]" style={{ fontVariationSettings: "'FILL' 1" }}>
-                    check_circle
-                  </span>
+                  <AppIcon name="check_circle" className="text-primary-fixed text-[20px]" />
                   <span className="text-label-sm text-primary-fixed">Anda sudah absen di sesi ini</span>
                 </div>
               )}
@@ -145,7 +144,7 @@ function ScanAbsensiContent() {
                 onClick={() => setMode("present-kta")}
                 className="w-full flex items-center justify-center gap-2 py-4 bg-primary text-white rounded-xl text-label-sm font-label-sm hover:bg-primary-container transition-all shadow-lg"
               >
-                <span className="material-symbols-outlined text-[20px]">qr_code_2</span>
+                <AppIcon name="qr_code_2" className="text-[20px]" />
                 Tampilkan KTA untuk Di-scan
               </button>
 
@@ -157,7 +156,7 @@ function ScanAbsensiContent() {
                 }}
                 className="w-full flex items-center justify-center gap-2 py-3 border border-white/30 text-white rounded-xl text-label-sm font-label-sm hover:bg-white/10 transition-all"
               >
-                <span className="material-symbols-outlined text-[18px]">qr_code_scanner</span>
+                <AppIcon name="qr_code_scanner" className="text-[18px]" />
                 {mode === "scanning" ? "Memverifikasi KTA..." : "Scan Otomatis (Demo)"}
               </button>
 

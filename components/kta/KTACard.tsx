@@ -1,5 +1,6 @@
 "use client";
 
+import { AppIcon } from "@/components/ui/app-icon";
 import KTAQrCode from "./KTAQrCode";
 import { DEMO_KTA_MEMBER } from "@/lib/kta/member";
 
@@ -53,7 +54,7 @@ export default function KTACard({
             {compact ? (
               member.nama.charAt(0)
             ) : (
-              <span className="material-symbols-outlined text-white/60 text-5xl">person</span>
+              <AppIcon name="person" className="text-white/60 text-5xl" />
             )}
           </div>
           <div className="flex-1 min-w-0">

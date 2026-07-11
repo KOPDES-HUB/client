@@ -1,5 +1,6 @@
 import TopBar from "@/components/layout/TopBar";
 import Link from "next/link";
+import { AppIcon } from "@/components/ui/app-icon";
 
 const courses = [
   {
@@ -101,7 +102,7 @@ export default function LMSPage() {
 
         {/* Search */}
         <div className="mb-6 relative max-w-md">
-          <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[18px] text-on-surface-variant">search</span>
+          <AppIcon name="search" className="absolute left-3 top-1/2 -translate-y-1/2 text-[18px] text-on-surface-variant" />
           <input
             type="text"
             placeholder="Cari kursus..."
@@ -118,14 +119,14 @@ export default function LMSPage() {
             >
               {/* Thumbnail */}
               <div className="h-36 bg-gradient-to-br from-primary to-primary-container flex items-center justify-center relative overflow-hidden">
-                <span className="material-symbols-outlined text-white/30 text-8xl">school</span>
+                <AppIcon name="school" className="text-white/30 text-8xl" />
                 <div className="absolute inset-0 bg-gradient-to-t from-inverse-surface/40 to-transparent"></div>
                 <span className={`absolute top-3 right-3 px-2.5 py-1 rounded-full text-label-xs font-label-xs ${course.badgeColor}`}>
                   {course.badge}
                 </span>
                 {course.progress === 100 && (
                   <div className="absolute top-3 left-3 w-7 h-7 bg-white rounded-full flex items-center justify-center">
-                    <span className="material-symbols-outlined text-primary text-[16px]" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
+                    <AppIcon name="check_circle" className="text-primary text-[16px]" />
                   </div>
                 )}
               </div>
@@ -142,12 +143,12 @@ export default function LMSPage() {
                 {/* Meta chips */}
                 <div className="flex items-center gap-2 mb-4">
                   <span className="flex items-center gap-1 px-2.5 py-1 bg-surface-bg rounded-full text-label-xs font-label-xs text-on-surface-variant">
-                    <span className="material-symbols-outlined text-[12px]">layers</span>
+                    <AppIcon name="layers" className="text-[12px]" />
                     {course.modules} Modul
                   </span>
                   {course.quiz && (
                     <span className="flex items-center gap-1 px-2.5 py-1 bg-primary-fixed rounded-full text-label-xs font-label-xs text-on-primary-fixed-variant">
-                      <span className="material-symbols-outlined text-[12px]">quiz</span>
+                      <AppIcon name="quiz" className="text-[12px]" />
                       Kuis
                     </span>
                   )}
