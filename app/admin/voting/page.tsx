@@ -100,7 +100,7 @@ export default function AdminVotingPage() {
       {/* Create Voting Modal */}
       {showModal && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-lg max-h-[90vh] overflow-y-auto">
+          <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-lg max-h-[90vh] overflow-y-auto" data-lenis-prevent>
             <div className="flex justify-between items-center mb-6">
               <h3 className="text-headline-md font-headline-md text-on-surface">Buat Voting Baru</h3>
               <button onClick={() => setShowModal(false)} className="text-on-surface-variant hover:text-on-surface">

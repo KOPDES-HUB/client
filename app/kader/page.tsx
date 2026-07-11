@@ -133,7 +133,7 @@ export default function KaderBantuPage() {
                 />
               </div>
 
-              <div className="space-y-2 max-h-72 overflow-y-auto">
+              <div className="space-y-2 max-h-72 overflow-y-auto" data-lenis-prevent>
                 {filtered.map((a) => (
                   <button
                     key={a.id}

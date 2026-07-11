@@ -48,7 +48,7 @@ export default function AdminSidebar() {
       </div>
 
       {/* Nav — scrollable jika menu melebihi tinggi layar */}
-      <div className="sidebar-scroll min-h-0 flex-1 overflow-y-auto px-4">
+      <div className="sidebar-scroll min-h-0 flex-1 overflow-y-auto px-4" data-lenis-prevent>
         <nav className="space-y-1 pb-2">
           {adminNavItems.map((item) => (
             <Link

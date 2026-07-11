@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
+import "lenis/dist/lenis.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { QueryProvider } from "@/components/providers/query-provider";
+import { LenisProvider } from "@/components/providers/lenis-provider";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -28,14 +30,16 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className={`${jakarta.className} antialiased`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem={false}
-          disableTransitionOnChange
-        >
-          <QueryProvider> {children} </QueryProvider>
-        </ThemeProvider>
+        <LenisProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="light"
+            enableSystem={false}
+            disableTransitionOnChange
+          >
+            <QueryProvider> {children} </QueryProvider>
+          </ThemeProvider>
+        </LenisProvider>
       </body>
     </html>
   );

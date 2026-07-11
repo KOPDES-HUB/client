@@ -109,7 +109,7 @@ export default function KoperasiRefSearchSelect({
       </div>
 
       {open && !isLoading && (
-        <ul className="absolute z-50 mt-1 w-full max-h-56 overflow-y-auto rounded-xl border border-mint-200 bg-white shadow-lg py-1">
+        <ul className="absolute z-50 mt-1 w-full max-h-56 overflow-y-auto rounded-xl border border-mint-200 bg-white shadow-lg py-1" data-lenis-prevent>
           {filtered.length === 0 ? (
             <li className="px-4 py-3 text-sm text-on-surface-variant">
               Tidak ada koperasi yang cocok

@@ -63,7 +63,7 @@ export default function AnggotaDetailModal({ member, onClose }: AnggotaDetailMod
         aria-label="Tutup"
       />
 
-      <div className="relative z-10 w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-surface-card rounded-2xl border border-mint-200 shadow-2xl">
+      <div className="relative z-10 w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-surface-card rounded-2xl border border-mint-200 shadow-2xl" data-lenis-prevent>
         {/* Header */}
         <div className="sticky top-0 z-10 flex items-center justify-between px-6 py-4 border-b border-outline-variant/30 bg-surface-card/95 backdrop-blur-sm">
           <div>

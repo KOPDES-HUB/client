@@ -256,7 +256,7 @@ function CariKoperasiContent() {
           </div>
 
           {/* Koperasi list */}
-          <div className="flex-1 overflow-y-auto">
+          <div className="flex-1 overflow-y-auto" data-lenis-prevent>
             {/* Loading */}
             {isLoading && (
               <div className="p-6 text-center text-on-surface-variant">
@@ -437,7 +437,7 @@ function CariKoperasiContent() {
         </aside>
 
         {/* ── Map area ────────────────────────────────────────── */}
-        <div className="flex-1 relative">
+        <div className="flex-1 relative" data-lenis-prevent>
           {/* Map attribution badge */}
           <div className="absolute top-4 left-4 z-[1000] bg-inverse-surface/90 backdrop-blur-sm text-primary-fixed text-[10px] px-3 py-1.5 rounded-full font-semibold tracking-widest uppercase shadow-lg">
             {koperasiList.length} Koperasi Terdaftar
